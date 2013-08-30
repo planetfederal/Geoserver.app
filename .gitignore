@@ -1,0 +1,5 @@
+src/*
+!src/makefile
+Geoserver/Vendor/geoserver/*
+.DS_Store
+xcuserdata

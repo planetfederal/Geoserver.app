@@ -1,0 +1,852 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8B0BB41317CFFF97005F5F11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F87A4276153AB60C00456130 /* main.m */; };
+		8B0BB41A17D001E9005F5F11 /* NSFileManager+DirectoryLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0BB41917D001E9005F5F11 /* NSFileManager+DirectoryLocations.m */; };
+		8B5615E417CFF67300328F4B /* GeoServer.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615E317CFF67300328F4B /* GeoServer.entitlements */; };
+		8B5615E517CFF67C00328F4B /* status-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615D717CFF64E00328F4B /* status-off.png */; };
+		8B5615E617CFF67C00328F4B /* status-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615D917CFF64E00328F4B /* status-off@2x.png */; };
+		8B5615E717CFF67C00328F4B /* status-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615DB17CFF64E00328F4B /* status-on.png */; };
+		8B5615E817CFF67C00328F4B /* status-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615DD17CFF64E00328F4B /* status-on@2x.png */; };
+		8B5615EB17CFF69200328F4B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615E917CFF69100328F4B /* InfoPlist.strings */; };
+		8B5615EE17CFF6A200328F4B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615EC17CFF6A200328F4B /* MainMenu.xib */; };
+		8B5615F117CFF6D900328F4B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615EF17CFF6D900328F4B /* MainMenu.xib */; };
+		8B5615F417CFF6E100328F4B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615F217CFF6E100328F4B /* InfoPlist.strings */; };
+		8B5615F717CFF6FB00328F4B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615F517CFF6FB00328F4B /* InfoPlist.strings */; };
+		F87A426F153AB60C00456130 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8973A0C1538846600EAB41E /* Cocoa.framework */; };
+		F87A427E153AB60C00456130 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F87A427D153AB60C00456130 /* AppDelegate.m */; };
+		F883D60E15B5CEB60017F83A /* WelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F883D60C15B5CEB60017F83A /* WelcomeWindowController.m */; };
+		F883D61015B5CEB60017F83A /* WelcomeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F883D60D15B5CEB60017F83A /* WelcomeWindow.xib */; };
+		F884C8F0153C76F800CDCB09 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F884C8ED153C76E900CDCB09 /* ServiceManagement.framework */; };
+		F884C8F1153C786D00CDCB09 /* GeoServerHelper.app in Copy Helper Application */ = {isa = PBXBuildFile; fileRef = F87A426D153AB60C00456130 /* GeoServerHelper.app */; };
+		F884C905153C807400CDCB09 /* GeoserverStatusMenuItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F884C903153C807400CDCB09 /* GeoserverStatusMenuItemViewController.m */; };
+		F884C906153C807400CDCB09 /* GeoserverStatusMenuItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F884C904153C807400CDCB09 /* GeoserverStatusMenuItemView.xib */; };
+		F884C91A153CA24400CDCB09 /* GeoServer.icns in Resources */ = {isa = PBXBuildFile; fileRef = F884C919153CA24400CDCB09 /* GeoServer.icns */; };
+		F88BDC9115704C15004ECB52 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F88BDC9015704C14004ECB52 /* Security.framework */; };
+		F8973A0D1538846600EAB41E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8973A0C1538846600EAB41E /* Cocoa.framework */; };
+		F8973A191538846600EAB41E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F8973A181538846600EAB41E /* main.m */; };
+		F8973A201538846600EAB41E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F8973A1F1538846600EAB41E /* AppDelegate.m */; };
+		F8973A37153884EF00EAB41E /* GeoserverServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F8973A35153884EF00EAB41E /* GeoserverServer.m */; };
+		F8973A3E1538851D00EAB41E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8973A3D1538851D00EAB41E /* Foundation.framework */; };
+		F8973A471538851D00EAB41E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F8973A461538851D00EAB41E /* main.m */; };
+		F8973A52153885BD00EAB41E /* com.boundlessgeo.geoserver-service.xpc in Copy XPC Service */ = {isa = PBXBuildFile; fileRef = F8973A3C1538851D00EAB41E /* com.boundlessgeo.geoserver-service.xpc */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3671343917C90049003BBA08 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F89739FF1538846600EAB41E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3671343217C8FE9A003BBA08;
+			remoteInfo = postgresql;
+		};
+		F87A4285153AB65200456130 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F89739FF1538846600EAB41E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F87A426C153AB60C00456130;
+			remoteInfo = GeoserverHelper;
+		};
+		F8973A4B1538858900EAB41E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F89739FF1538846600EAB41E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F8973A3B1538851D00EAB41E;
+			remoteInfo = "postgres-service";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F87A4287153AB65800456130 /* Copy Helper Application */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				F884C8F1153C786D00CDCB09 /* GeoServerHelper.app in Copy Helper Application */,
+			);
+			name = "Copy Helper Application";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8973A51153885A100EAB41E /* Copy XPC Service */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/XPCServices;
+			dstSubfolderSpec = 1;
+			files = (
+				F8973A52153885BD00EAB41E /* com.boundlessgeo.geoserver-service.xpc in Copy XPC Service */,
+			);
+			name = "Copy XPC Service";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		8B0BB41817D001E9005F5F11 /* NSFileManager+DirectoryLocations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFileManager+DirectoryLocations.h"; path = "Geoserver/Vendor/NSFileManager+DirectoryLocations/NSFileManager+DirectoryLocations.h"; sourceTree = "<group>"; };
+		8B0BB41917D001E9005F5F11 /* NSFileManager+DirectoryLocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager+DirectoryLocations.m"; path = "Geoserver/Vendor/NSFileManager+DirectoryLocations/NSFileManager+DirectoryLocations.m"; sourceTree = "<group>"; };
+		8B5615D817CFF64E00328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/status-off.png"; sourceTree = "<group>"; };
+		8B5615DA17CFF64E00328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/status-off@2x.png"; sourceTree = "<group>"; };
+		8B5615DC17CFF64E00328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/status-on.png"; sourceTree = "<group>"; };
+		8B5615DE17CFF64E00328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/status-on@2x.png"; sourceTree = "<group>"; };
+		8B5615E317CFF67300328F4B /* GeoServer.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = GeoServer.entitlements; sourceTree = SOURCE_ROOT; };
+		8B5615EA17CFF69200328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8B5615ED17CFF6A200328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		8B5615F017CFF6D900328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = GeoserverHelper/en.lproj/MainMenu.xib; sourceTree = SOURCE_ROOT; };
+		8B5615F317CFF6E100328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = GeoserverHelper/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		8B5615F617CFF6FB00328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F87A426D153AB60C00456130 /* GeoServerHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoServerHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F87A4272153AB60C00456130 /* GeoServerHelper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GeoServerHelper-Info.plist"; sourceTree = "<group>"; };
+		F87A4276153AB60C00456130 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F87A4278153AB60C00456130 /* GeoServerHelper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GeoServerHelper-Prefix.pch"; sourceTree = "<group>"; };
+		F87A427C153AB60C00456130 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F87A427D153AB60C00456130 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F883D60B15B5CEB60017F83A /* WelcomeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeWindowController.h; sourceTree = "<group>"; };
+		F883D60C15B5CEB60017F83A /* WelcomeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeWindowController.m; sourceTree = "<group>"; };
+		F883D60D15B5CEB60017F83A /* WelcomeWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeWindow.xib; sourceTree = "<group>"; };
+		F883D61315B5E2780017F83A /* GeoserverConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoserverConstants.h; sourceTree = "<group>"; };
+		F884C8ED153C76E900CDCB09 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
+		F884C8F3153C7A4C00CDCB09 /* GeoserverHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = GeoserverHelper.entitlements; path = ../GeoserverHelper.entitlements; sourceTree = "<group>"; };
+		F884C902153C807400CDCB09 /* GeoserverStatusMenuItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoserverStatusMenuItemViewController.h; sourceTree = "<group>"; };
+		F884C903153C807400CDCB09 /* GeoserverStatusMenuItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoserverStatusMenuItemViewController.m; sourceTree = "<group>"; };
+		F884C904153C807400CDCB09 /* GeoserverStatusMenuItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeoserverStatusMenuItemView.xib; sourceTree = "<group>"; };
+		F884C919153CA24400CDCB09 /* GeoServer.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = GeoServer.icns; sourceTree = "<group>"; };
+		F88BDC9015704C14004ECB52 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		F8973A081538846600EAB41E /* GeoServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8973A0C1538846600EAB41E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		F8973A0F1538846600EAB41E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		F8973A101538846600EAB41E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F8973A111538846600EAB41E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F8973A141538846600EAB41E /* GeoServer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GeoServer-Info.plist"; sourceTree = "<group>"; };
+		F8973A181538846600EAB41E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F8973A1A1538846600EAB41E /* GeoServer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GeoServer-Prefix.pch"; sourceTree = "<group>"; };
+		F8973A1E1538846600EAB41E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F8973A1F1538846600EAB41E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F8973A35153884EF00EAB41E /* GeoserverServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoserverServer.m; sourceTree = "<group>"; };
+		F8973A36153884EF00EAB41E /* GeoserverServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoserverServer.h; sourceTree = "<group>"; };
+		F8973A3C1538851D00EAB41E /* com.boundlessgeo.geoserver-service.xpc */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "com.boundlessgeo.geoserver-service.xpc"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8973A3D1538851D00EAB41E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F8973A411538851D00EAB41E /* geoserver-service-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "geoserver-service-Info.plist"; sourceTree = "<group>"; };
+		F8973A451538851D00EAB41E /* geoserver-service-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "geoserver-service-Prefix.pch"; sourceTree = "<group>"; };
+		F8973A461538851D00EAB41E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F8A4B56B15735F26003C00F5 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Postgres/Vendor/Sparkle.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F87A426A153AB60C00456130 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F87A426F153AB60C00456130 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8973A051538846600EAB41E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F88BDC9115704C15004ECB52 /* Security.framework in Frameworks */,
+				F884C8F0153C76F800CDCB09 /* ServiceManagement.framework in Frameworks */,
+				F8973A0D1538846600EAB41E /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8973A391538851D00EAB41E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8973A3E1538851D00EAB41E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8B0BB41717D001DD005F5F11 /* NSFileManager+DirectoryLocations */ = {
+			isa = PBXGroup;
+			children = (
+				8B0BB41817D001E9005F5F11 /* NSFileManager+DirectoryLocations.h */,
+				8B0BB41917D001E9005F5F11 /* NSFileManager+DirectoryLocations.m */,
+			);
+			name = "NSFileManager+DirectoryLocations";
+			sourceTree = "<group>";
+		};
+		F87A4267153AB23F00456130 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				F87A4268153AB24600456130 /* Status Item */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		F87A4268153AB24600456130 /* Status Item */ = {
+			isa = PBXGroup;
+			children = (
+				8B5615D717CFF64E00328F4B /* status-off.png */,
+				8B5615D917CFF64E00328F4B /* status-off@2x.png */,
+				8B5615DB17CFF64E00328F4B /* status-on.png */,
+				8B5615DD17CFF64E00328F4B /* status-on@2x.png */,
+			);
+			name = "Status Item";
+			sourceTree = "<group>";
+		};
+		F87A4270153AB60C00456130 /* GeoserverHelper */ = {
+			isa = PBXGroup;
+			children = (
+				F884C8F3153C7A4C00CDCB09 /* GeoserverHelper.entitlements */,
+				F87A427C153AB60C00456130 /* AppDelegate.h */,
+				8B5615EF17CFF6D900328F4B /* MainMenu.xib */,
+				F87A427D153AB60C00456130 /* AppDelegate.m */,
+				F87A4271153AB60C00456130 /* Supporting Files */,
+			);
+			path = GeoserverHelper;
+			sourceTree = "<group>";
+		};
+		F87A4271153AB60C00456130 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F87A4272153AB60C00456130 /* GeoServerHelper-Info.plist */,
+				8B5615F217CFF6E100328F4B /* InfoPlist.strings */,
+				F87A4276153AB60C00456130 /* main.m */,
+				F87A4278153AB60C00456130 /* GeoServerHelper-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F89739FD1538846600EAB41E = {
+			isa = PBXGroup;
+			children = (
+				F884C919153CA24400CDCB09 /* GeoServer.icns */,
+				F8973A121538846600EAB41E /* Geoserver */,
+				F87A4270153AB60C00456130 /* GeoserverHelper */,
+				F8973A3F1538851D00EAB41E /* geoserver-service */,
+				F8973A32153884AC00EAB41E /* Vendor */,
+				F8973A0B1538846600EAB41E /* Frameworks */,
+				F8973A091538846600EAB41E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F8973A091538846600EAB41E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F8973A081538846600EAB41E /* GeoServer.app */,
+				F8973A3C1538851D00EAB41E /* com.boundlessgeo.geoserver-service.xpc */,
+				F87A426D153AB60C00456130 /* GeoServerHelper.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F8973A0B1538846600EAB41E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F8A4B56B15735F26003C00F5 /* Sparkle.framework */,
+				F88BDC9015704C14004ECB52 /* Security.framework */,
+				F884C8ED153C76E900CDCB09 /* ServiceManagement.framework */,
+				F8973A0C1538846600EAB41E /* Cocoa.framework */,
+				F8973A3D1538851D00EAB41E /* Foundation.framework */,
+				F8973A0E1538846600EAB41E /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F8973A0E1538846600EAB41E /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F8973A0F1538846600EAB41E /* AppKit.framework */,
+				F8973A101538846600EAB41E /* CoreData.framework */,
+				F8973A111538846600EAB41E /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		F8973A121538846600EAB41E /* Geoserver */ = {
+			isa = PBXGroup;
+			children = (
+				8B5615E317CFF67300328F4B /* GeoServer.entitlements */,
+				8B5615EC17CFF6A200328F4B /* MainMenu.xib */,
+				F883D61315B5E2780017F83A /* GeoserverConstants.h */,
+				F8973A1E1538846600EAB41E /* AppDelegate.h */,
+				F8973A1F1538846600EAB41E /* AppDelegate.m */,
+				F8973A36153884EF00EAB41E /* GeoserverServer.h */,
+				F8973A35153884EF00EAB41E /* GeoserverServer.m */,
+				F884C902153C807400CDCB09 /* GeoserverStatusMenuItemViewController.h */,
+				F884C903153C807400CDCB09 /* GeoserverStatusMenuItemViewController.m */,
+				F884C904153C807400CDCB09 /* GeoserverStatusMenuItemView.xib */,
+				F883D60B15B5CEB60017F83A /* WelcomeWindowController.h */,
+				F883D60C15B5CEB60017F83A /* WelcomeWindowController.m */,
+				F883D60D15B5CEB60017F83A /* WelcomeWindow.xib */,
+				F8973A131538846600EAB41E /* Supporting Files */,
+			);
+			path = Geoserver;
+			sourceTree = "<group>";
+		};
+		F8973A131538846600EAB41E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F8973A141538846600EAB41E /* GeoServer-Info.plist */,
+				8B5615E917CFF69100328F4B /* InfoPlist.strings */,
+				F8973A181538846600EAB41E /* main.m */,
+				F8973A1A1538846600EAB41E /* GeoServer-Prefix.pch */,
+				F87A4267153AB23F00456130 /* Images */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F8973A32153884AC00EAB41E /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				8B0BB41717D001DD005F5F11 /* NSFileManager+DirectoryLocations */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+		F8973A3F1538851D00EAB41E /* geoserver-service */ = {
+			isa = PBXGroup;
+			children = (
+				F8973A461538851D00EAB41E /* main.m */,
+				F8973A401538851D00EAB41E /* Supporting Files */,
+			);
+			path = "geoserver-service";
+			sourceTree = "<group>";
+		};
+		F8973A401538851D00EAB41E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8B5615F517CFF6FB00328F4B /* InfoPlist.strings */,
+				F8973A411538851D00EAB41E /* geoserver-service-Info.plist */,
+				F8973A451538851D00EAB41E /* geoserver-service-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		3671343217C8FE9A003BBA08 /* geoserver */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = 3671343317C8FE9A003BBA08 /* Build configuration list for PBXLegacyTarget "geoserver" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "${PROJECT_DIR}/src";
+			dependencies = (
+			);
+			name = geoserver;
+			passBuildSettingsInEnvironment = 1;
+			productName = postgresql;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXNativeTarget section */
+		F87A426C153AB60C00456130 /* GeoServerHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F87A4282153AB60C00456130 /* Build configuration list for PBXNativeTarget "GeoServerHelper" */;
+			buildPhases = (
+				F87A4269153AB60C00456130 /* Sources */,
+				F87A426A153AB60C00456130 /* Frameworks */,
+				F87A426B153AB60C00456130 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GeoServerHelper;
+			productName = GeoserverHelper;
+			productReference = F87A426D153AB60C00456130 /* GeoServerHelper.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F8973A071538846600EAB41E /* GeoServer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8973A261538846600EAB41E /* Build configuration list for PBXNativeTarget "GeoServer" */;
+			buildPhases = (
+				F8973A041538846600EAB41E /* Sources */,
+				F8973A051538846600EAB41E /* Frameworks */,
+				F8973A061538846600EAB41E /* Resources */,
+				F8973A51153885A100EAB41E /* Copy XPC Service */,
+				F87A4287153AB65800456130 /* Copy Helper Application */,
+				3671343617C8FFBB003BBA08 /* Copy bin, lib, include, share & fix linking issues */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3671343A17C90049003BBA08 /* PBXTargetDependency */,
+				F8973A4C1538858900EAB41E /* PBXTargetDependency */,
+				F87A4286153AB65200456130 /* PBXTargetDependency */,
+			);
+			name = GeoServer;
+			productName = Postgres;
+			productReference = F8973A081538846600EAB41E /* GeoServer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F8973A3B1538851D00EAB41E /* geoserver-service */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8973A481538851D00EAB41E /* Build configuration list for PBXNativeTarget "geoserver-service" */;
+			buildPhases = (
+				F8973A381538851D00EAB41E /* Sources */,
+				F8973A391538851D00EAB41E /* Frameworks */,
+				F8973A3A1538851D00EAB41E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "geoserver-service";
+			productName = "postgres-service";
+			productReference = F8973A3C1538851D00EAB41E /* com.boundlessgeo.geoserver-service.xpc */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F89739FF1538846600EAB41E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = F8973A021538846600EAB41E /* Build configuration list for PBXProject "GeoServer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F89739FD1538846600EAB41E;
+			productRefGroup = F8973A091538846600EAB41E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F8973A071538846600EAB41E /* GeoServer */,
+				F87A426C153AB60C00456130 /* GeoServerHelper */,
+				F8973A3B1538851D00EAB41E /* geoserver-service */,
+				3671343217C8FE9A003BBA08 /* geoserver */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F87A426B153AB60C00456130 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B5615F117CFF6D900328F4B /* MainMenu.xib in Resources */,
+				8B5615F417CFF6E100328F4B /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8973A061538846600EAB41E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F884C906153C807400CDCB09 /* GeoserverStatusMenuItemView.xib in Resources */,
+				F884C91A153CA24400CDCB09 /* GeoServer.icns in Resources */,
+				F883D61015B5CEB60017F83A /* WelcomeWindow.xib in Resources */,
+				8B5615E417CFF67300328F4B /* GeoServer.entitlements in Resources */,
+				8B5615E517CFF67C00328F4B /* status-off.png in Resources */,
+				8B5615E617CFF67C00328F4B /* status-off@2x.png in Resources */,
+				8B5615E717CFF67C00328F4B /* status-on.png in Resources */,
+				8B5615E817CFF67C00328F4B /* status-on@2x.png in Resources */,
+				8B5615EB17CFF69200328F4B /* InfoPlist.strings in Resources */,
+				8B5615EE17CFF6A200328F4B /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8973A3A1538851D00EAB41E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B5615F717CFF6FB00328F4B /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3671343617C8FFBB003BBA08 /* Copy bin, lib, include, share & fix linking issues */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy bin, lib, include, share & fix linking issues";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "#!/bin/bash\n\nORIG_INSTALL_ROOT=\"${PROJECT_DIR}/Geoserver/Vendor/geoserver\"\nEXECUTABLE_TARGET_DIR=\"$BUILT_PRODUCTS_DIR/$EXECUTABLE_FOLDER_PATH\"\n\n# copy dynamic libraries only (no need for static libraries)\ncd \"${ORIG_INSTALL_ROOT}/lib/\"\nmkdir -p \"$EXECUTABLE_TARGET_DIR/lib/\"\ncp -af *.dylib \"$EXECUTABLE_TARGET_DIR/lib/\"\n\n#copy include, share, geoserver\ncp -afR \"${ORIG_INSTALL_ROOT}/include\" \"${ORIG_INSTALL_ROOT}/share\" \"${ORIG_INSTALL_ROOT}/gs\" \"$EXECUTABLE_TARGET_DIR/\"\n\n# fix dylib paths\ncd \"$EXECUTABLE_TARGET_DIR\"\nprefix=\"${ORIG_INSTALL_ROOT}\"\nprefix_length=${#prefix}\n    \n# fix library ids\nfor libfile in \"lib/\"*\ndo\n\tlibrary_id=$(otool -D $libfile | grep \"$prefix\");\n\tif [[ -n \"$library_id\" ]]\n\tthen\n        new_library_id=\"@loader_path/..\"${library_id:$prefix_length}\n        install_name_tool -id \"$new_library_id\" \"$libfile\"\n\tfi\ndone\n    \n# fix library references\nfor file in \"lib/\"*\ndo\n\tlinked_libs=$(otool -L $file | egrep --only-matching \"\\Q$prefix\\E\\S+\");\n\tfor lib_path in $linked_libs\n\tdo\n        new_lib_path=\"@loader_path/..\"${lib_path:$prefix_length}\n        install_name_tool -change \"$lib_path\" \"$new_lib_path\" $file\n\tdone\ndone";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F87A4269153AB60C00456130 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B0BB41317CFFF97005F5F11 /* main.m in Sources */,
+				F87A427E153AB60C00456130 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8973A041538846600EAB41E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8973A191538846600EAB41E /* main.m in Sources */,
+				F8973A201538846600EAB41E /* AppDelegate.m in Sources */,
+				F8973A37153884EF00EAB41E /* GeoserverServer.m in Sources */,
+				F884C905153C807400CDCB09 /* GeoserverStatusMenuItemViewController.m in Sources */,
+				F883D60E15B5CEB60017F83A /* WelcomeWindowController.m in Sources */,
+				8B0BB41A17D001E9005F5F11 /* NSFileManager+DirectoryLocations.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F8973A381538851D00EAB41E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8973A471538851D00EAB41E /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3671343A17C90049003BBA08 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3671343217C8FE9A003BBA08 /* geoserver */;
+			targetProxy = 3671343917C90049003BBA08 /* PBXContainerItemProxy */;
+		};
+		F87A4286153AB65200456130 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F87A426C153AB60C00456130 /* GeoServerHelper */;
+			targetProxy = F87A4285153AB65200456130 /* PBXContainerItemProxy */;
+		};
+		F8973A4C1538858900EAB41E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F8973A3B1538851D00EAB41E /* geoserver-service */;
+			targetProxy = F8973A4B1538858900EAB41E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8B5615D717CFF64E00328F4B /* status-off.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8B5615D817CFF64E00328F4B /* en */,
+			);
+			name = "status-off.png";
+			sourceTree = "<group>";
+		};
+		8B5615D917CFF64E00328F4B /* status-off@2x.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8B5615DA17CFF64E00328F4B /* en */,
+			);
+			name = "status-off@2x.png";
+			sourceTree = "<group>";
+		};
+		8B5615DB17CFF64E00328F4B /* status-on.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8B5615DC17CFF64E00328F4B /* en */,
+			);
+			name = "status-on.png";
+			sourceTree = "<group>";
+		};
+		8B5615DD17CFF64E00328F4B /* status-on@2x.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8B5615DE17CFF64E00328F4B /* en */,
+			);
+			name = "status-on@2x.png";
+			sourceTree = "<group>";
+		};
+		8B5615E917CFF69100328F4B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8B5615EA17CFF69200328F4B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		8B5615EC17CFF6A200328F4B /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8B5615ED17CFF6A200328F4B /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		8B5615EF17CFF6D900328F4B /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8B5615F017CFF6D900328F4B /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		8B5615F217CFF6E100328F4B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8B5615F317CFF6E100328F4B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		8B5615F517CFF6FB00328F4B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8B5615F617CFF6FB00328F4B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3671343417C8FE9A003BBA08 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3671343517C8FE9A003BBA08 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F87A4283153AB60C00456130 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = GeoserverHelper.entitlements;
+				CODE_SIGN_IDENTITY = "";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GeoserverHelper/GeoServerHelper-Prefix.pch";
+				INFOPLIST_FILE = "GeoserverHelper/GeoServerHelper-Info.plist";
+				PRODUCT_NAME = GeoServerHelper;
+				SDKROOT = macosx10.7;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F87A4284153AB60C00456130 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = GeoserverHelper.entitlements;
+				CODE_SIGN_IDENTITY = "";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GeoserverHelper/GeoServerHelper-Prefix.pch";
+				INFOPLIST_FILE = "GeoserverHelper/GeoServerHelper-Info.plist";
+				PRODUCT_NAME = GeoServerHelper;
+				SDKROOT = macosx10.7;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F8973A241538846600EAB41E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"GS_VERSION=\"$GEOSERVER_VERSION\"",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GEOSERVERAPP_BUILD_VERSION = 14;
+				GEOSERVERAPP_MINOR_VERSION = 3;
+				GEOSERVER_VERSION = 2.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.7;
+			};
+			name = Debug;
+		};
+		F8973A251538846600EAB41E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "GS_VERSION=\"$GEOSERVER_VERSION\"";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GEOSERVERAPP_BUILD_VERSION = 14;
+				GEOSERVERAPP_MINOR_VERSION = 3;
+				GEOSERVER_VERSION = 2.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx10.7;
+			};
+			name = Release;
+		};
+		F8973A271538846600EAB41E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = GeoServer.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Geoserver/GeoServer-Prefix.pch";
+				INFOPLIST_FILE = "Geoserver/GeoServer-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = GeoServer;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = macosx10.7;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F8973A281538846600EAB41E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = GeoServer.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Geoserver/GeoServer-Prefix.pch";
+				INFOPLIST_FILE = "Geoserver/GeoServer-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = GeoServer;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = macosx10.7;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F8973A491538851D00EAB41E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "geoserver-service/geoserver-service-Prefix.pch";
+				INFOPLIST_FILE = "geoserver-service/geoserver-service-Info.plist";
+				MACH_O_TYPE = mh_execute;
+				PRODUCT_NAME = "com.boundlessgeo.$(TARGET_NAME)";
+				SDKROOT = macosx10.7;
+				WRAPPER_EXTENSION = xpc;
+			};
+			name = Debug;
+		};
+		F8973A4A1538851D00EAB41E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "geoserver-service/geoserver-service-Prefix.pch";
+				INFOPLIST_FILE = "geoserver-service/geoserver-service-Info.plist";
+				MACH_O_TYPE = mh_execute;
+				PRODUCT_NAME = "com.boundlessgeo.$(TARGET_NAME)";
+				SDKROOT = macosx10.7;
+				WRAPPER_EXTENSION = xpc;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3671343317C8FE9A003BBA08 /* Build configuration list for PBXLegacyTarget "geoserver" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3671343417C8FE9A003BBA08 /* Debug */,
+				3671343517C8FE9A003BBA08 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F87A4282153AB60C00456130 /* Build configuration list for PBXNativeTarget "GeoServerHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F87A4283153AB60C00456130 /* Debug */,
+				F87A4284153AB60C00456130 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8973A021538846600EAB41E /* Build configuration list for PBXProject "GeoServer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8973A241538846600EAB41E /* Debug */,
+				F8973A251538846600EAB41E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8973A261538846600EAB41E /* Build configuration list for PBXNativeTarget "GeoServer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8973A271538846600EAB41E /* Debug */,
+				F8973A281538846600EAB41E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8973A481538851D00EAB41E /* Build configuration list for PBXNativeTarget "geoserver-service" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8973A491538851D00EAB41E /* Debug */,
+				F8973A4A1538851D00EAB41E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F89739FF1538846600EAB41E /* Project object */;
+}
