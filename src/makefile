@@ -5,7 +5,7 @@ SUITE_VERSION=4.0-SNAPSHOT
 GDAL_VERSION=1.9.2
 
 #path configuration
-PREFIX=$(CURDIR)/../Geoserver/Vendor/geoserver
+PREFIX=$(PROJECT_DIR)/Geoserver/Vendor/geoserver
 PATH=$(PREFIX)/bin:/bin:/usr/bin:/opt/local/bin
 
 # commands used for downloading and extracting sources
