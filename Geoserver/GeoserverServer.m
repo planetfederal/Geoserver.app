@@ -40,7 +40,7 @@
     static GeoserverServer *_sharedServer = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _sharedServer = [[GeoserverServer alloc] initWithExecutablesDirectory:[[NSBundle mainBundle] pathForAuxiliaryExecutable:@"gs"] dataDirectory:[[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent:@"data_dir"]];
+        _sharedServer = [[GeoserverServer alloc] initWithExecutablesDirectory:[[NSBundle mainBundle] pathForAuxiliaryExecutable:@"gs"] dataDirectory:[[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent:@"geoserver"]];
     });
     
     return _sharedServer;
@@ -88,9 +88,9 @@
     NSFileManager *fm = [[NSFileManager alloc] init];
     if (![fm fileExistsAtPath:_dataPath]) {
         NSLog(@"Installing data_dir");
-        [[NSFileManager defaultManager] copyItemAtPath:[NSString stringWithFormat:@"%@/data_dir",_binPath] toPath:_dataPath error:&copyError];
+        [[NSFileManager defaultManager] copyItemAtPath:[NSString stringWithFormat:@"%@",_binPath] toPath:_dataPath error:&copyError];
         if (copyError) {
-            NSAlert *copyErrorAlert = [NSAlert alertWithMessageText:@"Error setting up GeoServer data" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:copyError.localizedDescription];
+            NSAlert *copyErrorAlert = [NSAlert alertWithMessageText:@"Error setting up GeoServer" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:copyError.localizedDescription];
             [copyErrorAlert runModal];
             
             return NO;
@@ -100,7 +100,7 @@
     [self executeCommandNamed:@"/usr/bin/java" arguments:@[
      [NSString stringWithFormat:@"-Djetty.port=%@",
 [NSNumber numberWithInteger:_port]], @"-DSTOP.PORT=8079", @"-DSTOP.KEY=boundless",
-      [NSString stringWithFormat:@"-DGEOSERVER_DATA_DIR=%@", _dataPath],
+      [NSString stringWithFormat:@"-DGEOSERVER_DATA_DIR=%@/data_dir", _dataPath],
      @"-Xms128m", @"-Xmx512m", @"-XX:MaxPermSize=256m", @"-Dslf4j=false",
      [NSString stringWithFormat:@"-Djava.library.path=%@/../lib", _binPath],
      @"-Dorg.geotools.referencing.forceXY=true", @"-cp", @"jetty-start.jar:lib/ini4j-0.5.1.jar:lib/log4j-1.2.14.jar:lib/commons-logging-1.0.jar:lib/slf4j-jcl-1.0.1.jar", @"-Djava.awt.headless=true", @"org.mortbay.start.Main"]terminationHandler:^(NSUInteger status) {
@@ -118,7 +118,7 @@
 - (BOOL)stopWithTerminationHandler:(void (^)(NSUInteger status))terminationHandler {
     [self executeCommandNamed:@"/usr/bin/java" arguments:@[
      [NSString stringWithFormat:@"-Djetty.port=%@", [NSNumber numberWithInteger:_port]], @"-DSTOP.PORT=8079", @"-DSTOP.KEY=boundless",
-      [NSString stringWithFormat:@"-DGEOSERVER_DATA_DIR=%@", _dataPath],
+      [NSString stringWithFormat:@"-DGEOSERVER_DATA_DIR=%@/dat_dir", _dataPath],
      @"-Xms128m", @"-Xmx512m", @"-XX:MaxPermSize=256m", @"-Dslf4j=false",
      [NSString stringWithFormat:@"-Djava.library.path=%@/../lib", _binPath],
      @"-Dorg.geotools.referencing.forceXY=true", @"-cp", @"jetty-start.jar:lib/ini4j-0.5.1.jar:lib/log4j-1.2.14.jar:lib/commons-logging-1.0.jar:lib/slf4j-jcl-1.0.1.jar", @"-Djava.awt.headless=true", @"org.mortbay.start.Main", @"--stop"] terminationHandler:terminationHandler];
@@ -139,7 +139,7 @@
         xpc_array_set_value(args, XPC_ARRAY_APPEND, xpc_string_create([argument UTF8String]));
     }];
     xpc_dictionary_set_value(message, "arguments", args);
-    xpc_dictionary_set_string(message, "classpath_root", [_binPath UTF8String]);
+    xpc_dictionary_set_string(message, "classpath_root", [_dataPath UTF8String]);
     
     xpc_connection_send_message_with_reply(_xpc_connection, message, dispatch_get_main_queue(), ^(xpc_object_t object) {
         NSLog(@"%lld %s: Status %lld", xpc_dictionary_get_int64(object, "pid"), xpc_dictionary_get_string(object, "command"), xpc_dictionary_get_int64(object, "status"));
