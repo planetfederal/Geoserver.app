@@ -28,6 +28,7 @@
 #import "GeoserverServer.h"
 #import "GeoserverStatusMenuItemViewController.h"
 #import "WelcomeWindowController.h"
+#import "NSFileManager+DirectoryLocations.h"
 
 static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
     BOOL flag = NO;
@@ -139,6 +140,16 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
     if (!SMLoginItemSetEnabled((__bridge CFStringRef)@"com.boundlessgeo.GeoserverHelper", [self.automaticallyStartMenuItem state] == NSOnState)) {
         NSLog(@"SMLoginItemSetEnabled Failed");
     }
+}
+
+- (IBAction)openWebappsDir:(id)sender {
+    NSString *webappsDirLoc = [[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent:@"geoserver"];
+    [[NSWorkspace sharedWorkspace] selectFile:[NSString stringWithFormat:@"%@/webapps/geoserver", webappsDirLoc] inFileViewerRootedAtPath:webappsDirLoc];
+}
+- (IBAction)openDataDir:(id)sender {
+    NSString *dataDirLoc = [[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent:@"data_dir"];
+    [[NSWorkspace sharedWorkspace] selectFile:[NSString stringWithFormat:@"%@/global.xml", dataDirLoc] inFileViewerRootedAtPath:dataDirLoc];
+
 }
 
 @end

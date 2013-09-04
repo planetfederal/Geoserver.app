@@ -41,5 +41,6 @@
 - (IBAction)selectGS:(id)sender;
 - (IBAction)selectAutomaticallyOpenDocumentation:(id)sender;
 - (IBAction)selectAutomaticallyStart:(id)sender;
-
+- (IBAction)openDataDir:(id)sender;
+- (IBAction)openWebappsDir:(id)sender;
 @end
