@@ -89,6 +89,7 @@
     if (![fm fileExistsAtPath:_dataPath]) {
         NSLog(@"Installing data_dir");
         [[NSFileManager defaultManager] copyItemAtPath:[NSString stringWithFormat:@"%@",_binPath] toPath:_dataPath error:&copyError];
+        [[NSFileManager defaultManager] copyItemAtPath:[NSString stringWithFormat:@"%@/data_dir",_binPath] toPath:[NSString stringWithFormat:@"%@/../data_dir",_dataPath] error:&copyError];
         if (copyError) {
             NSAlert *copyErrorAlert = [NSAlert alertWithMessageText:@"Error setting up GeoServer" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:copyError.localizedDescription];
             [copyErrorAlert runModal];
@@ -100,7 +101,7 @@
     [self executeCommandNamed:@"/usr/bin/java" arguments:@[
      [NSString stringWithFormat:@"-Djetty.port=%@",
 [NSNumber numberWithInteger:_port]], @"-DSTOP.PORT=8079", @"-DSTOP.KEY=boundless",
-      [NSString stringWithFormat:@"-DGEOSERVER_DATA_DIR=%@/data_dir", _dataPath],
+      [NSString stringWithFormat:@"-DGEOSERVER_DATA_DIR=%@/../data_dir", _dataPath],
      @"-Xms128m", @"-Xmx512m", @"-XX:MaxPermSize=256m", @"-Dslf4j=false",
      [NSString stringWithFormat:@"-Djava.library.path=%@/../lib", _binPath],
      @"-Dorg.geotools.referencing.forceXY=true", @"-cp", @"jetty-start.jar:lib/ini4j-0.5.1.jar:lib/log4j-1.2.14.jar:lib/commons-logging-1.0.jar:lib/slf4j-jcl-1.0.1.jar", @"-Djava.awt.headless=true", @"org.mortbay.start.Main"]terminationHandler:^(NSUInteger status) {
@@ -118,7 +119,7 @@
 - (BOOL)stopWithTerminationHandler:(void (^)(NSUInteger status))terminationHandler {
     [self executeCommandNamed:@"/usr/bin/java" arguments:@[
      [NSString stringWithFormat:@"-Djetty.port=%@", [NSNumber numberWithInteger:_port]], @"-DSTOP.PORT=8079", @"-DSTOP.KEY=boundless",
-      [NSString stringWithFormat:@"-DGEOSERVER_DATA_DIR=%@/dat_dir", _dataPath],
+      [NSString stringWithFormat:@"-DGEOSERVER_DATA_DIR=%@/..data_dir", _dataPath],
      @"-Xms128m", @"-Xmx512m", @"-XX:MaxPermSize=256m", @"-Dslf4j=false",
      [NSString stringWithFormat:@"-Djava.library.path=%@/../lib", _binPath],
      @"-Dorg.geotools.referencing.forceXY=true", @"-cp", @"jetty-start.jar:lib/ini4j-0.5.1.jar:lib/log4j-1.2.14.jar:lib/commons-logging-1.0.jar:lib/slf4j-jcl-1.0.1.jar", @"-Djava.awt.headless=true", @"org.mortbay.start.Main", @"--stop"] terminationHandler:terminationHandler];
