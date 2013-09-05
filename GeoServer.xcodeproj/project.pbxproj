@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8B0BB41317CFFF97005F5F11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F87A4276153AB60C00456130 /* main.m */; };
 		8B0BB41A17D001E9005F5F11 /* NSFileManager+DirectoryLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0BB41917D001E9005F5F11 /* NSFileManager+DirectoryLocations.m */; };
+		8B31297D17D93B5600E5A8F1 /* Geoserver.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 8B31297C17D93B5600E5A8F1 /* Geoserver.iconset */; };
 		8B5615E417CFF67300328F4B /* GeoServer.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615E317CFF67300328F4B /* GeoServer.entitlements */; };
 		8B5615E517CFF67C00328F4B /* status-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615D717CFF64E00328F4B /* status-off.png */; };
 		8B5615E617CFF67C00328F4B /* status-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615D917CFF64E00328F4B /* status-off@2x.png */; };
@@ -27,7 +28,6 @@
 		F884C8F1153C786D00CDCB09 /* GeoServerHelper.app in Copy Helper Application */ = {isa = PBXBuildFile; fileRef = F87A426D153AB60C00456130 /* GeoServerHelper.app */; };
 		F884C905153C807400CDCB09 /* GeoserverStatusMenuItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F884C903153C807400CDCB09 /* GeoserverStatusMenuItemViewController.m */; };
 		F884C906153C807400CDCB09 /* GeoserverStatusMenuItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F884C904153C807400CDCB09 /* GeoserverStatusMenuItemView.xib */; };
-		F884C91A153CA24400CDCB09 /* GeoServer.icns in Resources */ = {isa = PBXBuildFile; fileRef = F884C919153CA24400CDCB09 /* GeoServer.icns */; };
 		F88BDC9115704C15004ECB52 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F88BDC9015704C14004ECB52 /* Security.framework */; };
 		F8973A0D1538846600EAB41E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8973A0C1538846600EAB41E /* Cocoa.framework */; };
 		F8973A191538846600EAB41E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F8973A181538846600EAB41E /* main.m */; };
@@ -90,6 +90,7 @@
 /* Begin PBXFileReference section */
 		8B0BB41817D001E9005F5F11 /* NSFileManager+DirectoryLocations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFileManager+DirectoryLocations.h"; path = "Geoserver/Vendor/NSFileManager+DirectoryLocations/NSFileManager+DirectoryLocations.h"; sourceTree = "<group>"; };
 		8B0BB41917D001E9005F5F11 /* NSFileManager+DirectoryLocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager+DirectoryLocations.m"; path = "Geoserver/Vendor/NSFileManager+DirectoryLocations/NSFileManager+DirectoryLocations.m"; sourceTree = "<group>"; };
+		8B31297C17D93B5600E5A8F1 /* Geoserver.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = Geoserver.iconset; sourceTree = "<group>"; };
 		8B5615D817CFF64E00328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/status-off.png"; sourceTree = "<group>"; };
 		8B5615DA17CFF64E00328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/status-off@2x.png"; sourceTree = "<group>"; };
 		8B5615DC17CFF64E00328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/status-on.png"; sourceTree = "<group>"; };
@@ -115,7 +116,6 @@
 		F884C902153C807400CDCB09 /* GeoserverStatusMenuItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoserverStatusMenuItemViewController.h; sourceTree = "<group>"; };
 		F884C903153C807400CDCB09 /* GeoserverStatusMenuItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoserverStatusMenuItemViewController.m; sourceTree = "<group>"; };
 		F884C904153C807400CDCB09 /* GeoserverStatusMenuItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GeoserverStatusMenuItemView.xib; sourceTree = "<group>"; };
-		F884C919153CA24400CDCB09 /* GeoServer.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = GeoServer.icns; sourceTree = "<group>"; };
 		F88BDC9015704C14004ECB52 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		F8973A081538846600EAB41E /* GeoServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8973A0C1538846600EAB41E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -221,7 +221,7 @@
 		F89739FD1538846600EAB41E = {
 			isa = PBXGroup;
 			children = (
-				F884C919153CA24400CDCB09 /* GeoServer.icns */,
+				8B31297C17D93B5600E5A8F1 /* Geoserver.iconset */,
 				F8973A121538846600EAB41E /* Geoserver */,
 				F87A4270153AB60C00456130 /* GeoserverHelper */,
 				F8973A3F1538851D00EAB41E /* geoserver-service */,
@@ -444,7 +444,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F884C906153C807400CDCB09 /* GeoserverStatusMenuItemView.xib in Resources */,
-				F884C91A153CA24400CDCB09 /* GeoServer.icns in Resources */,
 				F883D61015B5CEB60017F83A /* WelcomeWindow.xib in Resources */,
 				8B5615E417CFF67300328F4B /* GeoServer.entitlements in Resources */,
 				8B5615E517CFF67C00328F4B /* status-off.png in Resources */,
@@ -453,6 +452,7 @@
 				8B5615E817CFF67C00328F4B /* status-on@2x.png in Resources */,
 				8B5615EB17CFF69200328F4B /* InfoPlist.strings in Resources */,
 				8B5615EE17CFF6A200328F4B /* MainMenu.xib in Resources */,
+				8B31297D17D93B5600E5A8F1 /* Geoserver.iconset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
