@@ -83,21 +83,6 @@
     [self willChangeValueForKey:@"port"];
     _port = port;
     
-    // Install data_dir if needed
-    NSError *copyError;
-    NSFileManager *fm = [[NSFileManager alloc] init];
-    if (![fm fileExistsAtPath:_dataPath]) {
-        NSLog(@"Installing data_dir");
-        [[NSFileManager defaultManager] copyItemAtPath:[NSString stringWithFormat:@"%@",_binPath] toPath:_dataPath error:&copyError];
-        [[NSFileManager defaultManager] copyItemAtPath:[NSString stringWithFormat:@"%@/data_dir",_binPath] toPath:[NSString stringWithFormat:@"%@/../data_dir",_dataPath] error:&copyError];
-        if (copyError) {
-            NSAlert *copyErrorAlert = [NSAlert alertWithMessageText:@"Error setting up GeoServer" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:copyError.localizedDescription];
-            [copyErrorAlert runModal];
-            
-            return NO;
-        }
-    }
-    
     [self executeCommandNamed:@"/usr/bin/java" arguments:@[
      [NSString stringWithFormat:@"-Djetty.port=%@",
 [NSNumber numberWithInteger:_port]], @"-DSTOP.PORT=8079", @"-DSTOP.KEY=boundless",

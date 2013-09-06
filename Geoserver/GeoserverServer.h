@@ -31,6 +31,8 @@
 
 @property (readonly) BOOL isRunning;
 @property (readonly) NSUInteger port;
+@property (readonly) NSString *dataPath;
+@property (readonly) NSString *binPath;
 
 + (GeoserverServer *)sharedServer;
 

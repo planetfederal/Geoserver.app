@@ -49,7 +49,7 @@
 						<object class="NSTextFieldCell" key="NSCell" id="178839858">
 							<int key="NSCellFlags">603979776</int>
 							<int key="NSCellFlags2">272629824</int>
-							<string key="NSContents">GeoServer: Running on Port 5432</string>
+							<string key="NSContents">Setting up GeoServer...</string>
 							<object class="NSFont" key="NSSupport">
 								<string key="NSName">LucidaGrande</string>
 								<double key="NSSize">14</double>
