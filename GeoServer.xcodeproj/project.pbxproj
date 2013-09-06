@@ -755,6 +755,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Geoserver/GeoServer-Prefix.pch";
+				GEOSERVERAPP_VERSION = 2.4;
 				INFOPLIST_FILE = "Geoserver/GeoServer-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = GeoServer;
@@ -771,6 +772,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Geoserver/GeoServer-Prefix.pch";
+				GEOSERVERAPP_VERSION = 2.4;
 				INFOPLIST_FILE = "Geoserver/GeoServer-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = GeoServer;
