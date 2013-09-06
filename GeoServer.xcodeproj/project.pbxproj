@@ -10,6 +10,7 @@
 		8B0BB41317CFFF97005F5F11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F87A4276153AB60C00456130 /* main.m */; };
 		8B0BB41A17D001E9005F5F11 /* NSFileManager+DirectoryLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0BB41917D001E9005F5F11 /* NSFileManager+DirectoryLocations.m */; };
 		8B31297D17D93B5600E5A8F1 /* Geoserver.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 8B31297C17D93B5600E5A8F1 /* Geoserver.iconset */; };
+		8B31297F17D95ED600E5A8F1 /* geoserver.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B31297E17D95ED600E5A8F1 /* geoserver.png */; };
 		8B5615E417CFF67300328F4B /* GeoServer.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615E317CFF67300328F4B /* GeoServer.entitlements */; };
 		8B5615E517CFF67C00328F4B /* status-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615D717CFF64E00328F4B /* status-off.png */; };
 		8B5615E617CFF67C00328F4B /* status-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615D917CFF64E00328F4B /* status-off@2x.png */; };
@@ -91,6 +92,7 @@
 		8B0BB41817D001E9005F5F11 /* NSFileManager+DirectoryLocations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFileManager+DirectoryLocations.h"; path = "Geoserver/Vendor/NSFileManager+DirectoryLocations/NSFileManager+DirectoryLocations.h"; sourceTree = "<group>"; };
 		8B0BB41917D001E9005F5F11 /* NSFileManager+DirectoryLocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager+DirectoryLocations.m"; path = "Geoserver/Vendor/NSFileManager+DirectoryLocations/NSFileManager+DirectoryLocations.m"; sourceTree = "<group>"; };
 		8B31297C17D93B5600E5A8F1 /* Geoserver.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = Geoserver.iconset; sourceTree = "<group>"; };
+		8B31297E17D95ED600E5A8F1 /* geoserver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = geoserver.png; sourceTree = SOURCE_ROOT; };
 		8B5615D817CFF64E00328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/status-off.png"; sourceTree = "<group>"; };
 		8B5615DA17CFF64E00328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/status-off@2x.png"; sourceTree = "<group>"; };
 		8B5615DC17CFF64E00328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/status-on.png"; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 		F87A4267153AB23F00456130 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				8B31297E17D95ED600E5A8F1 /* geoserver.png */,
 				F87A4268153AB24600456130 /* Status Item */,
 			);
 			name = Images;
@@ -453,6 +456,7 @@
 				8B5615EB17CFF69200328F4B /* InfoPlist.strings in Resources */,
 				8B5615EE17CFF6A200328F4B /* MainMenu.xib in Resources */,
 				8B31297D17D93B5600E5A8F1 /* Geoserver.iconset in Resources */,
+				8B31297F17D95ED600E5A8F1 /* geoserver.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
