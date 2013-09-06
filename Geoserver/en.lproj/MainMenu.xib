@@ -285,15 +285,6 @@
 						<reference key="NSOnImage" ref="35465992"/>
 						<reference key="NSMixedImage" ref="502551668"/>
 					</object>
-					<object class="NSMenuItem" id="794828680">
-						<reference key="NSMenu" ref="225019770"/>
-						<string key="NSTitle">Open Documentation at Start</string>
-						<string key="NSKeyEquiv"/>
-						<int key="NSMnemonicLoc">2147483647</int>
-						<int key="NSState">1</int>
-						<reference key="NSOnImage" ref="35465992"/>
-						<reference key="NSMixedImage" ref="502551668"/>
-					</object>
 					<object class="NSMenuItem" id="697863152">
 						<reference key="NSMenu" ref="225019770"/>
 						<string key="NSTitle">Automatically Start at Login</string>
@@ -442,22 +433,6 @@
 						<reference key="destination" ref="697863152"/>
 					</object>
 					<int key="connectionID">571</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">selectAutomaticallyOpenDocumentation:</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="794828680"/>
-					</object>
-					<int key="connectionID">582</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">automaticallyOpenDocumentationMenuItem</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="794828680"/>
-					</object>
-					<int key="connectionID">581</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -675,7 +650,6 @@
 							<reference ref="804451861"/>
 							<reference ref="392155074"/>
 							<reference ref="766091906"/>
-							<reference ref="794828680"/>
 							<reference ref="45119536"/>
 							<reference ref="167197554"/>
 							<reference ref="839818281"/>
@@ -728,11 +702,6 @@
 						<int key="objectID">578</int>
 						<reference key="object" ref="152267338"/>
 						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">580</int>
-						<reference key="object" ref="794828680"/>
-						<reference key="parent" ref="225019770"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">586</int>
@@ -796,7 +765,6 @@
 				<string key="578.CustomClassName">GeoserverStatusMenuItemViewController</string>
 				<string key="578.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="58.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="580.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="586.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="587.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="588.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
