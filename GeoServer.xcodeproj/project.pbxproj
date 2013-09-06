@@ -717,6 +717,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx10.7;
+				SUITE_CAT = dev;
+				SUITE_REV = 937568a;
 			};
 			name = Debug;
 		};
@@ -741,6 +743,8 @@
 				GEOSERVER_VERSION = 2.4;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx10.7;
+				SUITE_CAT = dev;
+				SUITE_REV = 937568a;
 			};
 			name = Release;
 		};

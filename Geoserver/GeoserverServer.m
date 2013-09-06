@@ -32,6 +32,7 @@
     __strong NSString *_dataPath;
     __strong NSTask *_geoserverTask;
     NSUInteger _port;
+    BOOL _isRunning;
     
     xpc_connection_t _xpc_connection;
 }
@@ -73,7 +74,19 @@
 }
 
 - (BOOL)isRunning {
-    return _port != 0;
+    if (!_isRunning) {
+        NSError* error = nil;
+        NSURLResponse* response = nil;
+        NSURL* requestUrl = [NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:%lu/geoserver",(unsigned long)_port]];
+        NSURLRequest* request = [NSURLRequest requestWithURL:requestUrl];
+        [NSURLConnection sendSynchronousRequest:request
+                                                 returningResponse:&response error:&error];
+        if (error) {
+            return NO;
+        }
+    }
+    
+    return YES;
 }
 
 - (BOOL)startOnPort:(NSUInteger)port 
