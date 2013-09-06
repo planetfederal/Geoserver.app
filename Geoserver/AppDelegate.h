@@ -33,7 +33,7 @@
 
 @property (weak) IBOutlet NSMenu *statusBarMenu;
 @property (weak) IBOutlet NSMenuItem *geoserverStatusMenuItem;
-@property (weak) IBOutlet NSMenuItem *automaticallyOpenDocumentationMenuItem;
+@property (weak) IBOutlet NSMenuItem *openGeoServerMenuItem;
 @property (weak) IBOutlet NSMenuItem *automaticallyStartMenuItem;
 
 - (IBAction)selectAbout:(id)sender;
@@ -42,4 +42,5 @@
 - (IBAction)selectAutomaticallyStart:(id)sender;
 - (IBAction)openDataDir:(id)sender;
 - (IBAction)openWebappsDir:(id)sender;
+
 @end

@@ -26,17 +26,14 @@
 #import "GeoserverStatusMenuItemViewController.h"
 
 @implementation GeoserverStatusMenuItemViewController
-@synthesize progressIndicator;
 @synthesize titleTextField;
 
 - (void)startAnimatingWithTitle:(NSString *)title {
     self.titleTextField.stringValue = title;
-    [self.progressIndicator startAnimation:self];
 }
 
 - (void)stopAnimatingWithTitle:(NSString *)title wasSuccessful:(BOOL)successful {
     self.titleTextField.stringValue = title;
-    [self.progressIndicator stopAnimation:self];
 }
 
 @end

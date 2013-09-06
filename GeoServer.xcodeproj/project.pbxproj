@@ -11,13 +11,13 @@
 		8B0BB41A17D001E9005F5F11 /* NSFileManager+DirectoryLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B0BB41917D001E9005F5F11 /* NSFileManager+DirectoryLocations.m */; };
 		8B31297D17D93B5600E5A8F1 /* Geoserver.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 8B31297C17D93B5600E5A8F1 /* Geoserver.iconset */; };
 		8B31297F17D95ED600E5A8F1 /* geoserver.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B31297E17D95ED600E5A8F1 /* geoserver.png */; };
+		8B31298417D9835200E5A8F1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B31298217D9835200E5A8F1 /* MainMenu.xib */; };
 		8B5615E417CFF67300328F4B /* GeoServer.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615E317CFF67300328F4B /* GeoServer.entitlements */; };
 		8B5615E517CFF67C00328F4B /* status-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615D717CFF64E00328F4B /* status-off.png */; };
 		8B5615E617CFF67C00328F4B /* status-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615D917CFF64E00328F4B /* status-off@2x.png */; };
 		8B5615E717CFF67C00328F4B /* status-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615DB17CFF64E00328F4B /* status-on.png */; };
 		8B5615E817CFF67C00328F4B /* status-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615DD17CFF64E00328F4B /* status-on@2x.png */; };
 		8B5615EB17CFF69200328F4B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615E917CFF69100328F4B /* InfoPlist.strings */; };
-		8B5615EE17CFF6A200328F4B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615EC17CFF6A200328F4B /* MainMenu.xib */; };
 		8B5615F117CFF6D900328F4B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615EF17CFF6D900328F4B /* MainMenu.xib */; };
 		8B5615F417CFF6E100328F4B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615F217CFF6E100328F4B /* InfoPlist.strings */; };
 		8B5615F717CFF6FB00328F4B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615F517CFF6FB00328F4B /* InfoPlist.strings */; };
@@ -93,13 +93,13 @@
 		8B0BB41917D001E9005F5F11 /* NSFileManager+DirectoryLocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager+DirectoryLocations.m"; path = "Geoserver/Vendor/NSFileManager+DirectoryLocations/NSFileManager+DirectoryLocations.m"; sourceTree = "<group>"; };
 		8B31297C17D93B5600E5A8F1 /* Geoserver.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = Geoserver.iconset; sourceTree = "<group>"; };
 		8B31297E17D95ED600E5A8F1 /* geoserver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = geoserver.png; sourceTree = SOURCE_ROOT; };
+		8B31298317D9835200E5A8F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		8B5615D817CFF64E00328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/status-off.png"; sourceTree = "<group>"; };
 		8B5615DA17CFF64E00328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/status-off@2x.png"; sourceTree = "<group>"; };
 		8B5615DC17CFF64E00328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/status-on.png"; sourceTree = "<group>"; };
 		8B5615DE17CFF64E00328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/status-on@2x.png"; sourceTree = "<group>"; };
 		8B5615E317CFF67300328F4B /* GeoServer.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = GeoServer.entitlements; sourceTree = SOURCE_ROOT; };
 		8B5615EA17CFF69200328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		8B5615ED17CFF6A200328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		8B5615F017CFF6D900328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = GeoserverHelper/en.lproj/MainMenu.xib; sourceTree = SOURCE_ROOT; };
 		8B5615F317CFF6E100328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = GeoserverHelper/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
 		8B5615F617CFF6FB00328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -271,7 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				8B5615E317CFF67300328F4B /* GeoServer.entitlements */,
-				8B5615EC17CFF6A200328F4B /* MainMenu.xib */,
+				8B31298217D9835200E5A8F1 /* MainMenu.xib */,
 				F883D61315B5E2780017F83A /* GeoserverConstants.h */,
 				F8973A1E1538846600EAB41E /* AppDelegate.h */,
 				F8973A1F1538846600EAB41E /* AppDelegate.m */,
@@ -454,9 +454,9 @@
 				8B5615E717CFF67C00328F4B /* status-on.png in Resources */,
 				8B5615E817CFF67C00328F4B /* status-on@2x.png in Resources */,
 				8B5615EB17CFF69200328F4B /* InfoPlist.strings in Resources */,
-				8B5615EE17CFF6A200328F4B /* MainMenu.xib in Resources */,
 				8B31297D17D93B5600E5A8F1 /* Geoserver.iconset in Resources */,
 				8B31297F17D95ED600E5A8F1 /* geoserver.png in Resources */,
+				8B31298417D9835200E5A8F1 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,6 +539,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		8B31298217D9835200E5A8F1 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8B31298317D9835200E5A8F1 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
 		8B5615D717CFF64E00328F4B /* status-off.png */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -577,14 +585,6 @@
 				8B5615EA17CFF69200328F4B /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		8B5615EC17CFF6A200328F4B /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8B5615ED17CFF6A200328F4B /* en */,
-			);
-			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 		8B5615EF17CFF6D900328F4B /* MainMenu.xib */ = {

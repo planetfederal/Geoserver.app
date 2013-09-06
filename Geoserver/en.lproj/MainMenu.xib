@@ -316,9 +316,6 @@
 			<object class="NSViewController" id="152267338">
 				<string key="NSNibName">GeoserverStatusMenuItemView</string>
 			</object>
-			<object class="NSCustomObject" id="296306945">
-				<string key="NSClassName">NSObject</string>
-			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<array class="NSMutableArray" key="connectionRecords">
@@ -420,14 +417,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">postgresStatusMenuItem</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="272042490"/>
-					</object>
-					<int key="connectionID">568</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">automaticallyStartMenuItem</string>
 						<reference key="source" ref="976324537"/>
 						<reference key="destination" ref="697863152"/>
@@ -441,14 +430,6 @@
 						<reference key="destination" ref="167197554"/>
 					</object>
 					<int key="connectionID">590</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">postgresStatusMenuItemViewController</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="152267338"/>
-					</object>
-					<int key="connectionID">591</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -481,6 +462,14 @@
 						<reference key="destination" ref="839818281"/>
 					</object>
 					<int key="connectionID">601</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">openGeoServerMenuItem</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="167197554"/>
+					</object>
+					<int key="connectionID">606</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -704,11 +693,6 @@
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">586</int>
-						<reference key="object" ref="296306945"/>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">587</int>
 						<reference key="object" ref="45119536"/>
 						<reference key="parent" ref="225019770"/>
@@ -765,7 +749,6 @@
 				<string key="578.CustomClassName">GeoserverStatusMenuItemViewController</string>
 				<string key="578.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="58.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="586.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="587.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="588.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="594.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -775,7 +758,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">601</int>
+			<int key="maxID">606</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -783,6 +766,7 @@
 					<string key="className">AppDelegate</string>
 					<string key="superclassName">NSObject</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="checkForUpdates:">id</string>
 						<string key="openDataDir:">id</string>
 						<string key="openWebappsDir:">id</string>
 						<string key="selectAbout:">id</string>
@@ -790,8 +774,13 @@
 						<string key="selectAutomaticallyStart:">id</string>
 						<string key="selectDocumentation:">id</string>
 						<string key="selectGS:">id</string>
+						<string key="selectPsql:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="checkForUpdates:">
+							<string key="name">checkForUpdates:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="openDataDir:">
 							<string key="name">openDataDir:</string>
 							<string key="candidateClassName">id</string>
@@ -820,12 +809,20 @@
 							<string key="name">selectGS:</string>
 							<string key="candidateClassName">id</string>
 						</object>
+						<object class="IBActionInfo" key="selectPsql:">
+							<string key="name">selectPsql:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="automaticallyOpenDocumentationMenuItem">NSMenuItem</string>
 						<string key="automaticallyStartMenuItem">NSMenuItem</string>
+						<string key="checkForUpdatesMenuItem">NSMenuItem</string>
 						<string key="geoserverStatusMenuItem">NSMenuItem</string>
 						<string key="geoserverStatusMenuItemViewController">GeoserverStatusMenuItemViewController</string>
+						<string key="openGeoServerMenuItem">NSMenuItem</string>
+						<string key="postgresStatusMenuItem">NSMenuItem</string>
+						<string key="postgresStatusMenuItemViewController">PostgresStatusMenuItemViewController</string>
 						<string key="statusBarMenu">NSMenu</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -837,6 +834,10 @@
 							<string key="name">automaticallyStartMenuItem</string>
 							<string key="candidateClassName">NSMenuItem</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="checkForUpdatesMenuItem">
+							<string key="name">checkForUpdatesMenuItem</string>
+							<string key="candidateClassName">NSMenuItem</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="geoserverStatusMenuItem">
 							<string key="name">geoserverStatusMenuItem</string>
 							<string key="candidateClassName">NSMenuItem</string>
@@ -844,6 +845,18 @@
 						<object class="IBToOneOutletInfo" key="geoserverStatusMenuItemViewController">
 							<string key="name">geoserverStatusMenuItemViewController</string>
 							<string key="candidateClassName">GeoserverStatusMenuItemViewController</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="openGeoServerMenuItem">
+							<string key="name">openGeoServerMenuItem</string>
+							<string key="candidateClassName">NSMenuItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="postgresStatusMenuItem">
+							<string key="name">postgresStatusMenuItem</string>
+							<string key="candidateClassName">NSMenuItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="postgresStatusMenuItemViewController">
+							<string key="name">postgresStatusMenuItemViewController</string>
+							<string key="candidateClassName">PostgresStatusMenuItemViewController</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="statusBarMenu">
 							<string key="name">statusBarMenu</string>

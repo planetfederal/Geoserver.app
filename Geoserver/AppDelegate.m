@@ -51,8 +51,8 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
 @synthesize geoserverStatusMenuItemViewController = _geoserverStatusMenuItemViewController;
 @synthesize statusBarMenu = _statusBarMenu;
 @synthesize geoserverStatusMenuItem = _geoserverStatusMenuItem;
-@synthesize automaticallyOpenDocumentationMenuItem = _automaticallyOpenDocumentationMenuItem;
 @synthesize automaticallyStartMenuItem = _automaticallyStartMenuItem;
+@synthesize openGeoServerMenuItem = _openGeoServerMenuItem;
 
 #pragma mark - NSApplicationDelegate
 
@@ -64,7 +64,6 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
     _statusBarItem.alternateImage = [NSImage imageNamed:@"status-on"];
         
     [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:kGeoserverAutomaticallyOpenDocumentationPreferenceKey]];
-    [self.automaticallyOpenDocumentationMenuItem setState:[[NSUserDefaults standardUserDefaults] boolForKey:kGeoserverAutomaticallyOpenDocumentationPreferenceKey]];
     [self.automaticallyStartMenuItem setState:GeoserverIsHelperApplicationSetAsLoginItem() ? NSOnState : NSOffState];
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:kGeoserverFirstLaunchPreferenceKey]) {
@@ -73,14 +72,19 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
     }
     
     GeoserverServer *gs = [GeoserverServer sharedServer];
-    
-    [self.geoserverStatusMenuItem setEnabled:NO];
+    [[self.openGeoServerMenuItem menu] setAutoenablesItems: NO];
+    [self.openGeoServerMenuItem setEnabled:NO];
     self.geoserverStatusMenuItem.view = self.geoserverStatusMenuItemViewController.view;
     
     void (^gsStart)() = ^{
         [gs startOnPort:kGeoserverAppDefaultPort terminationHandler:^(NSUInteger status) {
             if (status == 0) {
                 [self.geoserverStatusMenuItemViewController stopAnimatingWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Running on Port %u", nil), kGeoserverAppDefaultPort] wasSuccessful:YES];
+                [self.openGeoServerMenuItem setEnabled:YES];
+                if (![[NSUserDefaults standardUserDefaults] boolForKey:kGeoserverFirstLaunchPreferenceKey]) {
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                    [self selectGS:nil];
+                }
             } else {
                 [self.geoserverStatusMenuItemViewController stopAnimatingWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Could not start on Port %u", nil), kGeoserverAppDefaultPort] wasSuccessful:NO];
             }
@@ -91,11 +95,12 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             while (!gs.isRunning) {
-                [self.geoserverStatusMenuItemViewController startAnimatingWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Starting GeoServer on Port", nil), kGeoserverAppDefaultPort]];
+                [self.geoserverStatusMenuItemViewController startAnimatingWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Starting GeoServer...", nil), kGeoserverAppDefaultPort]];
                 sleep(10);
             }
             dispatch_sync(dispatch_get_main_queue(), ^{
-                [self.geoserverStatusMenuItemViewController startAnimatingWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Running on Port %u", nil), kGeoserverAppDefaultPort]];
+                [self.geoserverStatusMenuItemViewController stopAnimatingWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Running on Port %u", nil), kGeoserverAppDefaultPort] wasSuccessful:YES];
+                [_openGeoServerMenuItem setEnabled:YES];
                 if (![[NSUserDefaults standardUserDefaults] boolForKey:kGeoserverFirstLaunchPreferenceKey]) {
                     [self selectGS:nil];
                     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kGeoserverFirstLaunchPreferenceKey];
@@ -162,13 +167,6 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://localhost:8080/geoserver"]];
 }
 
-- (IBAction)selectAutomaticallyOpenDocumentation:(id)sender {
-    [self.automaticallyOpenDocumentationMenuItem setState:![self.automaticallyOpenDocumentationMenuItem state]];
-
-    [[NSUserDefaults standardUserDefaults] setBool:self.automaticallyOpenDocumentationMenuItem.state == NSOnState forKey:kGeoserverAutomaticallyOpenDocumentationPreferenceKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
 - (IBAction)selectAutomaticallyStart:(id)sender {
     [self.automaticallyStartMenuItem setState:![self.automaticallyStartMenuItem state]];
     
@@ -185,5 +183,10 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
 - (IBAction)openWebappsDir:(id)sender {
     NSString *webappsDirLoc = [[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent:@"geoserver"];
     [[NSWorkspace sharedWorkspace] selectFile:[NSString stringWithFormat:@"%@/webapps/geoserver", webappsDirLoc] inFileViewerRootedAtPath:webappsDirLoc];
+}
+
+- (IBAction)openDataDir:(id)sender {
+    NSString *dataDirLoc = [[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent:@"data_dir"];
+    [[NSWorkspace sharedWorkspace] selectFile:[NSString stringWithFormat:@"%@/global.xml", dataDirLoc] inFileViewerRootedAtPath:dataDirLoc];
 }
 @end
