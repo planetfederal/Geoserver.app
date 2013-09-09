@@ -21,7 +21,7 @@ clean: clean-geoserver clean-libgdal
 
 geoserver: $(PREFIX)/gs/geoserver
 
-$(PREFIX)/gs/geoserver: opengeosuite-${REV}-bin.zip $(PREFIX)/lib/libgdal.dylib
+$(PREFIX)/gs/geoserver: opengeosuite-${REV}-bin.zip #$(PREFIX)/lib/libgdal.dylib
 	unzip -qq -o opengeosuite-${REV}-bin.zip
 	cp -r opengeosuite-${SUITE_VERSION} ${PREFIX}/gs
 	touch $@
