@@ -33,12 +33,19 @@
 
 @property (weak) IBOutlet NSMenu *statusBarMenu;
 @property (weak) IBOutlet NSMenuItem *geoserverStatusMenuItem;
+@property (weak) IBOutlet NSMenuItem *openDashBoardMenuItem;
+@property (weak) IBOutlet NSMenuItem *openGEMenuItem;
+@property (weak) IBOutlet NSMenuItem *openGWCMenuItem;
 @property (weak) IBOutlet NSMenuItem *openGeoServerMenuItem;
 @property (weak) IBOutlet NSMenuItem *automaticallyStartMenuItem;
+
 
 - (IBAction)selectAbout:(id)sender;
 - (IBAction)selectDocumentation:(id)sender;
 - (IBAction)selectGS:(id)sender;
+- (IBAction)selectDash:(id)sender;
+- (IBAction)selectGE:(id)sender;
+- (IBAction)selectGWC:(id)sender;
 - (IBAction)selectAutomaticallyStart:(id)sender;
 - (IBAction)openDataDir:(id)sender;
 - (IBAction)openWebappsDir:(id)sender;
