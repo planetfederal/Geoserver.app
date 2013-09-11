@@ -82,6 +82,10 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
     void (^gsStart)() = ^{
         [gs startOnPort:kGeoserverAppDefaultPort terminationHandler:^(NSUInteger status) {
             if (status == 0) {
+                if (_welcomeWindowController) {
+                    [_welcomeWindowController.setupProgressBar stopAnimation:nil];
+                    [_welcomeWindowController.setupStatusText setStringValue:[NSString stringWithFormat:@"GeoServer is now running on port %lu", kGeoserverAppDefaultPort]];
+                }
                 [self.geoserverStatusMenuItemViewController stopAnimatingWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Running on Port %u", nil), kGeoserverAppDefaultPort] wasSuccessful:YES];
                 [self.openGeoServerMenuItem setEnabled:YES];
                 [self.openDashBoardMenuItem setEnabled:YES];
@@ -105,6 +109,10 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
                 sleep(10);
             }
             dispatch_sync(dispatch_get_main_queue(), ^{
+                if (_welcomeWindowController) {
+                    [_welcomeWindowController.setupProgressBar stopAnimation:nil];
+                    [_welcomeWindowController.setupStatusText setStringValue:[NSString stringWithFormat:@"GeoServer is now running on port %lu", kGeoserverAppDefaultPort]];
+                }
                 [self.geoserverStatusMenuItemViewController stopAnimatingWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Running on Port %u", nil), kGeoserverAppDefaultPort] wasSuccessful:YES];
                 [self.openGeoServerMenuItem setEnabled:YES];
                 [self.openDashBoardMenuItem setEnabled:YES];
@@ -122,7 +130,10 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
     // Install data_dir if needed
     NSFileManager *fm = [[NSFileManager alloc] init];
     if (![fm fileExistsAtPath:gs.dataPath]) {
-        NSLog(@"Installing data_dir");
+        if (_welcomeWindowController) {
+            [_welcomeWindowController.setupProgressBar startAnimation:nil];
+            [_welcomeWindowController.setupStatusText setStringValue:@"Setting up GeoServer..."];
+        }
         [self.geoserverStatusMenuItemViewController startAnimatingWithTitle:@"Setting up GeoServer..."];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             NSError *copyError;
@@ -136,6 +147,10 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
                 });
             } else {
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    if (_welcomeWindowController) {
+                        [_welcomeWindowController.setupProgressBar startAnimation:nil];
+                        [_welcomeWindowController.setupStatusText setStringValue:@"Starting GeoServer..."];
+                    }
                     gsStart();
                 });
             }

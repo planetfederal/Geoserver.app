@@ -29,5 +29,7 @@
 
 - (IBAction)close:(id)sender;
 - (IBAction)openDocumentation:(id)sender;
+@property (weak) IBOutlet NSProgressIndicator *setupProgressBar;
+@property (weak) IBOutlet NSTextField *setupStatusText;
 
 @end
