@@ -111,7 +111,7 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
                 [self.openGEMenuItem setEnabled:YES];
                 [self.openGWCMenuItem setEnabled:YES];
                 if (![[NSUserDefaults standardUserDefaults] boolForKey:kGeoserverFirstLaunchPreferenceKey]) {
-                    [self selectDash:nil];
+                    [self selectGS:nil];
                     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kGeoserverFirstLaunchPreferenceKey];
                     [[NSUserDefaults standardUserDefaults] synchronize];
                 }
