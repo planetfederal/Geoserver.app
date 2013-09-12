@@ -101,8 +101,8 @@
 [NSNumber numberWithInteger:_port]], @"-DSTOP.PORT=8079", @"-DSTOP.KEY=boundless",
       [NSString stringWithFormat:@"-DGEOSERVER_DATA_DIR=%@/../data_dir", _dataPath],
      @"-Xms128m", @"-Xmx512m", @"-XX:MaxPermSize=256m", @"-Dslf4j=false",
-     [NSString stringWithFormat:@"-Djava.library.path=%@/../lib", _binPath],
-     @"-Dorg.geotools.referencing.forceXY=true", @"-cp", @"jetty-start.jar:lib/ini4j-0.5.1.jar:lib/log4j-1.2.14.jar:lib/commons-logging-1.0.jar:lib/slf4j-jcl-1.0.1.jar", @"-Djava.awt.headless=true", @"org.mortbay.start.Main"]terminationHandler:^(NSUInteger status) {
+     [NSString stringWithFormat:@"-Djava.library.path=%@/lib", _binPath],
+     @"-Dorg.geotools.referencing.forceXY=true", @"-cp", @"start.jar:lib/ini4j-0.5.1.jar:lib/log4j-1.2.14.jar:lib/commons-logging-1.0.jar:lib/slf4j-jcl-1.0.1.jar", @"-Djava.awt.headless=true", @"org.mortbay.start.Main"]terminationHandler:^(NSUInteger status) {
         if (completionBlock) {
             completionBlock(status);
         }
@@ -119,8 +119,8 @@
      [NSString stringWithFormat:@"-Djetty.port=%@", [NSNumber numberWithInteger:_port]], @"-DSTOP.PORT=8079", @"-DSTOP.KEY=boundless",
       [NSString stringWithFormat:@"-DGEOSERVER_DATA_DIR=%@/..data_dir", _dataPath],
      @"-Xms128m", @"-Xmx512m", @"-XX:MaxPermSize=256m", @"-Dslf4j=false",
-     [NSString stringWithFormat:@"-Djava.library.path=%@/../lib", _binPath],
-     @"-Dorg.geotools.referencing.forceXY=true", @"-cp", @"jetty-start.jar:lib/ini4j-0.5.1.jar:lib/log4j-1.2.14.jar:lib/commons-logging-1.0.jar:lib/slf4j-jcl-1.0.1.jar", @"-Djava.awt.headless=true", @"org.mortbay.start.Main", @"--stop"] terminationHandler:terminationHandler];
+     [NSString stringWithFormat:@"-Djava.library.path=%@/lib", _binPath],
+     @"-Dorg.geotools.referencing.forceXY=true", @"-cp", @"start.jar:lib/ini4j-0.5.1.jar:lib/log4j-1.2.14.jar:lib/commons-logging-1.0.jar:lib/slf4j-jcl-1.0.1.jar", @"-Djava.awt.headless=true", @"org.mortbay.start.Main", @"--stop"] terminationHandler:terminationHandler];
     
     return YES;
 }

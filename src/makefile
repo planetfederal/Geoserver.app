@@ -23,6 +23,7 @@ geoserver: $(PREFIX)/gs/geoserver
 
 $(PREFIX)/gs/geoserver: opengeosuite-${REV}-bin.zip #$(PREFIX)/lib/libgdal.dylib
 	unzip -qq -o opengeosuite-${REV}-bin.zip
+	rm -rf ${PREFIX}/gs
 	cp -r opengeosuite-${SUITE_VERSION} ${PREFIX}/gs
 	touch $@
 
