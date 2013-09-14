@@ -1,7 +1,7 @@
 # VERSION numbers
 REV=$(SUITE_REV)
 CAT=$(SUITE_CAT)
-SUITE_VERSION=4.0-SNAPSHOT
+SUITE_VERSION=4.0-beta
 GDAL_VERSION=1.9.2
 
 #path configuration
@@ -24,7 +24,7 @@ geoserver: $(PREFIX)/gs/geoserver
 $(PREFIX)/gs/geoserver: opengeosuite-${REV}-bin.zip #$(PREFIX)/lib/libgdal.dylib
 	unzip -qq -o opengeosuite-${REV}-bin.zip
 	rm -rf ${PREFIX}/gs
-	cp -r opengeosuite-${SUITE_VERSION} ${PREFIX}/gs
+	cp -r opengeosuite-${REV} ${PREFIX}/gs
 	touch $@
 
 opengeosuite-${REV}-bin.zip:
