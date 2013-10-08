@@ -24,7 +24,6 @@
 // PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
 
 static NSString * const kGeoserverAppWebsiteURLString = @"http://suite.opengeo.org/opengeo-docs/";
-static NSUInteger const kGeoserverAppDefaultPort = 8080;
 
 static NSString * const kGeoserverFirstLaunchPreferenceKey = @"com.boundlessgeo.geoserver.preference.first-launch";
 static NSString * const kGeoserverAutomaticallyOpenDocumentationPreferenceKey = @"com.boundlessgeo.geoserver.preference.open-documentation-at-start";

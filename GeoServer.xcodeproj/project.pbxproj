@@ -21,6 +21,9 @@
 		8B5615F117CFF6D900328F4B /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615EF17CFF6D900328F4B /* MainMenu.xib */; };
 		8B5615F417CFF6E100328F4B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615F217CFF6E100328F4B /* InfoPlist.strings */; };
 		8B5615F717CFF6FB00328F4B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8B5615F517CFF6FB00328F4B /* InfoPlist.strings */; };
+		8BFB6F511804764600C53A2C /* GeoserverSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB6F501804764600C53A2C /* GeoserverSettings.m */; };
+		8BFB6F711804933700C53A2C /* dictionary.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB6F6D1804933700C53A2C /* dictionary.c */; };
+		8BFB6F721804933700C53A2C /* iniparser.c in Sources */ = {isa = PBXBuildFile; fileRef = 8BFB6F6F1804933700C53A2C /* iniparser.c */; };
 		F87A426F153AB60C00456130 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8973A0C1538846600EAB41E /* Cocoa.framework */; };
 		F87A427E153AB60C00456130 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F87A427D153AB60C00456130 /* AppDelegate.m */; };
 		F883D60E15B5CEB60017F83A /* WelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F883D60C15B5CEB60017F83A /* WelcomeWindowController.m */; };
@@ -103,6 +106,12 @@
 		8B5615F017CFF6D900328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = GeoserverHelper/en.lproj/MainMenu.xib; sourceTree = SOURCE_ROOT; };
 		8B5615F317CFF6E100328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = GeoserverHelper/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
 		8B5615F617CFF6FB00328F4B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8BFB6F4F1804764600C53A2C /* GeoserverSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoserverSettings.h; sourceTree = "<group>"; };
+		8BFB6F501804764600C53A2C /* GeoserverSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoserverSettings.m; sourceTree = "<group>"; };
+		8BFB6F6D1804933700C53A2C /* dictionary.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = dictionary.c; path = Geoserver/Vendor/iniparser/src/dictionary.c; sourceTree = "<group>"; };
+		8BFB6F6E1804933700C53A2C /* dictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dictionary.h; path = Geoserver/Vendor/iniparser/src/dictionary.h; sourceTree = "<group>"; };
+		8BFB6F6F1804933700C53A2C /* iniparser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = iniparser.c; path = Geoserver/Vendor/iniparser/src/iniparser.c; sourceTree = "<group>"; };
+		8BFB6F701804933700C53A2C /* iniparser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iniparser.h; path = Geoserver/Vendor/iniparser/src/iniparser.h; sourceTree = "<group>"; };
 		F87A426D153AB60C00456130 /* GeoServerHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoServerHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F87A4272153AB60C00456130 /* GeoServerHelper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GeoServerHelper-Info.plist"; sourceTree = "<group>"; };
 		F87A4276153AB60C00456130 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -176,6 +185,17 @@
 				8B0BB41917D001E9005F5F11 /* NSFileManager+DirectoryLocations.m */,
 			);
 			name = "NSFileManager+DirectoryLocations";
+			sourceTree = "<group>";
+		};
+		8BFB6F651804782C00C53A2C /* iniparser */ = {
+			isa = PBXGroup;
+			children = (
+				8BFB6F6D1804933700C53A2C /* dictionary.c */,
+				8BFB6F6E1804933700C53A2C /* dictionary.h */,
+				8BFB6F6F1804933700C53A2C /* iniparser.c */,
+				8BFB6F701804933700C53A2C /* iniparser.h */,
+			);
+			name = iniparser;
 			sourceTree = "<group>";
 		};
 		F87A4267153AB23F00456130 /* Images */ = {
@@ -284,6 +304,8 @@
 				F883D60C15B5CEB60017F83A /* WelcomeWindowController.m */,
 				F883D60D15B5CEB60017F83A /* WelcomeWindow.xib */,
 				F8973A131538846600EAB41E /* Supporting Files */,
+				8BFB6F4F1804764600C53A2C /* GeoserverSettings.h */,
+				8BFB6F501804764600C53A2C /* GeoserverSettings.m */,
 			);
 			path = Geoserver;
 			sourceTree = "<group>";
@@ -303,6 +325,7 @@
 		F8973A32153884AC00EAB41E /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				8BFB6F651804782C00C53A2C /* iniparser */,
 				8B0BB41717D001DD005F5F11 /* NSFileManager+DirectoryLocations */,
 			);
 			name = Vendor;
@@ -507,6 +530,9 @@
 				F884C905153C807400CDCB09 /* GeoserverStatusMenuItemViewController.m in Sources */,
 				F883D60E15B5CEB60017F83A /* WelcomeWindowController.m in Sources */,
 				8B0BB41A17D001E9005F5F11 /* NSFileManager+DirectoryLocations.m in Sources */,
+				8BFB6F511804764600C53A2C /* GeoserverSettings.m in Sources */,
+				8BFB6F711804933700C53A2C /* dictionary.c in Sources */,
+				8BFB6F721804933700C53A2C /* iniparser.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

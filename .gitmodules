@@ -1,0 +1,3 @@
+[submodule "Geoserver/Vendor/iniparser"]
+	path = Geoserver/Vendor/iniparser
+	url = http://github.com/ndevilla/iniparser.git

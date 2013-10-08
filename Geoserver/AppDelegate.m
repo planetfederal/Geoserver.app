@@ -29,6 +29,7 @@
 #import "GeoserverStatusMenuItemViewController.h"
 #import "WelcomeWindowController.h"
 #import "NSFileManager+DirectoryLocations.h"
+#import "GeoserverSettings.h"
 
 static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
     BOOL flag = NO;
@@ -72,6 +73,7 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
     }
     
     GeoserverServer *gs = [GeoserverServer sharedServer];
+    GeoserverSettings *settings = [GeoserverSettings sharedSettings];
     [[self.openGeoServerMenuItem menu] setAutoenablesItems: NO];
     [self.openGeoServerMenuItem setEnabled:NO];
     [self.openDashBoardMenuItem setEnabled:NO];
@@ -80,13 +82,13 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
     self.geoserverStatusMenuItem.view = self.geoserverStatusMenuItemViewController.view;
     
     void (^gsStart)() = ^{
-        [gs startOnPort:kGeoserverAppDefaultPort terminationHandler:^(NSUInteger status) {
+        [gs startOnPort:settings.jettyPort terminationHandler:^(NSUInteger status) {
             if (status == 0) {
                 if (_welcomeWindowController) {
                     [_welcomeWindowController.setupProgressBar stopAnimation:nil];
-                    [_welcomeWindowController.setupStatusText setStringValue:[NSString stringWithFormat:@"Server is now running on port %lu", kGeoserverAppDefaultPort]];
+                    [_welcomeWindowController.setupStatusText setStringValue:[NSString stringWithFormat:@"Server is now running on port %lu", settings.jettyPort]];
                 }
-                [self.geoserverStatusMenuItemViewController stopAnimatingWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Running on Port %u", nil), kGeoserverAppDefaultPort] wasSuccessful:YES];
+                [self.geoserverStatusMenuItemViewController stopAnimatingWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Running on Port %u", nil), settings.jettyPort] wasSuccessful:YES];
                 [self.openGeoServerMenuItem setEnabled:YES];
                 [self.openDashBoardMenuItem setEnabled:YES];
                 [self.openGEMenuItem setEnabled:YES];
@@ -96,7 +98,7 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
                     [self selectDash:nil];
                 }
             } else {
-                [self.geoserverStatusMenuItemViewController stopAnimatingWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Could not start on Port %u", nil), kGeoserverAppDefaultPort] wasSuccessful:NO];
+                [self.geoserverStatusMenuItemViewController stopAnimatingWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Could not start on Port %u", nil), settings.jettyPort] wasSuccessful:NO];
             }
         }];
         
@@ -105,15 +107,15 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             while (!gs.isRunning) {
-                [self.geoserverStatusMenuItemViewController startAnimatingWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Starting Server...", nil), kGeoserverAppDefaultPort]];
+                [self.geoserverStatusMenuItemViewController startAnimatingWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Starting Server...", nil), settings.jettyPort]];
                 sleep(10);
             }
             dispatch_sync(dispatch_get_main_queue(), ^{
                 if (_welcomeWindowController) {
                     [_welcomeWindowController.setupProgressBar stopAnimation:nil];
-                    [_welcomeWindowController.setupStatusText setStringValue:[NSString stringWithFormat:@"Server is now running on port %lu", kGeoserverAppDefaultPort]];
+                    [_welcomeWindowController.setupStatusText setStringValue:[NSString stringWithFormat:@"Server is now running on port %lu", settings.jettyPort]];
                 }
-                [self.geoserverStatusMenuItemViewController stopAnimatingWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Running on Port %u", nil), kGeoserverAppDefaultPort] wasSuccessful:YES];
+                [self.geoserverStatusMenuItemViewController stopAnimatingWithTitle:[NSString stringWithFormat:NSLocalizedString(@"Running on Port %u", nil), settings.jettyPort] wasSuccessful:YES];
                 [self.openGeoServerMenuItem setEnabled:YES];
                 [self.openDashBoardMenuItem setEnabled:YES];
                 [self.openGEMenuItem setEnabled:YES];
