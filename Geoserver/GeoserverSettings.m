@@ -18,10 +18,18 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _sharedSettings = [[GeoserverSettings alloc] init];
-        NSString *iniPath = [[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent:@"geoserver"];
+        NSString *iniPath;
+        NSString *defaultIniPath = [[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent:@"jetty"];
+        
+        if ([[NSFileManager defaultManager] fileExistsAtPath:defaultIniPath]) {
+            iniPath = defaultIniPath;
+        } else {
+            // Very likely that initial setup has not run. Use default values.
+            iniPath = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"jetty"];
+        }
         
         // Figure out the port and data_dir location
-        NSString *jettyIniPath = [NSString pathWithComponents:@[iniPath, @"start.ini"]];
+        NSString *jettyIniPath = [NSString pathWithComponents:@[defaultIniPath, @"start.ini"]];
         NSError *iniReadErr;
         NSString *jettyIni = [NSString stringWithContentsOfFile:jettyIniPath encoding:NSUTF8StringEncoding error:&iniReadErr];
         if (!iniReadErr) {

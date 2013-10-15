@@ -19,13 +19,13 @@ clean: clean-geoserver clean-libgdal
 ###### GeoServer ########
 #########################
 
-geoserver: $(PREFIX)/gs/geoserver
+geoserver: $(PREFIX)/jetty
 
-$(PREFIX)/gs/geoserver: opengeosuite-${REV}-bin.zip #$(PREFIX)/lib/libgdal.dylib
+$(PREFIX)/jetty: opengeosuite-${REV}-bin.zip #$(PREFIX)/lib/libgdal.dylib
 	unzip -qq -o opengeosuite-${REV}-bin.zip
-	rm -rf ${PREFIX}/gs
+	rm -rf ${PREFIX}/jetty
 	mkdir -p ${PREFIX}
-	mv opengeosuite-${SUITE_VERSION} ${PREFIX}/gs
+	mv opengeosuite-${SUITE_VERSION} ${PREFIX}/jetty
 	touch $@
 
 opengeosuite-${REV}-bin.zip:
@@ -33,6 +33,7 @@ opengeosuite-${REV}-bin.zip:
 	
 clean-geoserver:
 	rm -Rf "opengeo-${SUITE_VERSION}"
+
 
 #########################
 #######  libgdal  #######
