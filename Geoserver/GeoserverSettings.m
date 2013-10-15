@@ -29,7 +29,7 @@
         }
         
         // Figure out the port and data_dir location
-        NSString *jettyIniPath = [NSString pathWithComponents:@[defaultIniPath, @"start.ini"]];
+        NSString *jettyIniPath = [NSString pathWithComponents:@[iniPath, @"start.ini"]];
         NSError *iniReadErr;
         NSString *jettyIni = [NSString stringWithContentsOfFile:jettyIniPath encoding:NSUTF8StringEncoding error:&iniReadErr];
         if (!iniReadErr) {
