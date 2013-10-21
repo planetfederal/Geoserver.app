@@ -25,6 +25,7 @@ $(PREFIX)/jetty: opengeosuite-${REV}-bin.zip #$(PREFIX)/lib/libgdal.dylib
 	unzip -qq -o opengeosuite-${REV}-bin.zip
 	rm -rf ${PREFIX}/jetty
 	mkdir -p ${PREFIX}
+	(cd opengeosuite-${SUITE_VERSION}/webapps; cp -r root dashboard)
 	mv opengeosuite-${SUITE_VERSION} ${PREFIX}/jetty
 	touch $@
 
