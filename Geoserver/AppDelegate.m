@@ -79,6 +79,7 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
     [self.openDashBoardMenuItem setEnabled:NO];
     [self.openGEMenuItem setEnabled:NO];
     [self.openGWCMenuItem setEnabled:NO];
+    [self.openRecipesMenuItem setEnabled:NO];
     self.geoserverStatusMenuItem.view = self.geoserverStatusMenuItemViewController.view;
     
     void (^gsStart)() = ^{
@@ -93,6 +94,7 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
                 [self.openDashBoardMenuItem setEnabled:YES];
                 [self.openGEMenuItem setEnabled:YES];
                 [self.openGWCMenuItem setEnabled:YES];
+                [self.openRecipesMenuItem setEnabled:YES];
                 if (![[NSUserDefaults standardUserDefaults] boolForKey:kGeoserverFirstLaunchPreferenceKey]) {
                     [[NSUserDefaults standardUserDefaults] synchronize];
                     [self selectDash:nil];
@@ -120,6 +122,7 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
                 [self.openDashBoardMenuItem setEnabled:YES];
                 [self.openGEMenuItem setEnabled:YES];
                 [self.openGWCMenuItem setEnabled:YES];
+                [self.openRecipesMenuItem setEnabled:YES];
                 if (![[NSUserDefaults standardUserDefaults] boolForKey:kGeoserverFirstLaunchPreferenceKey]) {
                     [self selectDash:nil];
                     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kGeoserverFirstLaunchPreferenceKey];
@@ -206,6 +209,11 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
 - (IBAction)selectGE:(id)sender {
     // Open GeoExplorer
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:%lu/geoexplorer",[[GeoserverServer sharedServer] port]]]];
+}
+
+- (IBAction)selectRecipes:(id)sender {
+    // Open Recipes
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:%lu/recipes",[[GeoserverServer sharedServer] port]]]];
 }
 
 - (IBAction)selectAutomaticallyStart:(id)sender {
