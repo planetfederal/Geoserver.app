@@ -46,6 +46,7 @@
 - (IBAction)selectDash:(id)sender;
 - (IBAction)selectGE:(id)sender;
 - (IBAction)selectGWC:(id)sender;
+- (IBAction)selectRecipes:(id)sender;
 - (IBAction)selectAutomaticallyStart:(id)sender;
 - (IBAction)openDataDir:(id)sender;
 - (IBAction)openWebappsDir:(id)sender;
