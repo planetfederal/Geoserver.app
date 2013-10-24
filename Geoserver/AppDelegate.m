@@ -139,27 +139,49 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
             [_welcomeWindowController.setupProgressBar startAnimation:nil];
             [_welcomeWindowController.setupStatusText setStringValue:@"Setting up..."];
         }
-        [self.geoserverStatusMenuItemViewController startAnimatingWithTitle:@"Setting up Server..."];
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NSError *copyError;
-            [[NSFileManager defaultManager] copyItemAtPath:[NSString stringWithFormat:@"%@",gs.binPath] toPath:gs.dataPath error:&copyError];
-            [[NSFileManager defaultManager] copyItemAtPath:[NSString stringWithFormat:@"%@/data_dir",gs.binPath] toPath:[NSString stringWithFormat:@"%@/../data_dir",gs.dataPath] error:&copyError];
-            if (copyError) {
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    NSAlert *copyErrorAlert = [NSAlert alertWithMessageText:@"Error setting up GeoServer" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:copyError.localizedDescription];
-                    [copyErrorAlert runModal];
-                    [self.geoserverStatusMenuItemViewController stopAnimatingWithTitle:NSLocalizedString(@"Could not setup GeoServer", nil) wasSuccessful:NO];
-                });
-            } else {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if (_welcomeWindowController) {
-                        [_welcomeWindowController.setupProgressBar startAnimation:nil];
-                        [_welcomeWindowController.setupStatusText setStringValue:@"Starting Server..."];
-                    }
+        
+        // Check for beta
+        NSString *betaGSPath = [[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent:@"geoserver"];
+        if ([fm fileExistsAtPath:betaGSPath]) {
+            [self.geoserverStatusMenuItemViewController startAnimatingWithTitle:@"Upgrading Server..."];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                NSError *copyError;
+                [[NSFileManager defaultManager] copyItemAtPath:[NSString stringWithFormat:@"%@",gs.binPath] toPath:gs.dataPath error:&copyError];
+                if (copyError) {
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        NSAlert *copyErrorAlert = [NSAlert alertWithMessageText:@"Error setting up GeoServer" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"%@",copyError.localizedDescription];
+                        [copyErrorAlert runModal];
+                        [self.geoserverStatusMenuItemViewController stopAnimatingWithTitle:NSLocalizedString(@"Could not setup GeoServer", nil) wasSuccessful:NO];
+                    });
+                } else {
+                    NSAlert *upgradeAlert = [NSAlert alertWithMessageText:@"Server has been upgraded" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Your data has not been touched however modifications to the servlet container will need to be manually migrated."];
+                    [upgradeAlert runModal];
                     gsStart();
-                });
-            }
-        });
+                }
+            });
+        } else {
+            [self.geoserverStatusMenuItemViewController startAnimatingWithTitle:@"Setting up Server..."];
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                NSError *copyError;
+                [[NSFileManager defaultManager] copyItemAtPath:[NSString stringWithFormat:@"%@",gs.binPath] toPath:gs.dataPath error:&copyError];
+                [[NSFileManager defaultManager] copyItemAtPath:[NSString stringWithFormat:@"%@/data_dir",gs.binPath] toPath:[NSString stringWithFormat:@"%@/../data_dir",gs.dataPath] error:&copyError];
+                if (copyError) {
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        NSAlert *copyErrorAlert = [NSAlert alertWithMessageText:@"Error setting up GeoServer" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"%@", copyError.localizedDescription];
+                        [copyErrorAlert runModal];
+                        [self.geoserverStatusMenuItemViewController stopAnimatingWithTitle:NSLocalizedString(@"Could not setup GeoServer", nil) wasSuccessful:NO];
+                    });
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if (_welcomeWindowController) {
+                            [_welcomeWindowController.setupProgressBar startAnimation:nil];
+                            [_welcomeWindowController.setupStatusText setStringValue:@"Starting Server..."];
+                        }
+                        gsStart();
+                    });
+                }
+            });
+        }
     } else {
         gsStart();
     }
