@@ -689,13 +689,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = GeoserverHelper.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Michael Weisman (88XTAN35SH)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GeoserverHelper/GeoServerHelper-Prefix.pch";
 				INFOPLIST_FILE = "GeoserverHelper/GeoServerHelper-Info.plist";
 				PRODUCT_NAME = GeoServerHelper;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx10.7;
 				SKIP_INSTALL = YES;
+				SUITE_CAT = "";
+				SUITE_REV = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -704,13 +707,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = GeoserverHelper.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Michael Weisman (88XTAN35SH)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GeoserverHelper/GeoServerHelper-Prefix.pch";
 				INFOPLIST_FILE = "GeoserverHelper/GeoServerHelper-Info.plist";
 				PRODUCT_NAME = GeoServerHelper;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx10.7;
 				SKIP_INSTALL = YES;
+				SUITE_CAT = "";
+				SUITE_REV = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -778,7 +784,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = GeoServer.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Michael Weisman (88XTAN35SH)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Geoserver/GeoServer-Prefix.pch";
 				GEOSERVERAPP_VERSION = 2.4;
@@ -795,7 +801,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = GeoServer.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Michael Weisman (88XTAN35SH)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Geoserver/GeoServer-Prefix.pch";
 				GEOSERVERAPP_VERSION = 2.4;
