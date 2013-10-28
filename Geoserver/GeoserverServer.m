@@ -26,6 +26,7 @@
 #import <xpc/xpc.h>
 #import "GeoserverServer.h"
 #import "NSFileManager+DirectoryLocations.h"
+#import "GeoserverSettings.h"
 
 @implementation GeoserverServer {
     __strong NSString *_binPath;
@@ -96,7 +97,7 @@
     [self willChangeValueForKey:@"port"];
     _port = port;
     
-    [self executeCommandNamed:@"/usr/bin/java" arguments:@[@"-jar", [NSString stringWithFormat:@"%@/start.jar", _dataPath], @"-Djava.awt.headless=true"]terminationHandler:^(NSUInteger status) {
+    [self executeCommandNamed:@"/usr/bin/java" arguments:@[@"-jar", [NSString stringWithFormat:@"%@/start.jar", _dataPath], @"-Djava.awt.headless=true"] terminationHandler:^(NSUInteger status) {
         if (completionBlock) {
             completionBlock(status);
         }
@@ -128,6 +129,7 @@
     }];
     xpc_dictionary_set_value(message, "arguments", args);
     xpc_dictionary_set_string(message, "classpath_root", [_dataPath UTF8String]);
+    xpc_dictionary_set_string(message, "data_dir", [[[GeoserverSettings sharedSettings] dataDir] UTF8String]);
     
     xpc_connection_send_message_with_reply(_xpc_connection, message, dispatch_get_main_queue(), ^(xpc_object_t object) {
         NSLog(@"%lld %s: Status %lld", xpc_dictionary_get_int64(object, "pid"), xpc_dictionary_get_string(object, "command"), xpc_dictionary_get_int64(object, "status"));

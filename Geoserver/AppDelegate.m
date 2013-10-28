@@ -257,7 +257,6 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
 }
 
 - (IBAction)openDataDir:(id)sender {
-    NSString *dataDirLoc = [[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent:@"data_dir"];
-    [[NSWorkspace sharedWorkspace] selectFile:[NSString stringWithFormat:@"%@/global.xml", dataDirLoc] inFileViewerRootedAtPath:dataDirLoc];
+    [[NSWorkspace sharedWorkspace] selectFile:[NSString stringWithFormat:@"%@/global.xml", [[GeoserverSettings sharedSettings] dataDir]] inFileViewerRootedAtPath:[[GeoserverSettings sharedSettings] dataDir]];
 }
 @end

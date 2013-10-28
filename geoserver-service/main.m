@@ -42,6 +42,7 @@ static void geoserver_service_peer_event_handler(xpc_connection_t peer, xpc_obje
         NSString *command = [NSString stringWithUTF8String: xpc_dictionary_get_string(event, "command")];
 
         NSString *classpathRoot = [NSString stringWithUTF8String: xpc_dictionary_get_string(event, "classpath_root")];
+        NSString *dataDir = [NSString stringWithUTF8String: xpc_dictionary_get_string(event, "data_dir")];
         
         NSMutableArray *mutableArguments = [NSMutableArray array];
         xpc_array_apply(xpc_dictionary_get_value(event, "arguments"), ^_Bool(size_t index, xpc_object_t obj) {
@@ -54,6 +55,7 @@ static void geoserver_service_peer_event_handler(xpc_connection_t peer, xpc_obje
         task.launchPath = command;
         task.arguments = mutableArguments;
         task.currentDirectoryPath = classpathRoot;
+        task.environment = @{@"GEOSERVER_DATA_DIR": dataDir};
 
         __block xpc_object_t reply = xpc_dictionary_create_reply(event);
         task.terminationHandler = ^(NSTask *task) {

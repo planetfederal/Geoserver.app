@@ -46,6 +46,11 @@
             _sharedSettings.jettyPort = 8080;
         }
         
+        if (!_sharedSettings.dataDir) {
+            // Data Dir isn't set in ini. Set it to the default value.
+            _sharedSettings.dataDir = [[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent:@"data_dir"];
+        }
+        
         // Figure out the other vars from suite ini which is a real ini file
         NSString *suiteIniPath = [NSString pathWithComponents:@[iniPath, @"version.ini"]];
         dictionary *suiteIni = iniparser_load([suiteIniPath UTF8String]);
