@@ -83,6 +83,27 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
     self.geoserverStatusMenuItem.view = self.geoserverStatusMenuItemViewController.view;
     
     void (^gsStart)() = ^{
+        // Ensure that GWC is properly configured
+        NSString *gwcDir = [[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent:@"gwc_cache"];
+        
+        if (![[NSFileManager defaultManager] fileExistsAtPath:gwcDir]) {
+            NSError *gwcSetupErr;
+            NSString *gwcWebXMLPath = [[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent:@"jetty/webapps/geowebcache/WEB-INF/web.xml"];
+            NSString *gwcWebXML = [NSString stringWithContentsOfFile:gwcWebXMLPath encoding:NSUTF8StringEncoding error:&gwcSetupErr];
+            gwcWebXML = [gwcWebXML stringByReplacingOccurrencesOfString:@"<!--@" withString:@""];
+            gwcWebXML = [gwcWebXML stringByReplacingOccurrencesOfString:@"@GEOWEBCACHE_CACHE_DIR@" withString:gwcDir];
+            gwcWebXML = [gwcWebXML stringByReplacingOccurrencesOfString:@"@-->" withString:@""];
+            
+            [gwcWebXML writeToFile:gwcWebXMLPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+            NSError *gwcCreateErr;
+            [[NSFileManager defaultManager] createDirectoryAtPath:gwcDir withIntermediateDirectories:NO attributes:nil error:&gwcCreateErr];
+            
+            if (gwcCreateErr) {
+                NSAlert *gwcErrAlert = [NSAlert alertWithMessageText:@"Error setting up GeoWebCache. GeoServer should continue to work without caching." defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"%@",gwcCreateErr.localizedDescription];
+                [gwcErrAlert runModal];
+            }
+        }
+        
         [gs startOnPort:settings.jettyPort terminationHandler:^(NSUInteger status) {
             if (status == 0) {
                 if (_welcomeWindowController) {
