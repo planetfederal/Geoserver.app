@@ -1,7 +1,7 @@
 # VERSION numbers
 REV=$(SUITE_REV)
 CAT=$(SUITE_CAT)
-SUITE_VERSION=4.0-RC1
+SUITE_VERSION=4.0
 GDAL_VERSION=1.9.2
 
 #path configuration
