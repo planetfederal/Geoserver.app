@@ -1,0 +1,5 @@
+JAVADOC=$(JAVA_HOME)/bin/javadoc
+JAVAC=$(JAVA_HOME)/bin/javac
+JAVA=$(JAVA_HOME)/bin/java
+JAR=$(JAVA_HOME)/bin/jar
+JAVA_INCLUDE=-I$(JAVA_HOME)/include
