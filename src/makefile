@@ -87,7 +87,7 @@ gdal-$(GDAL_VERSION)/autogen.sh: gdal-${GDAL_VERSION}.tar.gz
 	unzip -qq -o opengeosuite-${REV}-gdal.zip
 	touch $@	
 
-gdal-${GDAL_VERSION}.tar.gz:
+opengeosuite-${REV}-gdal.zip:
 	$(CURL) "http://download.osgeo.org/gdal/gdal-${GDAL_VERSION}.tar.gz"
 	$(CURL) "http://r2d2.opengeo.org/suite/${CAT}/${REV}/opengeosuite-${REV}-gdal.zip"
 	touch $@
