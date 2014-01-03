@@ -82,6 +82,21 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
     [self.openRecipesMenuItem setEnabled:NO];
     self.geoserverStatusMenuItem.view = self.geoserverStatusMenuItemViewController.view;
     
+    NSString *suiteVersion = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"SuiteVersion"];
+    
+    if (![[settings.suiteRev substringToIndex:8] isEqualToString:suiteVersion]) {
+        // Currently installed jetty bundle does not match app. Perform an "upgrade"
+        NSString *jettyPath = [[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent:@"jetty"];
+        NSError *moveErr;
+        if ([[NSFileManager defaultManager] fileExistsAtPath:jettyPath]) {
+            [[NSFileManager defaultManager] moveItemAtPath:jettyPath toPath:[jettyPath stringByAppendingString:[settings.suiteRev substringToIndex:8]] error:&moveErr];
+            if (moveErr) {
+                NSAlert *upgradeFailAlert = [NSAlert alertWithMessageText:@"Error upgrading Suite" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:[NSString stringWithFormat:@"Please manually delete %@", jettyPath]];
+                [upgradeFailAlert runModal];
+            }
+        }
+    }
+    
     void (^gsStart)() = ^{
         // Ensure that GWC is properly configured
         NSString *gwcDir = [[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent:@"gwc_cache"];
@@ -161,9 +176,10 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
             [_welcomeWindowController.setupStatusText setStringValue:@"Setting up..."];
         }
         
-        // Check for beta
+        // Check for beta or upgrade
         NSString *betaGSPath = [[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent:@"geoserver"];
-        if ([fm fileExistsAtPath:betaGSPath]) {
+        NSString *jettyPath = [[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent:@"jetty"];
+        if ([fm fileExistsAtPath:betaGSPath] || [fm fileExistsAtPath:[jettyPath stringByAppendingString:[settings.suiteRev substringToIndex:8]]]) {
             [self.geoserverStatusMenuItemViewController startAnimatingWithTitle:@"Upgrading Server..."];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 NSError *copyError;
@@ -180,6 +196,8 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
                     gsStart();
                 }
             });
+            settings = nil;
+            settings = [GeoserverSettings sharedSettings];
         } else {
             [self.geoserverStatusMenuItemViewController startAnimatingWithTitle:@"Setting up Server..."];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{

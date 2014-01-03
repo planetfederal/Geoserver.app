@@ -40,6 +40,8 @@
 	<true/>
 	<key>SUEnableSystemProfiling</key>
 	<true/>
+	<key>SuiteVersion</key>
+	<string>${SUITE_REV}</string>
 	<key>SUFeedURL</key>
 	<string>https://geoserver.mesmerizeapp.com/</string>
 </dict>
