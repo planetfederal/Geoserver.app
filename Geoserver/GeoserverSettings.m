@@ -54,11 +54,11 @@
         // Figure out the other vars from suite ini which is a real ini file
         NSString *suiteIniPath = [NSString pathWithComponents:@[iniPath, @"version.ini"]];
         dictionary *suiteIni = iniparser_load([suiteIniPath UTF8String]);
-        _sharedSettings.suiteVersion = [NSString stringWithUTF8String:iniparser_getstring(suiteIni, ":suite_version", NULL)];
-        _sharedSettings.suiteRev = [NSString stringWithUTF8String:iniparser_getstring(suiteIni, ":build_revision", NULL)];
+        _sharedSettings.suiteVersion = [NSString stringWithUTF8String:iniparser_getstring(suiteIni, ":suite_version", "")];
+        _sharedSettings.suiteRev = [NSString stringWithUTF8String:iniparser_getstring(suiteIni, ":build_revision", "unknown_rev")];
         
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
-        _sharedSettings.suiteBuildDate = [df dateFromString:[NSString stringWithUTF8String: iniparser_getstring(suiteIni, ":build_prettydate", NULL)]];
+        _sharedSettings.suiteBuildDate = [df dateFromString:[NSString stringWithUTF8String: iniparser_getstring(suiteIni, ":build_prettydate", "")]];
  
         iniparser_freedict(suiteIni);
     });
