@@ -91,7 +91,8 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
         if ([[NSFileManager defaultManager] fileExistsAtPath:jettyPath]) {
             [[NSFileManager defaultManager] moveItemAtPath:jettyPath toPath:[jettyPath stringByAppendingString:[settings.suiteRev substringToIndex:8]] error:&moveErr];
             if (moveErr) {
-                NSAlert *upgradeFailAlert = [NSAlert alertWithMessageText:@"Error upgrading Suite" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:[NSString stringWithFormat:@"Please manually delete %@", jettyPath]];
+                NSLog(@"GeoServer upgrade error: %@", moveErr.localizedDescription);
+                NSAlert *upgradeFailAlert = [NSAlert alertWithMessageText:@"Error upgrading Suite" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:[NSString stringWithFormat:@"%@. Please manually delete %@", moveErr.localizedDescription, jettyPath]];
                 [upgradeFailAlert runModal];
             }
         }
