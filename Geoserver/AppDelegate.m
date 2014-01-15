@@ -198,9 +198,11 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
                         [self.geoserverStatusMenuItemViewController stopAnimatingWithTitle:NSLocalizedString(@"Could not setup GeoServer", nil) wasSuccessful:NO];
                     });
                 } else {
-                    NSAlert *upgradeAlert = [NSAlert alertWithMessageText:@"Server has been upgraded" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Your data has not been touched however modifications to the servlet container will need to be manually migrated."];
-                    [upgradeAlert runModal];
-                    gsStart();
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        NSAlert *upgradeAlert = [NSAlert alertWithMessageText:@"Server has been upgraded" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Your data has not been touched however modifications to the servlet container will need to be manually migrated."];
+                        [upgradeAlert runModal];
+                        gsStart();
+                    });
                 }
             });
             settings = nil;
