@@ -74,8 +74,8 @@ $(PREFIX)/lib/libgdal.dylib: gdal-$(GDAL_VERSION)/GNUMakefile
 	(cd gdal-$(GDAL_VERSION)/swig/java; make)
 	cp gdal-$(GDAL_VERSION)/swig/java/.libs/*.dylib $(PREFIX)/lib
 	cp gdal-$(GDAL_VERSION)/swig/java/*.jar $(PREFIX)/jetty/webapps/geoserver/WEB-INF/lib
-	rm opengeosuite-${REV}/gdal-*.jar
-	cp opengeosuite-${REV}/*.jar $(PREFIX)/jetty/webapps/geoserver/WEB-INF/lib
+	rm opengeosuite-*/gdal-*.jar
+	cp opengeosuite-*/*.jar $(PREFIX)/jetty/webapps/geoserver/WEB-INF/lib
 	touch $@
 
 gdal-$(GDAL_VERSION)/GNUMakefile: gdal-$(GDAL_VERSION)/autogen.sh
