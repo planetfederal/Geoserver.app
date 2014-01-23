@@ -84,7 +84,7 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
     
     NSString *suiteVersion = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"SuiteVersion"];
     
-    if (![[settings.suiteRev substringToIndex:7] isEqualToString:suiteVersion]) {
+    if (![settings.suiteVersion isEqualToString:suiteVersion]) {
         // Currently installed jetty bundle does not match app. Perform an "upgrade"
         NSString *jettyPath = [[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent:@"jetty"];
         NSError *moveErr;
