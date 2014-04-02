@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>7FFC1643-EA71-4562-9F24-422F33657F3D</string>
+	<key>IDESourceControlProjectName</key>
+	<string>GeoServer</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>57C200E5-4442-4B2A-9B91-188C168C27C4</key>
+		<string>https://github.com/ndevilla/iniparser.git</string>
+		<key>73AC578B-81C3-4DC3-B143-DE029E7667E1</key>
+		<string>ssh://github.com/opengeo/Geoserver.app.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>GeoServer.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>57C200E5-4442-4B2A-9B91-188C168C27C4</key>
+		<string>../../Geoserver/Vendor/iniparser</string>
+		<key>73AC578B-81C3-4DC3-B143-DE029E7667E1</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/opengeo/Geoserver.app.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>73AC578B-81C3-4DC3-B143-DE029E7667E1</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>73AC578B-81C3-4DC3-B143-DE029E7667E1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>GeoserverApp</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>57C200E5-4442-4B2A-9B91-188C168C27C4</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iniparser</string>
+		</dict>
+	</array>
+</dict>
+</plist>
