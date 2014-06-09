@@ -20,7 +20,7 @@ export CFLAGS CXXFLAGS MACOSX_DEPLOYMENT_TARGET
 CURL=/usr/bin/curl -L10 --silent --show-error --remote-name
 TAR=/usr/bin/tar xzf
 
-all: geoserver sdk gdal
+all: geoserver gdal
 clean: clean-geoserver clean-libgdal
 
 #########################
@@ -42,25 +42,6 @@ opengeosuite-${REV}-bin.zip:
 	
 clean-geoserver:
 	rm -Rf "opengeo-${SUITE_VERSION}"
-
-#########################
-###### SDK       ########
-#########################
-
-sdk: $(PREFIX)/jetty/webapps/cargo
-
-$(PREFIX)/jetty/webapps/cargo: opengeosuite-${REV}-sdk.zip $(PREFIX)/jetty/
-	unzip -qq -o opengeosuite-${REV}-sdk.zip
-	cp -r opengeosuite-${SUITE_VERSION}-sdk/jetty/webapps/cargo $(PREFIX)/jetty/webapps/
-	cp opengeosuite-${SUITE_VERSION}-sdk/jetty/etc/deployrealm.properties ${PREFIX}/jetty/etc/deployrealm.properties
-	touch $@
-
-opengeosuite-${REV}-sdk.zip:
-	$(CURL) "http://r2d2.opengeo.org/suite/${CAT}/${REV}/opengeosuite-${REV}-sdk.zip"
-	
-clean-sdk:
-	rm -Rf "opengeo-${SUITE_VERSION}-sdk"
-
 
 #########################
 #######  libgdal  #######
