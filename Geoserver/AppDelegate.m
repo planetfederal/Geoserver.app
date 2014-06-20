@@ -268,7 +268,7 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
 
 - (IBAction)selectDash:(id)sender {
     // Open the Dashboard
-        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:%lu/",[[GeoserverServer sharedServer] port]]]];
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:%lu/dashboard",[[GeoserverServer sharedServer] port]]]];
 }
 
 - (IBAction)selectGWC:(id)sender {
