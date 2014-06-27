@@ -38,10 +38,10 @@ $(PREFIX)/jetty: opengeosuite-${REV}-bin.zip
 	touch $@
 
 opengeosuite-${REV}-bin.zip:
-	$(CURL) "http://r2d2.opengeo.org/suite/${CAT}/${REV}/opengeosuite-${REV}-bin.zip"
+	$(CURL) "http://r2d2.boundlessgeo.com/suite/core/${BRANCH}/${CAT}/bin/suite-bin-${REV}.zip
 	
 clean-geoserver:
-	rm -Rf "opengeo-${SUITE_VERSION}"
+	rm -Rf suite-bin-*
 
 #########################
 #######  libgdal  #######
@@ -65,13 +65,14 @@ gdal-$(GDAL_VERSION)/GNUMakefile: gdal-$(GDAL_VERSION)/autogen.sh
 
 gdal-$(GDAL_VERSION)/autogen.sh: opengeosuite-${REV}-gdal.zip
 	$(TAR) gdal-${GDAL_VERSION}.tar.gz
-	unzip -qq -o opengeosuite-${REV}-gdal.zip
+	unzip -qq -o suite-geoserver-ext-${REV}.zip
 	touch $@	
 
-opengeosuite-${REV}-gdal.zip:
+suite-geoserver-ext-${REV}.zip:
 	$(CURL) "http://download.osgeo.org/gdal/gdal-${GDAL_VERSION}.tar.gz"
-	$(CURL) "http://r2d2.opengeo.org/suite/${CAT}/${REV}/opengeosuite-${REV}-gdal.zip"
+	$(CURL) "http://r2d2.boundlessgeo.com/suite/core/${BRANCH}/${CAT}/geoserver-ext/suite-geoserver-ext-${REV}.zip"
 	touch $@
 
 clean-libgdal:
 	rm -Rf gdal-$(GDAL_VERSION)
+	rm -Rf suite-geoserver-ext-${REV}*
