@@ -63,7 +63,7 @@ gdal-$(GDAL_VERSION)/GNUMakefile: gdal-$(GDAL_VERSION)/autogen.sh
 	cd gdal-$(GDAL_VERSION) && ./configure --prefix="$(PREFIX)"
 	touch $@
 
-gdal-$(GDAL_VERSION)/autogen.sh: opengeosuite-${REV}-gdal.zip
+gdal-$(GDAL_VERSION)/autogen.sh: suite-geoserver-ext-${REV}.zip
 	$(TAR) gdal-${GDAL_VERSION}.tar.gz
 	unzip -qq -o suite-geoserver-ext-${REV}.zip
 	touch $@	
