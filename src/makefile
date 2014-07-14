@@ -29,19 +29,21 @@ clean: clean-geoserver clean-libgdal
 
 geoserver: $(PREFIX)/jetty
 
-$(PREFIX)/jetty: opengeosuite-${REV}-bin.zip
-	unzip -qq -o opengeosuite-${REV}-bin.zip
+$(PREFIX)/jetty: suite-bin-${REV}.zip
+	mkdir geoserver-${REV}
+	unzip -d geoserver-${REV} -qq -o suite-bin-${REV}.zip
 	rm -rf ${PREFIX}/jetty
 	mkdir -p ${PREFIX}
-	(cd opengeosuite-${SUITE_VERSION}/webapps; cp -r root dashboard)
-	mv opengeosuite-${SUITE_VERSION} ${PREFIX}/jetty
+	(cd geoserver-${REV}/webapps; cp -r root dashboard)
+	mv geoserver-${REV} ${PREFIX}/jetty
 	touch $@
 
-opengeosuite-${REV}-bin.zip:
-	$(CURL) "http://r2d2.boundlessgeo.com/suite/core/${BRANCH}/${CAT}/bin/suite-bin-${REV}.zip
+suite-bin-${REV}.zip:
+	$(CURL) "http://r2d2.boundlessgeo.com/suite/core/${BRANCH}/${CAT}/bin/suite-bin-${REV}.zip"
 	
 clean-geoserver:
 	rm -Rf suite-bin-*
+	rm -Rf geoserver-*
 
 #########################
 #######  libgdal  #######
