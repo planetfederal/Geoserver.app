@@ -57,8 +57,8 @@ $(PREFIX)/lib/libgdal.dylib: gdal-$(GDAL_VERSION)/GNUMakefile
 	(cd gdal-$(GDAL_VERSION)/swig/java; make)
 	cp gdal-$(GDAL_VERSION)/swig/java/.libs/*.dylib $(PREFIX)/lib
 	cp gdal-$(GDAL_VERSION)/swig/java/*.jar $(PREFIX)/jetty/webapps/geoserver/WEB-INF/lib
-	rm suite-geoserver-ext-*//gdal/gdal-*.jar
-	cp suite-geoserver-ext-*/gdal/*.jar $(PREFIX)/jetty/webapps/geoserver/WEB-INF/lib
+	rm suite-geoserver-ext-${REV}/gdal/gdal-*.jar
+	cp suite-geoserver-ext-${REV}/gdal/*.jar $(PREFIX)/jetty/webapps/geoserver/WEB-INF/lib
 	touch $@
 
 gdal-$(GDAL_VERSION)/GNUMakefile: gdal-$(GDAL_VERSION)/autogen.sh
@@ -67,7 +67,8 @@ gdal-$(GDAL_VERSION)/GNUMakefile: gdal-$(GDAL_VERSION)/autogen.sh
 
 gdal-$(GDAL_VERSION)/autogen.sh: suite-geoserver-ext-${REV}.zip
 	$(TAR) gdal-${GDAL_VERSION}.tar.gz
-	unzip -qq -o suite-geoserver-ext-${REV}.zip
+	mkdir suite-geoserver-ext-${REV}
+	unzip -d suite-geoserver-ext-${REV} -qq -o suite-geoserver-ext-${REV}.zip
 	touch $@	
 
 suite-geoserver-ext-${REV}.zip:
