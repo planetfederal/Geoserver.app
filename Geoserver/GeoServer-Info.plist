@@ -41,7 +41,7 @@
 	<key>SUEnableSystemProfiling</key>
 	<true/>
 	<key>SuiteVersion</key>
-	<string>4-SNAPSHOT</string>
+	<string>4.1.1</string>
 	<key>SUFeedURL</key>
 	<string>https://geoserver.mesmerizeapp.com/</string>
 </dict>
