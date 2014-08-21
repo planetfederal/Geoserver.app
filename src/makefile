@@ -39,7 +39,7 @@ $(PREFIX)/jetty: suite-bin-${REV}.zip
 	touch $@
 
 suite-bin-${REV}.zip:
-	$(CURL) "http://r2d2.boundlessgeo.com/suite/core/${BRANCH}/${CAT}/bin/suite-bin-${REV}.zip"
+	$(CURL) "http://r2d2.boundlessgeo.com/suite/core/origin/${BRANCH}/${CAT}/bin/suite-bin-${REV}.zip"
 	
 clean-geoserver:
 	rm -Rf suite-bin-*
@@ -72,7 +72,7 @@ gdal-$(GDAL_VERSION)/autogen.sh: suite-geoserver-ext-${REV}.zip
 
 suite-geoserver-ext-${REV}.zip:
 	$(CURL) "http://download.osgeo.org/gdal/gdal-${GDAL_VERSION}.tar.gz"
-	$(CURL) "http://r2d2.boundlessgeo.com/suite/core/${BRANCH}/${CAT}/geoserver-ext/suite-geoserver-ext-${REV}.zip"
+	$(CURL) "http://r2d2.boundlessgeo.com/suite/core/origin/${BRANCH}/${CAT}/geoserver-ext/suite-geoserver-ext-${REV}.zip"
 	touch $@
 
 clean-libgdal:
