@@ -39,7 +39,7 @@ $(PREFIX)/jetty: suite-bin-${REV}.zip
 	touch $@
 
 suite-bin-${REV}.zip:
-	$(CURL) "http://r2d2.boundlessgeo.com/suite/core/origin/${BRANCH}/${CAT}/bin/suite-bin-${REV}.zip"
+	$(CURL) "http://r2d2.boundlessgeo.com/suite/core/${BRANCH}/${CAT}/bin/suite-bin-${REV}.zip"
 	
 clean-geoserver:
 	rm -Rf suite-bin-*
@@ -57,24 +57,19 @@ $(PREFIX)/lib/libgdal.dylib: gdal-$(GDAL_VERSION)/GNUMakefile
 	(cd gdal-$(GDAL_VERSION)/swig/java; make)
 	cp gdal-$(GDAL_VERSION)/swig/java/.libs/*.dylib $(PREFIX)/lib
 	cp gdal-$(GDAL_VERSION)/swig/java/*.jar $(PREFIX)/jetty/webapps/geoserver/WEB-INF/lib
-	cp suite-geoserver-ext-${REV}/gdal/*.jar $(PREFIX)/jetty/webapps/geoserver/WEB-INF/lib
 	touch $@
 
 gdal-$(GDAL_VERSION)/GNUMakefile: gdal-$(GDAL_VERSION)/autogen.sh
 	cd gdal-$(GDAL_VERSION) && ./configure --prefix="$(PREFIX)"
 	touch $@
 
-gdal-$(GDAL_VERSION)/autogen.sh: suite-geoserver-ext-${REV}.zip
+gdal-$(GDAL_VERSION)/autogen.sh: gdal-${GDAL_VERSION}.tar.gz
 	$(TAR) gdal-${GDAL_VERSION}.tar.gz
-	mkdir suite-geoserver-ext-${REV}
-	unzip -d suite-geoserver-ext-${REV} -qq -o suite-geoserver-ext-${REV}.zip
 	touch $@	
 
-suite-geoserver-ext-${REV}.zip:
+gdal-${GDAL_VERSION}.tar.gz:
 	$(CURL) "http://download.osgeo.org/gdal/gdal-${GDAL_VERSION}.tar.gz"
-	$(CURL) "http://r2d2.boundlessgeo.com/suite/core/origin/${BRANCH}/${CAT}/geoserver-ext/suite-geoserver-ext-${REV}.zip"
 	touch $@
 
 clean-libgdal:
 	rm -Rf gdal-$(GDAL_VERSION)
-	rm -Rf suite-geoserver-ext-${REV}*
