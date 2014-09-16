@@ -135,7 +135,7 @@
     xpc_dictionary_set_string(message, "classpath_root", [_dataPath UTF8String]);
     xpc_dictionary_set_string(message, "gdal_path", [[NSString stringWithFormat:@"%@/gdal", _dataPath] UTF8String]);
     xpc_dictionary_set_string(message, "data_dir", [[[GeoserverSettings sharedSettings] dataDir] UTF8String]);
-    xpc_dictionary_set_string(message, "java_home", _javaHome);
+    xpc_dictionary_set_string(message, "java_home", [_javaHome UTF8String]);
     
     xpc_connection_send_message_with_reply(_xpc_connection, message, dispatch_get_main_queue(), ^(xpc_object_t object) {
         NSLog(@"%lld %s: Status %lld", xpc_dictionary_get_int64(object, "pid"), xpc_dictionary_get_string(object, "command"), xpc_dictionary_get_int64(object, "status"));
