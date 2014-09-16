@@ -20,8 +20,8 @@ export CFLAGS CXXFLAGS MACOSX_DEPLOYMENT_TARGET
 CURL=/usr/bin/curl -L10 --silent --show-error --remote-name
 TAR=/usr/bin/tar xzf
 
-all: geoserver gdal
-clean: clean-geoserver clean-libgdal
+all: jre geoserver gdal
+clean: clean-jre clean-geoserver clean-libgdal
 
 #########################
 ###### GeoServer ########
@@ -44,6 +44,26 @@ suite-bin-${REV}.zip:
 clean-geoserver:
 	rm -Rf suite-bin-*
 	rm -Rf geoserver-*
+
+#########################
+###### Bundle JRE #######
+#########################
+
+jre: $(PREFIX)/jre
+
+$(PREFIX)/jre: jre-7-osx.tar.gz
+	$(TAR) jre-7-osx.tar.gz
+	rm -rf ${PREFIX}/jre
+	mkdir -p ${PREFIX}
+	mv jre ${PREFIX}/jre
+	touch $@
+
+jre-7-osx.tar.gz:
+	$(CURL) "http://r2d2.opengeo.org/suite/osx/libs/jre-7-osx.tar.gz"
+	
+clean-jre:
+	rm -Rf jre*
+
 
 #########################
 #######  libgdal  #######

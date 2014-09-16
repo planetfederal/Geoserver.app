@@ -34,6 +34,8 @@
     __strong NSTask *_geoserverTask;
     NSUInteger _port;
     BOOL _isRunning;
+    NSString *_javaHome;
+    NSString *_javaCmd;
     
     xpc_connection_t _xpc_connection;
 }
@@ -58,6 +60,8 @@
     
     _binPath = executablesDirectory;
     _dataPath = dataDirectory;
+    _javaHome = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"jre"];
+    _javaCmd = [NSString stringWithFormat:@"%@/bin/java",_javaHome];
     
     _xpc_connection = xpc_connection_create("com.boundlessgeo.geoserver-service", dispatch_get_main_queue());
 	xpc_connection_set_event_handler(_xpc_connection, ^(xpc_object_t event) {        
@@ -97,7 +101,7 @@
     [self willChangeValueForKey:@"port"];
     _port = port;
     
-    [self executeCommandNamed:@"/usr/bin/java" arguments:@[@"-jar", [NSString stringWithFormat:@"%@/start.jar", _dataPath], @"-Djava.awt.headless=true"] terminationHandler:^(NSUInteger status) {
+    [self executeCommandNamed:_javaCmd arguments:@[@"-jar", [NSString stringWithFormat:@"%@/start.jar", _dataPath], @"-Djava.awt.headless=true"] terminationHandler:^(NSUInteger status) {
         if (completionBlock) {
             completionBlock(status);
         }
@@ -110,7 +114,7 @@
 }
 
 - (BOOL)stopWithTerminationHandler:(void (^)(NSUInteger status))terminationHandler {
-    [self executeCommandNamed:@"/usr/bin/java" arguments:@[@"-jar", [NSString stringWithFormat:@"%@/start.jar", _dataPath], @"-Djava.awt.headless=true", @"--stop"] terminationHandler:terminationHandler];
+    [self executeCommandNamed:_javaCmd arguments:@[@"-jar", [NSString stringWithFormat:@"%@/start.jar", _dataPath], @"-Djava.awt.headless=true", @"--stop"] terminationHandler:terminationHandler];
     
     return YES;
 }
@@ -131,6 +135,7 @@
     xpc_dictionary_set_string(message, "classpath_root", [_dataPath UTF8String]);
     xpc_dictionary_set_string(message, "gdal_path", [[NSString stringWithFormat:@"%@/gdal", _dataPath] UTF8String]);
     xpc_dictionary_set_string(message, "data_dir", [[[GeoserverSettings sharedSettings] dataDir] UTF8String]);
+    xpc_dictionary_set_string(message, "java_home", _javaHome);
     
     xpc_connection_send_message_with_reply(_xpc_connection, message, dispatch_get_main_queue(), ^(xpc_object_t object) {
         NSLog(@"%lld %s: Status %lld", xpc_dictionary_get_int64(object, "pid"), xpc_dictionary_get_string(object, "command"), xpc_dictionary_get_int64(object, "status"));
