@@ -2,7 +2,7 @@
 REV=$(SUITE_REV)
 CAT=$(SUITE_CAT)
 SUITE_VERSION=4-SNAPSHOT
-GDAL_VERSION=1.9.2
+GDAL_VERSION=1.11.1
 
 #path configuration
 PREFIX=$(PROJECT_DIR)/Geoserver/Vendor/geoserver
@@ -83,12 +83,12 @@ gdal-$(GDAL_VERSION)/GNUMakefile: gdal-$(GDAL_VERSION)/autogen.sh
 	cd gdal-$(GDAL_VERSION) && ./configure --prefix="$(PREFIX)"
 	touch $@
 
-gdal-$(GDAL_VERSION)/autogen.sh: gdal-${GDAL_VERSION}.tar.gz
-	$(TAR) gdal-${GDAL_VERSION}.tar.gz
+gdal-$(GDAL_VERSION)/autogen.sh: gdal-${GDAL_VERSION}RC1.tar.gz
+	$(TAR) gdal-${GDAL_VERSION}RC1.tar.gz
 	touch $@	
 
-gdal-${GDAL_VERSION}.tar.gz:
-	$(CURL) "http://download.osgeo.org/gdal/gdal-${GDAL_VERSION}.tar.gz"
+gdal-${GDAL_VERSION}RC1.tar.gz:
+	$(CURL) "http://download.osgeo.org/gdal/${GDAL_VERSION}/gdal-${GDAL_VERSION}RC1.tar.gz"
 	touch $@
 
 clean-libgdal:
