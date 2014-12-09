@@ -1,5 +1,6 @@
+JAVA_HOME=/Library/Java/JavaVirtualMachines/1.6.0_65-b14-462.jdk/Contents/Home
 JAVADOC=$(JAVA_HOME)/bin/javadoc
 JAVAC=$(JAVA_HOME)/bin/javac
 JAVA=$(JAVA_HOME)/bin/java
 JAR=$(JAVA_HOME)/bin/jar
-JAVA_INCLUDE=-I$(JAVA_HOME)/include
+JAVA_INCLUDE=-I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux
