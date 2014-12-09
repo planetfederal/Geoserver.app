@@ -4,6 +4,13 @@ CAT=$(SUITE_CAT)
 SUITE_VERSION=4-SNAPSHOT
 GDAL_VERSION=1.11.1
 
+# EE vs Basic
+ifeq ($(PROFILE),ee)
+        SUITE_BIN_ZIP=suite-bin-${REV}-ee.zip
+else
+        SUITE_BIN_ZIP=suite-bin-${REV}.zip
+endif
+
 #path configuration
 PREFIX=$(PROJECT_DIR)/Geoserver/Vendor/geoserver
 PATH=$(PREFIX)/bin:/bin:/usr/bin:/opt/local/bin
@@ -29,17 +36,17 @@ clean: clean-jre clean-geoserver clean-libgdal
 
 geoserver: $(PREFIX)/jetty
 
-$(PREFIX)/jetty: suite-bin-${REV}.zip
+$(PREFIX)/jetty: ${SUITE_BIN_ZIP}
 	mkdir geoserver-${REV}
-	unzip -d geoserver-${REV} -qq -o suite-bin-${REV}.zip
+	unzip -d geoserver-${REV} -qq -o ${SUITE_BIN_ZIP}
 	rm -rf ${PREFIX}/jetty
 	mkdir -p ${PREFIX}
 	(cd geoserver-${REV}/webapps; cp -r root dashboard)
 	mv geoserver-${REV} ${PREFIX}/jetty
 	touch $@
 
-suite-bin-${REV}.zip:
-	$(CURL) "http://r2d2.boundlessgeo.com/suite/core/${BRANCH}/${CAT}/bin/suite-bin-${REV}.zip"
+${SUITE_BIN_ZIP}:
+	$(CURL) "http://r2d2.boundlessgeo.com/suite/core/${BRANCH}/${CAT}/bin/${SUITE_BIN_ZIP}"
 	
 clean-geoserver:
 	rm -Rf suite-bin-*
