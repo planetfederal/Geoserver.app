@@ -38,7 +38,6 @@
 @property (weak) IBOutlet NSMenuItem *openGWCMenuItem;
 @property (weak) IBOutlet NSMenuItem *openGeoServerMenuItem;
 @property (weak) IBOutlet NSMenuItem *automaticallyStartMenuItem;
-@property (weak) IBOutlet NSMenuItem *openRecipesMenuItem;
 
 
 - (IBAction)selectAbout:(id)sender;
@@ -47,7 +46,6 @@
 - (IBAction)selectDash:(id)sender;
 - (IBAction)selectGE:(id)sender;
 - (IBAction)selectGWC:(id)sender;
-- (IBAction)selectRecipes:(id)sender;
 - (IBAction)selectAutomaticallyStart:(id)sender;
 - (IBAction)openDataDir:(id)sender;
 - (IBAction)openWebappsDir:(id)sender;
