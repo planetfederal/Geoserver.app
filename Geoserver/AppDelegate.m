@@ -281,6 +281,11 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:%lu/geoexplorer",[[GeoserverServer sharedServer] port]]]];
 }
 
+- (IBAction)selectRecipes:(id)sender {
+    // Open Recipes
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:%lu/recipes",[[GeoserverServer sharedServer] port]]]];
+}
+
 - (IBAction)selectAutomaticallyStart:(id)sender {
     [self.automaticallyStartMenuItem setState:![self.automaticallyStartMenuItem state]];
     
