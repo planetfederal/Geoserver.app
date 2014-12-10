@@ -7,8 +7,10 @@ GDAL_VERSION=1.11.1
 # EE vs Basic
 ifeq ($(PROFILE),ee)
         SUITE_BIN_ZIP=suite-bin-${REV}-ee.zip
+        SUITE_DOC_ZIP=suite-docs-${REV}-ee.zip
 else
         SUITE_BIN_ZIP=suite-bin-${REV}.zip
+        SUITE_DOC_ZIP=suite-docs-${REV}.zip
 endif
 
 #path configuration
@@ -27,8 +29,8 @@ export CFLAGS CXXFLAGS MACOSX_DEPLOYMENT_TARGET
 CURL=/usr/bin/curl -L10 --silent --show-error --remote-name
 TAR=/usr/bin/tar xzf
 
-all: jre geoserver gdal
-clean: clean-jre clean-geoserver clean-libgdal
+all: jre geoserver gdal docs
+clean: clean-jre clean-geoserver clean-libgdal clean-docs
 
 #########################
 ###### GeoServer ########
@@ -51,6 +53,25 @@ ${SUITE_BIN_ZIP}:
 clean-geoserver:
 	rm -Rf suite-bin-*
 	rm -Rf geoserver-*
+	
+#########################
+######## Docs ###########
+#########################
+
+docs: $(PREFIX)/jetty/webapps/opengeo-docs
+
+$(PREFIX)/jetty/webapps/opengeo-docs: ${SUITE_DOC_ZIP}
+	mkdir suite-docs-${REV}
+	unzip -d suite-docs-${REV} -qq -o ${SUITE_DOC_ZIP}
+	mv suite-docs-${REV}/opengeo-docs ${PREFIX}/jetty/webapps
+	touch $@
+
+${SUITE_DOC_ZIP}:
+	$(CURL) "http://r2d2.boundlessgeo.com/suite/core/${BRANCH}/${CAT}/docs/${SUITE_DOC_ZIP}"
+	
+clean-docs:
+	rm -Rf suite-docs-*
+	
 
 #########################
 ###### Bundle JRE #######
