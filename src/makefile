@@ -29,7 +29,7 @@ export CFLAGS CXXFLAGS MACOSX_DEPLOYMENT_TARGET
 CURL=/usr/bin/curl -L10 --silent --show-error --remote-name
 TAR=/usr/bin/tar xzf
 
-all: jre geoserver gdal docs
+all: jre geoserver docs
 clean: clean-jre clean-geoserver clean-libgdal clean-docs
 
 #########################
