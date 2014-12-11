@@ -58,11 +58,23 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
 #pragma mark - NSApplicationDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
+    NSImage *statusOff = [NSImage imageNamed:@"status-off"];
+    NSImage *statusOn = [NSImage imageNamed:@"status-on"];
+    
+    SInt32 OSXversionMajor, OSXversionMinor;
+    if(Gestalt(gestaltSystemVersionMajor, &OSXversionMajor) == noErr && Gestalt(gestaltSystemVersionMinor, &OSXversionMinor) == noErr)
+    {
+        if(OSXversionMajor == 10 && OSXversionMinor >= 10)
+        {
+            [statusOff setTemplate:YES];
+            [statusOn setTemplate:YES];
+        }
+    }
     _statusBarItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
     _statusBarItem.highlightMode = YES;
     _statusBarItem.menu = self.statusBarMenu;
-    _statusBarItem.image = [NSImage imageNamed:@"status-off"];
-    _statusBarItem.alternateImage = [NSImage imageNamed:@"status-on"];
+    _statusBarItem.image = statusOff;
+    _statusBarItem.alternateImage = statusOn;
         
     [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:kGeoserverAutomaticallyOpenDocumentationPreferenceKey]];
     [self.automaticallyStartMenuItem setState:GeoserverIsHelperApplicationSetAsLoginItem() ? NSOnState : NSOffState];
@@ -79,7 +91,6 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
     [self.openDashBoardMenuItem setEnabled:NO];
     [self.openGEMenuItem setEnabled:NO];
     [self.openGWCMenuItem setEnabled:NO];
-    [self.openRecipesMenuItem setEnabled:NO];
     self.geoserverStatusMenuItem.view = self.geoserverStatusMenuItemViewController.view;
     
     NSString *suiteVersion = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"SuiteVersion"];
@@ -134,7 +145,6 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
                 [self.openDashBoardMenuItem setEnabled:YES];
                 [self.openGEMenuItem setEnabled:YES];
                 [self.openGWCMenuItem setEnabled:YES];
-                [self.openRecipesMenuItem setEnabled:YES];
                 if (![[NSUserDefaults standardUserDefaults] boolForKey:kGeoserverFirstLaunchPreferenceKey]) {
                     [[NSUserDefaults standardUserDefaults] synchronize];
                     [self selectDash:nil];
@@ -162,7 +172,6 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
                 [self.openDashBoardMenuItem setEnabled:YES];
                 [self.openGEMenuItem setEnabled:YES];
                 [self.openGWCMenuItem setEnabled:YES];
-                [self.openRecipesMenuItem setEnabled:YES];
                 if (![[NSUserDefaults standardUserDefaults] boolForKey:kGeoserverFirstLaunchPreferenceKey]) {
                     [self selectDash:nil];
                     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kGeoserverFirstLaunchPreferenceKey];
