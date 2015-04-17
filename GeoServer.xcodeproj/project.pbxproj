@@ -689,12 +689,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = GeoserverHelper.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GeoserverHelper/GeoServerHelper-Prefix.pch";
 				INFOPLIST_FILE = "GeoserverHelper/GeoServerHelper-Info.plist";
 				PRODUCT_NAME = GeoServerHelper;
-				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx10.7;
 				SKIP_INSTALL = YES;
 				SUITE_CAT = "";
@@ -707,12 +706,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = GeoserverHelper.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GeoserverHelper/GeoServerHelper-Prefix.pch";
 				INFOPLIST_FILE = "GeoserverHelper/GeoServerHelper-Info.plist";
 				PRODUCT_NAME = GeoServerHelper;
-				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx10.7;
 				SKIP_INSTALL = YES;
 				SUITE_CAT = "";
@@ -727,7 +725,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -746,10 +744,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GEOSERVERAPP_BUILD_VERSION = 14;
 				GEOSERVERAPP_MINOR_VERSION = 3;
-				GEOSERVER_VERSION = 2.5;
+				GEOSERVER_VERSION = 2.7;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx10.7;
 				SUITE_CAT = "";
 				SUITE_REV = "";
@@ -762,7 +759,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -775,9 +772,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GEOSERVERAPP_BUILD_VERSION = 14;
 				GEOSERVERAPP_MINOR_VERSION = 3;
-				GEOSERVER_VERSION = 2.5;
+				GEOSERVER_VERSION = 2.7;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx10.7;
 				SUITE_CAT = "";
 				SUITE_REV = "";
@@ -788,14 +784,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = GeoServer.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Geoserver/GeoServer-Prefix.pch";
 				GEOSERVERAPP_VERSION = 2.5;
 				INFOPLIST_FILE = "Geoserver/GeoServer-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = GeoServer;
-				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx10.7;
 				WRAPPER_EXTENSION = app;
 			};
@@ -805,14 +800,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = GeoServer.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Geoserver/GeoServer-Prefix.pch";
 				GEOSERVERAPP_VERSION = 2.5;
 				INFOPLIST_FILE = "Geoserver/GeoServer-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = GeoServer;
-				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx10.7;
 				WRAPPER_EXTENSION = app;
 			};
