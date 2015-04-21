@@ -36,7 +36,5 @@
 	<string>NSApplication</string>
 	<key>SuiteVersion</key>
 	<string>4-SNAPSHOT</string>
-	<key>SUFeedURL</key>
-	<string>https://geoserver.mesmerizeapp.com/</string>
 </dict>
 </plist>
