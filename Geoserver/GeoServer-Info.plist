@@ -34,12 +34,6 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>SUAllowsAutomaticUpdates</key>
-	<true/>
-	<key>SUEnableAutomaticChecks</key>
-	<true/>
-	<key>SUEnableSystemProfiling</key>
-	<true/>
 	<key>SuiteVersion</key>
 	<string>4-SNAPSHOT</string>
 	<key>SUFeedURL</key>
