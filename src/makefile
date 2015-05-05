@@ -43,6 +43,7 @@ $(PREFIX)/jetty: ${SUITE_BIN_ZIP}
 	mkdir -p ${PREFIX}
 	(cd geoserver-${REV}/webapps; cp -r root dashboard)
 	mv geoserver-${REV} ${PREFIX}/jetty
+	rm ${PREFIX}/jetty/webapps/geoserver/WEB-INF/lib/gt-geopkg-*.jar
 	touch $@
 
 ${SUITE_BIN_ZIP}:
