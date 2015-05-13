@@ -19,15 +19,110 @@
     dispatch_once(&onceToken, ^{
         _sharedSettings = [[GeoserverSettings alloc] init];
         NSString *iniPath;
+        NSString *bundleIniPath;
+        BOOL signedIni = NO;
+        BOOL unsignedIni = NO;
+
+        NSString *signedSuiteIniPath = [NSHomeDirectory() stringByAppendingPathComponent:@"/Library/Containers/com.boundlessgeo.geoserver/Data/Library/Application Support/GeoServer/jetty"];
+        NSString *unsignedSuiteIniPath = [NSHomeDirectory() stringByAppendingPathComponent:@"/Library/Application Support/GeoServer/jetty"];
         NSString *defaultIniPath = [[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent:@"jetty"];
         
-        if ([[NSFileManager defaultManager] fileExistsAtPath:defaultIniPath]) {
-            iniPath = defaultIniPath;
-        } else {
+        if ([[NSFileManager defaultManager] fileExistsAtPath:signedSuiteIniPath]) {
+            // Search for signed install first
+            signedIni = YES;
+        }
+        if ([[NSFileManager defaultManager] fileExistsAtPath:unsignedSuiteIniPath]) {
+            // Search for expected ini
+            unsignedIni = YES;
+        }
+        if (!signedIni && !unsignedIni){
             // Very likely that initial setup has not run. Use default values.
-            iniPath = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"jetty"];
+            bundleIniPath = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"jetty"];
         }
         
+        // Determine which ini to use
+        if (signedIni && unsignedIni) {
+            NSString *signedSettings = [NSString pathWithComponents:@[signedSuiteIniPath, @"version.ini"]];
+            dictionary *signedIni = iniparser_load([signedSettings UTF8String]);
+            NSArray *signedSuiteVer = [[NSString stringWithUTF8String:iniparser_getstring(signedIni, ":suite_version", "")] componentsSeparatedByString:@"."];
+            iniparser_freedict(signedIni);
+            
+            NSString *unsignedSettings = [NSString pathWithComponents:@[unsignedSuiteIniPath, @"version.ini"]];
+            dictionary *unsignedIni = iniparser_load([unsignedSettings UTF8String]);
+            NSArray *unsignedSuiteVer = [[NSString stringWithUTF8String:iniparser_getstring(unsignedIni, ":suite_version", "")] componentsSeparatedByString:@"."];
+            iniparser_freedict(unsignedIni);
+            
+            NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+            f.numberStyle = NSNumberFormatterDecimalStyle;
+            
+            if ([f numberFromString:[signedSuiteVer objectAtIndex:0]] >= [f numberFromString:[unsignedSuiteVer objectAtIndex:0]]
+                &&
+                [f numberFromString:[signedSuiteVer objectAtIndex:1]] > [f numberFromString:[unsignedSuiteVer objectAtIndex:1]]) {
+                iniPath = signedSuiteIniPath;
+            } else {
+                iniPath = unsignedSuiteIniPath;
+            }
+        } else if (signedIni && !unsignedIni) {
+            iniPath = signedSuiteIniPath;
+        } else if (!signedIni && unsignedIni) {
+            iniPath = unsignedSuiteIniPath;
+        } else {
+            iniPath = bundleIniPath;
+        }
+        
+        if ([defaultIniPath compare:iniPath] != 0) {
+            // Looks like a mismatch in gs dirs. Copy to data correct place.
+            NSError *moveErr;
+            
+            NSString *oldDataDir = [[defaultIniPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"data_dir"];
+            NSString *oldJettyDir = [[defaultIniPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"/jetty"];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:oldDataDir]) {
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                [formatter setDateFormat:@"yMMdHHmm"];
+                NSString *dataBkgPath = [NSString stringWithFormat:@"%@_%@",oldDataDir,[formatter stringFromDate:[NSDate date]]];
+                [[NSFileManager defaultManager] moveItemAtPath:oldDataDir toPath:dataBkgPath error:&moveErr];
+                if (moveErr) {
+                    NSLog(@"GeoServer upgrade error: %@", moveErr.localizedDescription);
+                    NSAlert *upgradeFailAlert = [NSAlert alertWithMessageText:@"Error upgrading Suite" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:[NSString stringWithFormat:@"%@. Please manually delete %@", moveErr.localizedDescription, oldDataDir]];
+                    [upgradeFailAlert runModal];
+                }
+            }
+            
+            moveErr = nil;
+            if ([[NSFileManager defaultManager] fileExistsAtPath:oldJettyDir]) {
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                [formatter setDateFormat:@"yMMdHHmm"];
+                NSString *jettyBkgPath = [NSString stringWithFormat:@"%@_%@",oldJettyDir,[formatter stringFromDate:[NSDate date]]];
+                [[NSFileManager defaultManager] moveItemAtPath:oldJettyDir toPath:jettyBkgPath error:&moveErr];
+                if (moveErr) {
+                    NSLog(@"GeoServer upgrade error: %@", moveErr.localizedDescription);
+                    NSAlert *upgradeFailAlert = [NSAlert alertWithMessageText:@"Error upgrading Suite" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:[NSString stringWithFormat:@"%@. Please manually delete %@", moveErr.localizedDescription, oldJettyDir]];
+                    [upgradeFailAlert runModal];
+                }
+            }
+            
+            moveErr = nil;
+            NSString *newDataDir = [[iniPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"data_dir"];
+            NSString *newJettyDir = [[iniPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"jetty"];
+            [[NSFileManager defaultManager] copyItemAtPath:newDataDir toPath:[[defaultIniPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"data_dir"] error:&moveErr];
+            if (moveErr) {
+                NSLog(@"GeoServer upgrade error: %@", moveErr.localizedDescription);
+                NSAlert *upgradeFailAlert = [NSAlert alertWithMessageText:@"Error upgrading Suite" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:[NSString stringWithFormat:@"%@. Please manually delete %@", moveErr.localizedDescription, iniPath]];
+                [upgradeFailAlert runModal];
+            }
+            
+            moveErr = nil;
+            [[NSFileManager defaultManager] copyItemAtPath:newJettyDir toPath:defaultIniPath error:&moveErr];
+            if (moveErr) {
+                NSLog(@"GeoServer upgrade error: %@", moveErr.localizedDescription);
+                NSAlert *upgradeFailAlert = [NSAlert alertWithMessageText:@"Error upgrading Suite" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:[NSString stringWithFormat:@"%@. Please manually delete %@", moveErr.localizedDescription, iniPath]];
+                [upgradeFailAlert runModal];
+            }
+            
+            // set iniPath to default location
+            iniPath = defaultIniPath;
+        }
+    
         // Figure out the port and data_dir location
         NSString *jettyIniPath = [NSString pathWithComponents:@[iniPath, @"start.ini"]];
         NSError *iniReadErr;
@@ -62,7 +157,7 @@
  
         iniparser_freedict(suiteIni);
     });
-    
+
     return _sharedSettings;
 }
 
