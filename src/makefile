@@ -15,8 +15,8 @@ endif
 PREFIX=$(PROJECT_DIR)/Geoserver/Vendor/geoserver
 PATH=$(PREFIX)/bin:/bin:/usr/bin:/opt/local/bin
 
-# Force compilers to use OS X 10.7 SDK for better compatibility with older systems
-MIN_OSX=10.7
+# Force compilers to use OS X 10.9 SDK for better compatibility with older systems
+MIN_OSX=10.9
 CFLAGS:=$(CFLAGS) -mmacosx-version-min=$(MIN_OSX)
 CXXFLAGS:=$(CXXFLAGS) -mmacosx-version-min=$(MIN_OSX)
 MACOSX_DEPLOYMENT_TARGET=$(MIN_OSX)
@@ -90,7 +90,7 @@ $(PREFIX)/lib/libgdal.dylib: gdal-$(GDAL_VERSION)/GNUMakefile
 	touch $@
 
 gdal-$(GDAL_VERSION)/GNUMakefile: gdal-$(GDAL_VERSION)/autogen.sh
-	cd gdal-$(GDAL_VERSION) && ./configure --prefix="$(PREFIX)" --with-mrsid=/opt/qgis_deps
+	cd gdal-$(GDAL_VERSION) && ./configure --prefix="$(PREFIX)"
 	touch $@
 
 gdal-$(GDAL_VERSION)/autogen.sh: gdal-${GDAL_VERSION}.tar.gz
