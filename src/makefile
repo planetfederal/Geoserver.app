@@ -90,7 +90,7 @@ $(PREFIX)/lib/libgdal.dylib: gdal-$(GDAL_VERSION)/GNUMakefile
 	touch $@
 
 gdal-$(GDAL_VERSION)/GNUMakefile: gdal-$(GDAL_VERSION)/autogen.sh
-	cd gdal-$(GDAL_VERSION) && ./configure --prefix="$(PREFIX)"
+	cd gdal-$(GDAL_VERSION) && ./configure --prefix="$(PREFIX)" --with-mrsid=/opt/qgis_deps
 	touch $@
 
 gdal-$(GDAL_VERSION)/autogen.sh: gdal-${GDAL_VERSION}.tar.gz
