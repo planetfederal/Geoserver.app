@@ -689,7 +689,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = GeoserverHelper.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Boundless Spatial, Inc. (82EPDLMXNS)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GeoserverHelper/GeoServerHelper-Prefix.pch";
 				INFOPLIST_FILE = "GeoserverHelper/GeoServerHelper-Info.plist";
@@ -706,7 +706,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = GeoserverHelper.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Boundless Spatial, Inc. (82EPDLMXNS)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GeoserverHelper/GeoServerHelper-Prefix.pch";
 				INFOPLIST_FILE = "GeoserverHelper/GeoServerHelper-Info.plist";
@@ -725,7 +725,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Boundless Spatial, Inc. (82EPDLMXNS)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -759,7 +759,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Boundless Spatial, Inc. (82EPDLMXNS)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -784,7 +784,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = GeoServer.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Boundless Spatial, Inc. (82EPDLMXNS)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Geoserver/GeoServer-Prefix.pch";
 				GEOSERVERAPP_VERSION = 2.7;
@@ -800,7 +800,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = GeoServer.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Boundless Spatial, Inc. (82EPDLMXNS)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Geoserver/GeoServer-Prefix.pch";
 				GEOSERVERAPP_VERSION = 2.7;
