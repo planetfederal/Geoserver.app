@@ -434,6 +434,17 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
+				TargetAttributes = {
+					F87A426C153AB60C00456130 = {
+						DevelopmentTeam = 82EPDLMXNS;
+					};
+					F8973A071538846600EAB41E = {
+						DevelopmentTeam = 82EPDLMXNS;
+					};
+					F8973A3B1538851D00EAB41E = {
+						DevelopmentTeam = 82EPDLMXNS;
+					};
+				};
 			};
 			buildConfigurationList = F8973A021538846600EAB41E /* Build configuration list for PBXProject "GeoServer" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -650,6 +661,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
 				DEBUGGING_SYMBOLS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -676,6 +688,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CFLAGS = "";
@@ -689,7 +702,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = GeoserverHelper.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Boundless Spatial, Inc. (82EPDLMXNS)";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GeoserverHelper/GeoServerHelper-Prefix.pch";
 				INFOPLIST_FILE = "GeoserverHelper/GeoServerHelper-Info.plist";
@@ -706,7 +719,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = GeoserverHelper.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Boundless Spatial, Inc. (82EPDLMXNS)";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GeoserverHelper/GeoServerHelper-Prefix.pch";
 				INFOPLIST_FILE = "GeoserverHelper/GeoServerHelper-Info.plist";
@@ -784,7 +797,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = GeoServer.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Boundless Spatial, Inc. (82EPDLMXNS)";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Geoserver/GeoServer-Prefix.pch";
 				GEOSERVERAPP_VERSION = 2.7;
@@ -800,7 +813,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = GeoServer.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Boundless Spatial, Inc. (82EPDLMXNS)";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Geoserver/GeoServer-Prefix.pch";
 				GEOSERVERAPP_VERSION = 2.7;
@@ -815,6 +828,7 @@
 		F8973A491538851D00EAB41E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "geoserver-service/geoserver-service-Prefix.pch";
 				INFOPLIST_FILE = "geoserver-service/geoserver-service-Info.plist";
@@ -828,6 +842,7 @@
 		F8973A4A1538851D00EAB41E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "geoserver-service/geoserver-service-Prefix.pch";
 				INFOPLIST_FILE = "geoserver-service/geoserver-service-Info.plist";
