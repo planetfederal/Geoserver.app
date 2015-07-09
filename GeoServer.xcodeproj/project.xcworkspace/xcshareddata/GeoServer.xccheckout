@@ -10,33 +10,33 @@
 	<string>GeoServer</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>57C200E5-4442-4B2A-9B91-188C168C27C4</key>
-		<string>https://github.com/ndevilla/iniparser.git</string>
-		<key>73AC578B-81C3-4DC3-B143-DE029E7667E1</key>
-		<string>ssh://github.com/opengeo/Geoserver.app.git</string>
+		<key>937CBE87972E327BD825C87B787A6E595EE3FB2C</key>
+		<string>http://github.com/ndevilla/iniparser.git</string>
+		<key>A11D0D62DEBF012771176D35CA43F24F6BF97BF0</key>
+		<string>https://github.com/boundlessgeo/Geoserver.app.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>GeoServer.xcodeproj/project.xcworkspace</string>
+	<string>GeoServer.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>57C200E5-4442-4B2A-9B91-188C168C27C4</key>
-		<string>../../Geoserver/Vendor/iniparser</string>
-		<key>73AC578B-81C3-4DC3-B143-DE029E7667E1</key>
+		<key>937CBE87972E327BD825C87B787A6E595EE3FB2C</key>
+		<string>../..Geoserver/Vendor/iniparser/</string>
+		<key>A11D0D62DEBF012771176D35CA43F24F6BF97BF0</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/opengeo/Geoserver.app.git</string>
+	<string>https://github.com/boundlessgeo/Geoserver.app.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>73AC578B-81C3-4DC3-B143-DE029E7667E1</string>
+	<string>A11D0D62DEBF012771176D35CA43F24F6BF97BF0</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>73AC578B-81C3-4DC3-B143-DE029E7667E1</string>
+			<string>A11D0D62DEBF012771176D35CA43F24F6BF97BF0</string>
 			<key>IDESourceControlWCCName</key>
 			<string>GeoserverApp</string>
 		</dict>
@@ -44,7 +44,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>57C200E5-4442-4B2A-9B91-188C168C27C4</string>
+			<string>937CBE87972E327BD825C87B787A6E595EE3FB2C</string>
 			<key>IDESourceControlWCCName</key>
 			<string>iniparser</string>
 		</dict>
