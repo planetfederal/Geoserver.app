@@ -437,9 +437,19 @@
 				TargetAttributes = {
 					F87A426C153AB60C00456130 = {
 						DevelopmentTeam = 82EPDLMXNS;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 					F8973A071538846600EAB41E = {
 						DevelopmentTeam = 82EPDLMXNS;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 					F8973A3B1538851D00EAB41E = {
 						DevelopmentTeam = 82EPDLMXNS;
@@ -701,7 +711,6 @@
 		F87A4283153AB60C00456130 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = GeoserverHelper.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GeoserverHelper/GeoServerHelper-Prefix.pch";
@@ -718,7 +727,6 @@
 		F87A4284153AB60C00456130 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = GeoserverHelper.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GeoserverHelper/GeoServerHelper-Prefix.pch";
@@ -796,7 +804,6 @@
 		F8973A271538846600EAB41E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = GeoServer.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Geoserver/GeoServer-Prefix.pch";
@@ -812,7 +819,6 @@
 		F8973A281538846600EAB41E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = GeoServer.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Geoserver/GeoServer-Prefix.pch";
