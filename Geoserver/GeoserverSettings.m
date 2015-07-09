@@ -37,7 +37,7 @@
         }
         if (!signedIni && !unsignedIni){
             // Very likely that initial setup has not run. Use default values.
-            bundleIniPath = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"jetty"];
+            bundleIniPath = [[[NSBundle mainBundle] pathForAuxiliaryExecutable:@"jetty"] stringByResolvingSymlinksInPath];
         }
         
         // Determine which ini to use

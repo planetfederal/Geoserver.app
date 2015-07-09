@@ -44,7 +44,7 @@
     static GeoserverServer *_sharedServer = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _sharedServer = [[GeoserverServer alloc] initWithExecutablesDirectory:[[NSBundle mainBundle] pathForAuxiliaryExecutable:@"jetty"] dataDirectory:[[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent:@"jetty"]];
+        _sharedServer = [[GeoserverServer alloc] initWithExecutablesDirectory:[[[NSBundle mainBundle] pathForAuxiliaryExecutable:@"jetty"] stringByResolvingSymlinksInPath] dataDirectory:[[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent:@"jetty"]];
     });
     
     return _sharedServer;
@@ -60,7 +60,7 @@
     
     _binPath = executablesDirectory;
     _dataPath = dataDirectory;
-    _javaHome = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"jre"];
+    _javaHome = [[[NSBundle mainBundle] pathForAuxiliaryExecutable:@"jre"] stringByResolvingSymlinksInPath];
     _javaCmd = [NSString stringWithFormat:@"%@/bin/java",_javaHome];
     
     _xpc_connection = xpc_connection_create("com.boundlessgeo.geoserver-service", dispatch_get_main_queue());
