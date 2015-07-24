@@ -3,6 +3,8 @@ REV=$(SUITE_REV)
 CAT=$(SUITE_CAT)
 SUITE_VERSION=4.6
 GDAL_VERSION=1.11.1
+MRSID_MAJOR_VERSION=9
+MRSID_VERSION="$(MRSID_MAJOR_VERSION).1.0.4045"
 
 # EE vs Basic
 ifeq ($(PROFILE),ee)
@@ -13,7 +15,7 @@ endif
 
 #path configuration
 PREFIX=$(PROJECT_DIR)/Geoserver/Vendor/geoserver
-PATH=$(PREFIX)/bin:/bin:/usr/bin:/opt/local/bin
+PATH=$(PREFIX)/bin:/bin:/usr/bin:/usr/local/bin
 
 # Force compilers to use OS X 10.9 SDK for better compatibility with older systems
 MIN_OSX=10.9
@@ -48,7 +50,7 @@ $(PREFIX)/jetty: ${SUITE_BIN_ZIP}
 
 ${SUITE_BIN_ZIP}:
 	$(CURL) "http://r2d2.boundlessgeo.com/suite/core/${BRANCH}/${CAT}/bin/${SUITE_BIN_ZIP}"
-	
+
 clean-geoserver:
 	rm -Rf suite-bin-*
 	rm -Rf geoserver-*
@@ -68,7 +70,7 @@ $(PREFIX)/jre: jre-7-osx.tar.gz
 
 jre-7-osx.tar.gz:
 	$(CURL) "http://r2d2.opengeo.org/suite/osx/libs/jre-7-osx.tar.gz"
-	
+
 clean-jre:
 	rm -Rf jre*
 
@@ -84,18 +86,16 @@ $(PREFIX)/lib/libgdal.dylib: gdal-$(GDAL_VERSION)/GNUMakefile
 	cp java.opt gdal-$(GDAL_VERSION)/swig/java
 	(cd gdal-$(GDAL_VERSION)/swig/java; make)
 	cp gdal-$(GDAL_VERSION)/swig/java/.libs/*.dylib $(PREFIX)/lib
-	cp /opt/qgis_deps/lib/libltidsdk*.dylib $(PREFIX)/lib
-	cp /opt/qgis_deps/lib/libtbb.dylib $(PREFIX)/lib
 	cp gdal-$(GDAL_VERSION)/swig/java/*.jar $(PREFIX)/jetty/webapps/geoserver/WEB-INF/lib
 	touch $@
 
-gdal-$(GDAL_VERSION)/GNUMakefile: gdal-$(GDAL_VERSION)/autogen.sh
-	cd gdal-$(GDAL_VERSION) && ./configure --prefix="$(PREFIX)" --with-mrsid=/opt/qgis_deps
+gdal-$(GDAL_VERSION)/GNUMakefile: mrsid gdal-$(GDAL_VERSION)/autogen.sh
+	cd gdal-$(GDAL_VERSION) && ./configure --prefix="$(PREFIX)" --with-mrsid="$(PREFIX)"
 	touch $@
 
 gdal-$(GDAL_VERSION)/autogen.sh: gdal-${GDAL_VERSION}.tar.gz
 	$(TAR) gdal-${GDAL_VERSION}.tar.gz
-	touch $@	
+	touch $@
 
 gdal-${GDAL_VERSION}.tar.gz:
 	$(CURL) "http://download.osgeo.org/gdal/${GDAL_VERSION}/gdal-${GDAL_VERSION}.tar.gz"
@@ -103,3 +103,18 @@ gdal-${GDAL_VERSION}.tar.gz:
 
 clean-libgdal:
 	rm -Rf gdal-$(GDAL_VERSION)
+
+#########################
+########  MrSID  ########
+#########################
+
+mrsid: $(PREFIX)/lib/libltidsdk.dylib
+
+$(PREFIX)/lib/libltidsdk.dylib: MrSID_Raster_DSDK-$(MRSID_VERSION).zip
+	unzip -d $(PREFIX) -qq -o MrSID_Raster_DSDK-$(MRSID_VERSION).zip
+	install_name_tool -id "$(PREFIX)/lib/libltidsdk.$(MRSID_MAJOR_VERSION).dylib" "$(PREFIX)/lib/libltidsdk.$(MRSID_MAJOR_VERSION).dylib"
+	install_name_tool -id "$(PREFIX)/lib/libtbb.dylib" "$(PREFIX)/lib/libtbb.dylib"
+	touch $@
+
+MrSID_Raster_DSDK-$(MRSID_VERSION).zip:
+	$(CURL) "http://r2d2.opengeo.org/suite/osx/libs/MrSID_Raster_DSDK-$(MRSID_VERSION).zip"
