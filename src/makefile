@@ -125,10 +125,10 @@ MrSID_Raster_DSDK-$(MRSID_VERSION).zip:
 
 wpsbuilder: $(PREFIX)/jetty/webapps/wpsbuilder
 
-$(PREFIX)/jetty/webapps/wpsbuilder: suite-wpsbuidler-${REV}.zip
+$(PREFIX)/jetty/webapps/wpsbuilder: suite-wpsbuilder-${REV}.zip
 	rm -rf ${PREFIX}/jetty/webapps/wpsbuilder
-	unzip -d ${PREFIX}/jetty/webapps/ -qq -o suite-wpsbuidler-${REV}.zip
+	unzip -d ${PREFIX}/jetty/webapps/ -qq -o suite-wpsbuilder-${REV}.zip
 	touch $@
 
-suite-wpsbuidler-${REV}.zip:
-	$(CURL) "http://r2d2.boundlessgeo.com/suite/core/${BRANCH}/${CAT}/wpsbuilder/suite-wpsbuidler-${REV}.zip"
+suite-wpsbuilder-${REV}.zip:
+	$(CURL) "http://r2d2.boundlessgeo.com/suite/core/${BRANCH}/${CAT}/wpsbuilder/suite-wpsbuilder-${REV}.zip"
