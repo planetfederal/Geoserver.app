@@ -90,7 +90,7 @@ $(PREFIX)/lib/libgdal.dylib: gdal-$(GDAL_VERSION)/GNUMakefile
 	touch $@
 
 gdal-$(GDAL_VERSION)/GNUMakefile: mrsid gdal-$(GDAL_VERSION)/autogen.sh
-	cd gdal-$(GDAL_VERSION) && ./configure --prefix="$(PREFIX)" --with-mrsid="$(PREFIX)"
+	cd gdal-$(GDAL_VERSION) && ./configure --prefix="$(PREFIX)" --with-mrsid="$(PREFIX)" --without-pg --without-pcre
 	touch $@
 
 gdal-$(GDAL_VERSION)/autogen.sh: gdal-${GDAL_VERSION}.tar.gz
