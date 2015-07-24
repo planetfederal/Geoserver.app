@@ -1,7 +1,5 @@
 #!/bin/bash
 
-KEYCHAIN_PASSWORD=jenkins78902
-
 ORIG_INSTALL_ROOT="${PROJECT_DIR}/Geoserver/Vendor/geoserver"
 EXECUTABLE_TARGET_DIR="$BUILT_PRODUCTS_DIR/$EXECUTABLE_FOLDER_PATH"
 RESOURCES_TARGET_DIR="$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH"
@@ -47,7 +45,7 @@ do
 done
 
 # codesign copied Mach-O files and scripts
-security unlock -p $KEYCHAIN_PASSWORD $HOME/Library/Keychains/login.keychain
+# security unlock -p $KEYCHAIN_PASSWORD $HOME/Library/Keychains/login.keychain
 
 SIGN_FILE () {
   if [[ -z "${1}" ]]; then
