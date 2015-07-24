@@ -21,6 +21,8 @@ cp -af *.dylib "$RESOURCES_TARGET_DIR/jetty/gdal/"
 cd "$RESOURCES_TARGET_DIR"
 prefix="${ORIG_INSTALL_ROOT}"
 prefix_length=${#prefix}
+prefix_lib="${ORIG_INSTALL_ROOT}/lib"
+prefix_lib_length=${#prefix_lib}
 
 # fix library ids
 for libfile in "jetty/gdal/"*
@@ -28,7 +30,7 @@ do
   library_id=$(otool -D $libfile | grep "$prefix");
   if [[ -n "$library_id" ]]
   then
-    new_library_id="@loader_path/.."${library_id:$prefix_length}
+    new_library_id="@loader_path"${library_id:$prefix_lib_length}
     install_name_tool -id "$new_library_id" "$libfile"
   fi
 done
@@ -39,7 +41,7 @@ do
   linked_libs=$(otool -L $file | egrep --only-matching "\Q$prefix\E\S+");
   for lib_path in $linked_libs
   do
-    new_lib_path="@loader_path/.."${lib_path:$prefix_length}
+    new_lib_path="@loader_path"${lib_path:$prefix_lib_length}
     install_name_tool -change "$lib_path" "$new_lib_path" $file
   done
 done
