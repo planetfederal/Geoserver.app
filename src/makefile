@@ -29,7 +29,7 @@ export CFLAGS CXXFLAGS MACOSX_DEPLOYMENT_TARGET
 CURL=/usr/bin/curl -L10 --silent --show-error --remote-name
 TAR=/usr/bin/tar xzf
 
-all: jre geoserver gdal
+all: jre geoserver gdal wpsbuilder
 clean: clean-jre clean-geoserver clean-libgdal
 
 #########################
@@ -118,3 +118,17 @@ $(PREFIX)/lib/libltidsdk.dylib: MrSID_Raster_DSDK-$(MRSID_VERSION).zip
 
 MrSID_Raster_DSDK-$(MRSID_VERSION).zip:
 	$(CURL) "http://r2d2.opengeo.org/suite/osx/libs/MrSID_Raster_DSDK-$(MRSID_VERSION).zip"
+
+#########################
+###### WPS Builder ######
+#########################
+
+wpsbuilder: $(PREFIX)/jetty/webapps/wpsbuilder
+
+$(PREFIX)/jetty/webapps/wpsbuilder: suite-wpsbuidler-${REV}.zip
+	rm -rf ${PREFIX}/jetty/webapps/wpsbuilder
+	unzip -d ${PREFIX}/jetty/webapps/ -qq -o suite-wpsbuidler-${REV}.zip
+	touch $@
+
+suite-wpsbuidler-${REV}.zip:
+	$(CURL) "http://r2d2.boundlessgeo.com/suite/core/${BRANCH}/${CAT}/wpsbuilder/suite-wpsbuidler-${REV}.zip"
