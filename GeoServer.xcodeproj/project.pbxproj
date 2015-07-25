@@ -527,7 +527,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "${PROJECT_DIR}/Geoserver/BuildScripts/copy-sign-deps.sh";
+			shellScript = "${PROJECT_DIR}/Geoserver/BuildScripts/geoserver-copy-sign-deps.sh";
 		};
 /* End PBXShellScriptBuildPhase section */
 
