@@ -87,6 +87,9 @@ $(PREFIX)/lib/libgdal.dylib: gdal-$(GDAL_VERSION)/GNUMakefile
 	(cd gdal-$(GDAL_VERSION)/swig/java; make)
 	cp gdal-$(GDAL_VERSION)/swig/java/.libs/*.dylib $(PREFIX)/lib
 	cp gdal-$(GDAL_VERSION)/swig/java/*.jar $(PREFIX)/jetty/webapps/geoserver/WEB-INF/lib
+	mkdir -p ${PREFIX}/apps
+	cp gdal-$(GDAL_VERSION)/swig/java/build/apps/gdalinfo.class ${PREFIX}/apps
+	cp gdal-$(GDAL_VERSION)/swig/java/build/apps/ogrinfo.class ${PREFIX}/apps
 	touch $@
 
 gdal-$(GDAL_VERSION)/GNUMakefile: mrsid gdal-$(GDAL_VERSION)/autogen.sh

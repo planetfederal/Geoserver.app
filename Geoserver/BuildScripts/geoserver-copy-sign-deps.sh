@@ -1,50 +1,97 @@
 #!/bin/bash
 
 ORIG_INSTALL_ROOT="${PROJECT_DIR}/Geoserver/Vendor/geoserver"
-EXECUTABLE_TARGET_DIR="$BUILT_PRODUCTS_DIR/$EXECUTABLE_FOLDER_PATH"
-RESOURCES_TARGET_DIR="$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH"
+EXECUTABLE_TARGET_DIR="${BUILT_PRODUCTS_DIR}/${EXECUTABLE_FOLDER_PATH}"
+RESOURCES_TARGET_DIR="${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 
-#copy include, share, geoserver, jre (to Resources for codesigning, then symlink into MacOS dir)
-#cp -afR "${ORIG_INSTALL_ROOT}/include" "${ORIG_INSTALL_ROOT}/share" "${ORIG_INSTALL_ROOT}/gs" "$EXECUTABLE_TARGET_DIR/"
-cp -afR "${ORIG_INSTALL_ROOT}/jetty" "$RESOURCES_TARGET_DIR/"
-ln -sf ../Resources/jetty "$EXECUTABLE_TARGET_DIR/jetty"
-cp -afR "${ORIG_INSTALL_ROOT}/jre" "$RESOURCES_TARGET_DIR/"
-ln -sf ../Resources/jre "$EXECUTABLE_TARGET_DIR/jre"
+pushd "${ORIG_INSTALL_ROOT}"
 
-# copy gdal dynamic libraries only (no need for static libraries)
-cd "${ORIG_INSTALL_ROOT}/lib/"
-mkdir -p "$RESOURCES_TARGET_DIR/jetty/gdal/"
-cp -af *.dylib "$RESOURCES_TARGET_DIR/jetty/gdal/"
+  #copy include, share, geoserver, jre (to Resources for codesigning, then symlink into MacOS dir)
+  #cp -af "${ORIG_INSTALL_ROOT}/include" "${ORIG_INSTALL_ROOT}/share" "${ORIG_INSTALL_ROOT}/gs" "$EXECUTABLE_TARGET_DIR/"
+  cp -af jetty "${RESOURCES_TARGET_DIR}/"
+  ln -sf ../Resources/jetty "${EXECUTABLE_TARGET_DIR}/jetty"
+  cp -af jre "${RESOURCES_TARGET_DIR}/"
+  ln -sf ../Resources/jre "${EXECUTABLE_TARGET_DIR}/jre"
 
+  # copy gdal dynamic libraries only (no need for static libraries)
+  mkdir -p "${RESOURCES_TARGET_DIR}/jetty/gdal/"
+  cp -af lib/*.dylib "${RESOURCES_TARGET_DIR}/jetty/gdal/"
 
-# fix dylib paths
-cd "$RESOURCES_TARGET_DIR"
-prefix="${ORIG_INSTALL_ROOT}"
-prefix_length=${#prefix}
-prefix_lib="${ORIG_INSTALL_ROOT}/lib"
-prefix_lib_length=${#prefix_lib}
+  # copy basic gdal cmd line utilities and java apps, to later proof bundling and bindings of dylibs
+  mkdir -p "${RESOURCES_TARGET_DIR}/jetty/gdal/bin/"
+  cp -af bin/gdalinfo bin/ogrinfo "${RESOURCES_TARGET_DIR}/jetty/gdal/bin/"
+  cp -af apps/gdalinfo.class apps/ogrinfo.class "${RESOURCES_TARGET_DIR}/jetty/gdal/bin/"
 
-# fix library ids
-for libfile in "jetty/gdal/"*
-do
-  library_id=$(otool -D $libfile | grep "$prefix");
-  if [[ -n "$library_id" ]]
-  then
-    new_library_id="@loader_path"${library_id:$prefix_lib_length}
-    install_name_tool -id "$new_library_id" "$libfile"
-  fi
-done
+popd # $ORIG_INSTALL_ROOT
 
-# fix library references
-for file in "jetty/gdal/"*
-do
-  linked_libs=$(otool -L $file | egrep --only-matching "\Q$prefix\E\S+");
-  for lib_path in $linked_libs
+pushd "${RESOURCES_TARGET_DIR}"
+
+  prefix="${ORIG_INSTALL_ROOT}"
+  prefix_length=${#prefix}
+  prefix_lib="${ORIG_INSTALL_ROOT}/lib"
+  prefix_lib_length=${#prefix_lib}
+
+  # fix library ids
+  for libfile in "jetty/gdal/"*
   do
-    new_lib_path="@loader_path"${lib_path:$prefix_lib_length}
-    install_name_tool -change "$lib_path" "$new_lib_path" $file
+    if [ ! -f $libfile ]; then
+      continue
+    fi
+    library_id=$(otool -D $libfile | grep "$prefix");
+    if [[ -n "$library_id" ]]
+    then
+      new_library_id="@loader_path"${library_id:$prefix_lib_length}
+      install_name_tool -id "$new_library_id" "$libfile"
+    fi
   done
-done
+
+  # fix library references
+  for file in "jetty/gdal/"*
+  do
+    if [ ! -f $file ]; then
+      continue
+    fi
+    linked_libs=$(otool -L $file | egrep --only-matching "\Q$prefix\E\S+");
+    for lib_path in $linked_libs
+    do
+      new_lib_path="@loader_path"${lib_path:$prefix_lib_length}
+      install_name_tool -change "$lib_path" "$new_lib_path" $file
+    done
+  done
+  for file in "jetty/gdal/bin/gdalinfo" "jetty/gdal/bin/ogrinfo"
+  do
+    linked_libs=$(otool -L $file | egrep --only-matching "\Q$prefix\E\S+");
+    for lib_path in $linked_libs
+    do
+      new_lib_path="@loader_path/.."${lib_path:$prefix_lib_length}
+      install_name_tool -change "$lib_path" "$new_lib_path" $file
+    done
+  done
+
+  # add test script to ensure gdal libs are bundled right and bindings are good
+  rm -f "jetty/gdal/bin/test-gdal.sh"
+
+  pushd "${RESOURCES_TARGET_DIR}/jetty/gdal/bin"
+    cat << EOF > "test-gdal.sh"
+#!/bin/bash
+
+echo "Testing bundled libraries..."
+./gdalinfo --formats
+./ogrinfo --formats
+
+echo "Testing Java bindings to bundled libraries..."
+export JAVA_HOME=$(/usr/libexec/java_home)
+export DYLD_LIBRARY_PATH=..
+java -classpath ../../webapps/geoserver/WEB-INF/lib/gdal.jar:. gdalinfo --formats
+java -classpath ../../webapps/geoserver/WEB-INF/lib/gdal.jar:. ogrinfo --formats
+EOF
+
+    chmod u+x,go-rwx "test-gdal.sh"
+    "./test-gdal.sh" > /dev/null || exit 1
+  popd
+
+popd # $RESOURCES_TARGET_DIR
+
 
 # codesign copied Mach-O files and scripts
 # security unlock -p $KEYCHAIN_PASSWORD $HOME/Library/Keychains/login.keychain
@@ -77,8 +124,11 @@ FIND_AND_SIGN_CODE () {
   done
 }
 
-echo "Find and sign JRE code..."
-FIND_AND_SIGN_CODE ./jre
-echo "Find and sign Jetty code..."
-FIND_AND_SIGN_CODE ./jetty
+pushd "$RESOURCES_TARGET_DIR"
 
+  echo "Find and sign JRE code..."
+  FIND_AND_SIGN_CODE ./jre
+  echo "Find and sign Jetty code..."
+  FIND_AND_SIGN_CODE ./jetty
+
+popd
