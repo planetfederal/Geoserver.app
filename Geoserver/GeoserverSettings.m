@@ -103,6 +103,10 @@
             
             moveErr = nil;
             NSString *newDataDir = [[iniPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"data_dir"];
+            if (!signedIni && !unsignedIni) {
+                // clean install; data_dir is subdirectory of default 'jetty' in app bundle
+                newDataDir = [iniPath stringByAppendingPathComponent:@"data_dir"];
+            }
             NSString *newJettyDir = [[iniPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"jetty"];
             [[NSFileManager defaultManager] copyItemAtPath:newDataDir toPath:[[defaultIniPath stringByDeletingLastPathComponent] stringByAppendingPathComponent:@"data_dir"] error:&moveErr];
             if (moveErr) {
