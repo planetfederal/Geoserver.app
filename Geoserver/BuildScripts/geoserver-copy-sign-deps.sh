@@ -13,6 +13,10 @@ pushd "${ORIG_INSTALL_ROOT}"
   cp -af jre "${RESOURCES_TARGET_DIR}/"
   ln -sf ../Resources/jre "${EXECUTABLE_TARGET_DIR}/jre"
 
+  # update the app's SUITE_VERSION with that from copied jetty/version.ini
+  suite_ver=$(cat "${RESOURCES_TARGET_DIR}/jetty/version.ini" | grep 'suite_version' -m 1 | grep '[0-9].*' -o)
+  /usr/libexec/PlistBuddy -c "Set :SuiteVersion $suite_ver" "${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}"
+
   # copy gdal dynamic libraries only (no need for static libraries)
   mkdir -p "${RESOURCES_TARGET_DIR}/jetty/gdal/"
   cp -af lib/*.dylib "${RESOURCES_TARGET_DIR}/jetty/gdal/"
