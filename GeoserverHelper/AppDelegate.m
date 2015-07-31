@@ -26,7 +26,12 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
-    [[NSWorkspace sharedWorkspace] launchApplication:@"/Applications/Geoserver.app"];
+    NSString *basePath = [[NSBundle mainBundle] bundlePath];
+    NSString *path = [basePath stringByDeletingLastPathComponent];
+    path = [path stringByDeletingLastPathComponent];
+    path = [path stringByDeletingLastPathComponent];
+    path = [path stringByDeletingLastPathComponent];
+    [[NSWorkspace sharedWorkspace] launchApplication:path];
     [NSApp terminate:self];
 }
 
