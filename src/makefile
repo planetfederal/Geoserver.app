@@ -1,3 +1,5 @@
+# REQUIRES env vars: SUITE_REV, SUITE_CAT, PROJECT_DIR, PREFIX
+
 # VERSION numbers
 REV=$(SUITE_REV)
 CAT=$(SUITE_CAT)
@@ -8,9 +10,9 @@ MRSID_VERSION="$(MRSID_MAJOR_VERSION).1.0.4045"
 
 # EE vs Basic
 ifeq ($(PROFILE),ee)
-        SUITE_BIN_ZIP=suite-bin-${REV}-ee.zip
+	SUITE_BIN_ZIP=suite-bin-${REV}-ee.zip
 else
-        SUITE_BIN_ZIP=suite-bin-${REV}.zip
+	SUITE_BIN_ZIP=suite-bin-${REV}.zip
 endif
 
 #path configuration
@@ -25,12 +27,15 @@ MACOSX_DEPLOYMENT_TARGET=$(MIN_OSX)
 
 export CFLAGS CXXFLAGS MACOSX_DEPLOYMENT_TARGET
 
+CORES=$(shell /usr/sbin/sysctl -n hw.ncpu)
+
 # commands used for downloading and extracting sources
 CURL=/usr/bin/curl -L10 --silent --show-error --remote-name
 TAR=/usr/bin/tar xzf
 
 all: jre geoserver gdal wpsbuilder
-clean: clean-jre clean-geoserver clean-libgdal
+clean: clean-geoserver
+clean-deps: clean-jre clean-libgdal
 
 #########################
 ###### GeoServer ########
@@ -82,7 +87,11 @@ clean-jre:
 gdal: geoserver $(PREFIX)/lib/libgdal.dylib
 
 $(PREFIX)/lib/libgdal.dylib: gdal-$(GDAL_VERSION)/GNUMakefile
-	(cd gdal-$(GDAL_VERSION); make install)
+	touch gdal-$(GDAL_VERSION)/config.rpath
+	chmod u+x gdal-$(GDAL_VERSION)/config.rpath
+	make -j $(CORES) -C gdal-$(GDAL_VERSION)
+	make -C gdal-$(GDAL_VERSION) install
+	# generate java bindings
 	cp java.opt gdal-$(GDAL_VERSION)/swig/java
 	(cd gdal-$(GDAL_VERSION)/swig/java; make)
 	cp gdal-$(GDAL_VERSION)/swig/java/.libs/*.dylib $(PREFIX)/lib
