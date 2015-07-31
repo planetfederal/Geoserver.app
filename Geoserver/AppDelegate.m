@@ -293,12 +293,12 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
 - (IBAction)selectAutomaticallyStart:(id)sender {
     [self.automaticallyStartMenuItem setState:![self.automaticallyStartMenuItem state]];
     
-    NSURL *helperApplicationURL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"Contents/Library/LoginItems/GeoserverHelper.app"];
+    NSURL *helperApplicationURL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"Contents/Library/LoginItems/GeoServerHelper.app"];
     if (LSRegisterURL((__bridge CFURLRef)helperApplicationURL, true) != noErr) {
         NSLog(@"LSRegisterURL Failed");
     }
     
-    if (!SMLoginItemSetEnabled((__bridge CFStringRef)@"com.boundlessgeo.GeoserverHelper", [self.automaticallyStartMenuItem state] == NSOnState)) {
+    if (!SMLoginItemSetEnabled((__bridge CFStringRef)@"com.boundlessgeo.GeoServerHelper", [self.automaticallyStartMenuItem state] == NSOnState)) {
         NSLog(@"SMLoginItemSetEnabled Failed");
     }
 }
