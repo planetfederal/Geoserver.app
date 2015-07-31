@@ -38,7 +38,7 @@ pushd "${RESOURCES_TARGET_DIR}"
   # fix library ids
   for libfile in "jetty/gdal/"*
   do
-    if [ ! -f $libfile ]; then
+    if [[ ! -f $libfile ]]; then
       continue
     fi
     library_id=$(otool -D $libfile | grep "$prefix");
@@ -52,7 +52,7 @@ pushd "${RESOURCES_TARGET_DIR}"
   # fix library references
   for file in "jetty/gdal/"*
   do
-    if [ ! -f $file ]; then
+    if [[ ! -f $file ]]; then
       continue
     fi
     linked_libs=$(otool -L $file | egrep --only-matching "\Q$prefix\E\S+");
