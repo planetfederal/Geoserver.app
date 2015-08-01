@@ -8,15 +8,18 @@ GDAL_VERSION=1.11.1
 MRSID_MAJOR_VERSION=9
 MRSID_VERSION="$(MRSID_MAJOR_VERSION).1.0.4045"
 
+PREFIX=$(PROJECT_DIR)/Geoserver/Vendor/geoserver
+
 # EE vs Basic
 ifeq ($(PROFILE),ee)
 	SUITE_BIN_ZIP=suite-bin-${REV}-ee.zip
+	WPS_DEP= $(PREFIX)/jetty/webapps/wpsbuilder.war
 else
 	SUITE_BIN_ZIP=suite-bin-${REV}.zip
+	WPS_DEP=
 endif
 
 #path configuration
-PREFIX=$(PROJECT_DIR)/Geoserver/Vendor/geoserver
 PATH=$(PREFIX)/bin:/bin:/usr/bin:/usr/local/bin
 
 # Force compilers to use OS X 10.9 SDK for better compatibility with older systems
@@ -33,7 +36,7 @@ CORES=$(shell /usr/sbin/sysctl -n hw.ncpu)
 CURL=/usr/bin/curl -L10 --silent --show-error --remote-name
 TAR=/usr/bin/tar xzf
 
-all: jre geoserver mrsid gdal wpsbuilder
+all: jre geoserver wpsbuilder mrsid gdal
 clean: clean-geoserver clean-wpsbuilder
 clean-deps: clean-jre clean-libgdal clean-mrsid
 
@@ -139,10 +142,10 @@ clean-mrsid:
 ###### WPS Builder ######
 #########################
 
-wpsbuilder: $(PREFIX)/jetty/webapps/wpsbuilder
+wpsbuilder: $(WPS_DEP)
 
-$(PREFIX)/jetty/webapps/wpsbuilder: suite-wpsbuilder-${REV}.zip
-	rm -rf ${PREFIX}/jetty/webapps/wpsbuilder
+$(PREFIX)/jetty/webapps/wpsbuilder.war: suite-wpsbuilder-${REV}.zip
+	rm -rf ${PREFIX}/jetty/webapps/wpsbuilder.war
 	unzip -d ${PREFIX}/jetty/webapps/ -qq -o suite-wpsbuilder-${REV}.zip
 	touch $@
 
