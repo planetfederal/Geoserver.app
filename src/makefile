@@ -33,7 +33,7 @@ CORES=$(shell /usr/sbin/sysctl -n hw.ncpu)
 CURL=/usr/bin/curl -L10 --silent --show-error --remote-name
 TAR=/usr/bin/tar xzf
 
-all: jre geoserver gdal wpsbuilder
+all: jre geoserver mrsid gdal wpsbuilder
 clean: clean-geoserver
 clean-deps: clean-jre clean-libgdal clean-mrsid clean-wpsbuilder
 
@@ -99,10 +99,10 @@ $(PREFIX)/lib/libgdal.dylib: gdal-$(GDAL_VERSION)/GNUMakefile
 	cp gdal-$(GDAL_VERSION)/swig/java/build/apps/ogrinfo.class ${PREFIX}/apps
 	touch $@
 
-gdal-$(GDAL_VERSION)/GNUMakefile: mrsid gdal-$(GDAL_VERSION)/autogen.sh
+gdal-$(GDAL_VERSION)/GNUMakefile: gdal-$(GDAL_VERSION)/autogen.sh
 	touch gdal-$(GDAL_VERSION)/config.rpath
 	chmod u+x gdal-$(GDAL_VERSION)/config.rpath
-	cd gdal-$(GDAL_VERSION) && ./configure --prefix="$(PREFIX)" --with-mrsid="$(PREFIX)" --without-pg --without-pcre
+	cd gdal-$(GDAL_VERSION) && ./configure --prefix="$(PREFIX)" --with-mrsid="$(PREFIX)" --without-pg --without-pcre --without-odbc
 	touch $@
 
 gdal-$(GDAL_VERSION)/autogen.sh: gdal-${GDAL_VERSION}.tar.gz
