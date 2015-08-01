@@ -34,8 +34,8 @@ CURL=/usr/bin/curl -L10 --silent --show-error --remote-name
 TAR=/usr/bin/tar xzf
 
 all: jre geoserver mrsid gdal wpsbuilder
-clean: clean-geoserver
-clean-deps: clean-jre clean-libgdal clean-mrsid clean-wpsbuilder
+clean: clean-geoserver clean-wpsbuilder
+clean-deps: clean-jre clean-libgdal clean-mrsid
 
 #########################
 ###### GeoServer ########
@@ -93,7 +93,8 @@ $(PREFIX)/lib/libgdal.dylib: gdal-$(GDAL_VERSION)/GNUMakefile
 	cp java.opt gdal-$(GDAL_VERSION)/swig/java
 	(cd gdal-$(GDAL_VERSION)/swig/java; make)
 	cp gdal-$(GDAL_VERSION)/swig/java/.libs/*.dylib $(PREFIX)/lib
-	cp gdal-$(GDAL_VERSION)/swig/java/*.jar $(PREFIX)/jetty/webapps/geoserver/WEB-INF/lib
+	mkdir -p ${PREFIX}/exts
+	cp gdal-$(GDAL_VERSION)/swig/java/*.jar ${PREFIX}/exts
 	mkdir -p ${PREFIX}/apps
 	cp gdal-$(GDAL_VERSION)/swig/java/build/apps/gdalinfo.class ${PREFIX}/apps
 	cp gdal-$(GDAL_VERSION)/swig/java/build/apps/ogrinfo.class ${PREFIX}/apps

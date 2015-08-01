@@ -21,6 +21,9 @@ pushd "${ORIG_INSTALL_ROOT}"
   mkdir -p "${RESOURCES_TARGET_DIR}/jetty/gdal/"
   cp -af lib/*.dylib "${RESOURCES_TARGET_DIR}/jetty/gdal/"
 
+  # copy any built extensions, e.g. gdal java bindings
+  cp -af exts/*.jar "${RESOURCES_TARGET_DIR}/jetty/webapps/geoserver/WEB-INF/lib"
+
   # copy basic gdal cmd line utilities and java apps, to later proof bundling and bindings of dylibs
   mkdir -p "${RESOURCES_TARGET_DIR}/jetty/gdal/bin/"
   cp -af bin/gdalinfo bin/ogrinfo "${RESOURCES_TARGET_DIR}/jetty/gdal/bin/"
