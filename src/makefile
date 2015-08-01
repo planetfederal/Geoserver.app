@@ -35,7 +35,7 @@ TAR=/usr/bin/tar xzf
 
 all: jre geoserver gdal wpsbuilder
 clean: clean-geoserver
-clean-deps: clean-jre clean-libgdal
+clean-deps: clean-jre clean-libgdal clean-mrsid clean-wpsbuilder
 
 #########################
 ###### GeoServer ########
@@ -87,8 +87,6 @@ clean-jre:
 gdal: geoserver $(PREFIX)/lib/libgdal.dylib
 
 $(PREFIX)/lib/libgdal.dylib: gdal-$(GDAL_VERSION)/GNUMakefile
-	touch gdal-$(GDAL_VERSION)/config.rpath
-	chmod u+x gdal-$(GDAL_VERSION)/config.rpath
 	make -j $(CORES) -C gdal-$(GDAL_VERSION)
 	make -C gdal-$(GDAL_VERSION) install
 	# generate java bindings
@@ -102,6 +100,8 @@ $(PREFIX)/lib/libgdal.dylib: gdal-$(GDAL_VERSION)/GNUMakefile
 	touch $@
 
 gdal-$(GDAL_VERSION)/GNUMakefile: mrsid gdal-$(GDAL_VERSION)/autogen.sh
+	touch gdal-$(GDAL_VERSION)/config.rpath
+	chmod u+x gdal-$(GDAL_VERSION)/config.rpath
 	cd gdal-$(GDAL_VERSION) && ./configure --prefix="$(PREFIX)" --with-mrsid="$(PREFIX)" --without-pg --without-pcre
 	touch $@
 
@@ -131,6 +131,9 @@ $(PREFIX)/lib/libltidsdk.dylib: MrSID_Raster_DSDK-$(MRSID_VERSION).zip
 MrSID_Raster_DSDK-$(MRSID_VERSION).zip:
 	$(CURL) "http://r2d2.opengeo.org/suite/osx/libs/MrSID_Raster_DSDK-$(MRSID_VERSION).zip"
 
+clean-mrsid:
+	rm -Rf MrSID*
+
 #########################
 ###### WPS Builder ######
 #########################
@@ -144,3 +147,7 @@ $(PREFIX)/jetty/webapps/wpsbuilder: suite-wpsbuilder-${REV}.zip
 
 suite-wpsbuilder-${REV}.zip:
 	$(CURL) "http://r2d2.boundlessgeo.com/suite/core/${BRANCH}/${CAT}/wpsbuilder/suite-wpsbuilder-${REV}.zip"
+
+clean-wpsbuilder:
+	rm -Rf suite-wpsbuilder-*
+
