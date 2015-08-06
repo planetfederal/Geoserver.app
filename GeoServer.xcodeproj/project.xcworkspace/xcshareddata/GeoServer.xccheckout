@@ -20,7 +20,7 @@
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>937CBE87972E327BD825C87B787A6E595EE3FB2C</key>
-		<string>../..Geoserver/Vendor/iniparser/</string>
+		<string>../..Geoserver/Vendor/iniparser</string>
 		<key>A11D0D62DEBF012771176D35CA43F24F6BF97BF0</key>
 		<string>../..</string>
 	</dict>
