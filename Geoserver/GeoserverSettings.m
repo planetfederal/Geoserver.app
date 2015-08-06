@@ -42,16 +42,20 @@
         
         // Determine which ini to use
         if (signedIni && unsignedIni) {
+            // ignore any version -suffix, e.g. 4.6.1-SNAPSHOT or 4.7-b3, by using NSString's componentsSeparatedByCharactersInSet
             NSString *signedSettings = [NSString pathWithComponents:@[signedSuiteIniPath, @"version.ini"]];
             dictionary *signedIni = iniparser_load([signedSettings UTF8String]);
-            NSArray *signedSuiteVer = [[NSString stringWithUTF8String:iniparser_getstring(signedIni, ":suite_version", "")] componentsSeparatedByString:@"."];
+            NSArray *signedSuiteVer = [[NSString stringWithUTF8String:iniparser_getstring(signedIni, ":suite_version", "")] componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@".-"]];
             iniparser_freedict(signedIni);
             
             NSString *unsignedSettings = [NSString pathWithComponents:@[unsignedSuiteIniPath, @"version.ini"]];
             dictionary *unsignedIni = iniparser_load([unsignedSettings UTF8String]);
-            NSArray *unsignedSuiteVer = [[NSString stringWithUTF8String:iniparser_getstring(unsignedIni, ":suite_version", "")] componentsSeparatedByString:@"."];
+            NSArray *unsignedSuiteVer = [[NSString stringWithUTF8String:iniparser_getstring(unsignedIni, ":suite_version", "")] componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@".-"]];
             iniparser_freedict(unsignedIni);
-            
+#if DEBUG
+            NSLog(@"signedSuiteVer: %@", [signedSuiteVer description]);
+            NSLog(@"unsignedSuiteVer: %@", [unsignedSuiteVer description]);
+#endif
             NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
             f.numberStyle = NSNumberFormatterDecimalStyle;
             
@@ -69,6 +73,12 @@
         } else {
             iniPath = bundleIniPath;
         }
+#if DEBUG
+        NSLog(@"signedSuiteIniPath: %@", signedSuiteIniPath);
+        NSLog(@"unsignedSuiteIniPath: %@", unsignedSuiteIniPath);
+        NSLog(@"defaultIniPath: %@", defaultIniPath);
+        NSLog(@"iniPath: %@", iniPath);
+#endif
         
         if ([defaultIniPath compare:iniPath] != 0) {
             // Looks like a mismatch in gs dirs. Copy to data correct place.

@@ -94,6 +94,10 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
     self.geoserverStatusMenuItem.view = self.geoserverStatusMenuItemViewController.view;
     
     NSString *suiteVersion = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"SuiteVersion"];
+#if DEBUG
+    NSLog(@"suiteVersion: %@", suiteVersion);
+    NSLog(@"settings.suiteVersion: %@", settings.suiteVersion);
+#endif
     
     if (![settings.suiteVersion isEqualToString:suiteVersion]) {
         // Currently installed jetty bundle does not match app. Perform an "upgrade"
