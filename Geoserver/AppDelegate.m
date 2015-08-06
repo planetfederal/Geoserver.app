@@ -106,7 +106,7 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
         if ([[NSFileManager defaultManager] fileExistsAtPath:jettyPath]) {
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             [formatter setDateFormat:@"yMMdHHmm"];
-            NSString *jettyBkgPath = [NSString stringWithFormat:@"%@_%@_%@",jettyPath,[settings.suiteRev substringToIndex:8],[formatter stringFromDate:[NSDate date]]];
+            NSString *jettyBkgPath = [NSString stringWithFormat:@"%@_%@_%@",jettyPath,[settings.suiteRev substringToIndex:7],[formatter stringFromDate:[NSDate date]]];
             [[NSFileManager defaultManager] moveItemAtPath:jettyPath toPath:jettyBkgPath error:&moveErr];
             if (moveErr) {
                 NSLog(@"GeoServer upgrade error: %@", moveErr.localizedDescription);
@@ -198,7 +198,7 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
         NSString *jettyPath = [[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent:@"jetty"];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"yMMdHHmm"];
-        NSString *jettyBkgPath = [NSString stringWithFormat:@"%@_%@_%@",jettyPath,[settings.suiteRev substringToIndex:8],[formatter stringFromDate:[NSDate date]]];
+        NSString *jettyBkgPath = [NSString stringWithFormat:@"%@_%@_%@",jettyPath,[settings.suiteRev substringToIndex:7],[formatter stringFromDate:[NSDate date]]];
         if ([fm fileExistsAtPath:betaGSPath] || [fm fileExistsAtPath:jettyBkgPath]) {
             [self.geoserverStatusMenuItemViewController startAnimatingWithTitle:@"Upgrading Server..."];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{

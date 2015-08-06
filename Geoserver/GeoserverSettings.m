@@ -164,7 +164,7 @@
         NSString *suiteIniPath = [NSString pathWithComponents:@[iniPath, @"version.ini"]];
         dictionary *suiteIni = iniparser_load([suiteIniPath UTF8String]);
         _sharedSettings.suiteVersion = [NSString stringWithUTF8String:iniparser_getstring(suiteIni, ":suite_version", "")];
-        _sharedSettings.suiteRev = [NSString stringWithUTF8String:iniparser_getstring(suiteIni, ":build_revision", "unknown_rev")];
+        _sharedSettings.suiteRev = [NSString stringWithUTF8String:iniparser_getstring(suiteIni, ":build_rev", "unknown_rev")];
         
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
         _sharedSettings.suiteBuildDate = [df dateFromString:[NSString stringWithUTF8String: iniparser_getstring(suiteIni, ":build_prettydate", "")]];
