@@ -35,7 +35,7 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
     BOOL flag = NO;
     NSArray *jobs = (__bridge NSArray *)SMCopyAllJobDictionaries(kSMDomainUserLaunchd);
     for (NSDictionary *job in jobs) {
-        if ([[job valueForKey:@"Label"] isEqualToString:@"com.boundlessgeo.GeoserverHelper"]) {
+        if ([[job valueForKey:@"Label"] isEqualToString:@"com.boundlessgeo.GeoServerHelper"]) {
             flag = YES;
         }
     }
