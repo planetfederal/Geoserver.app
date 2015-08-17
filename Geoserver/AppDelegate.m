@@ -82,10 +82,8 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
     // clear all previous Automatically start at login helpers
     NSArray *helpers = @[@"com.boundlessgeo.GeoServerHelper", @"com.boundlessgeo.GeoserverHelper"];
     for (NSString *helper in helpers) {
-        if (!SMLoginItemSetEnabled((__bridge CFStringRef)helper, NO)) {
-#if DEBUG
-            NSLog(@"SMLoginItemSetEnabled for %@ not set to NO", helper);
-#endif
+        if (SMLoginItemSetEnabled((__bridge CFStringRef)helper, NO)) {
+            NSLog(@"SMLoginItemSetEnabled for %@ set to NO", helper);
         }
     }
     
