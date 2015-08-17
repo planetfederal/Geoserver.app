@@ -52,7 +52,7 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
 @synthesize geoserverStatusMenuItemViewController = _geoserverStatusMenuItemViewController;
 @synthesize statusBarMenu = _statusBarMenu;
 @synthesize geoserverStatusMenuItem = _geoserverStatusMenuItem;
-@synthesize automaticallyStartMenuItem = _automaticallyStartMenuItem;
+//@synthesize automaticallyStartMenuItem = _automaticallyStartMenuItem;
 @synthesize openGeoServerMenuItem = _openGeoServerMenuItem;
 
 #pragma mark - NSApplicationDelegate
@@ -76,8 +76,18 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
     _statusBarItem.image = statusOff;
     _statusBarItem.alternateImage = statusOn;
         
-    [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:kGeoserverAutomaticallyOpenDocumentationPreferenceKey]];
-    [self.automaticallyStartMenuItem setState:GeoserverIsHelperApplicationSetAsLoginItem() ? NSOnState : NSOffState];
+//    [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:kGeoserverAutomaticallyOpenDocumentationPreferenceKey]];
+//    [self.automaticallyStartMenuItem setState:GeoserverIsHelperApplicationSetAsLoginItem() ? NSOnState : NSOffState];
+    
+    // clear all previous Automatically start at login helpers
+    NSArray *helpers = @[@"com.boundlessgeo.GeoServerHelper", @"com.boundlessgeo.GeoserverHelper"];
+    for (NSString *helper in helpers) {
+        if (!SMLoginItemSetEnabled((__bridge CFStringRef)helper, NO)) {
+#if DEBUG
+            NSLog(@"SMLoginItemSetEnabled for %@ not set to NO", helper);
+#endif
+        }
+    }
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:kGeoserverFirstLaunchPreferenceKey]) {
         _welcomeWindowController = [[WelcomeWindowController alloc] initWithWindowNibName:@"WelcomeWindow"];
@@ -295,16 +305,16 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
 }
 
 - (IBAction)selectAutomaticallyStart:(id)sender {
-    [self.automaticallyStartMenuItem setState:![self.automaticallyStartMenuItem state]];
-    
-    NSURL *helperApplicationURL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"Contents/Library/LoginItems/GeoServerHelper.app"];
-    if (LSRegisterURL((__bridge CFURLRef)helperApplicationURL, true) != noErr) {
-        NSLog(@"LSRegisterURL Failed");
-    }
-    
-    if (!SMLoginItemSetEnabled((__bridge CFStringRef)@"com.boundlessgeo.GeoServerHelper", [self.automaticallyStartMenuItem state] == NSOnState)) {
-        NSLog(@"SMLoginItemSetEnabled Failed");
-    }
+//    [self.automaticallyStartMenuItem setState:![self.automaticallyStartMenuItem state]];
+//    
+//    NSURL *helperApplicationURL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"Contents/Library/LoginItems/GeoServerHelper.app"];
+//    if (LSRegisterURL((__bridge CFURLRef)helperApplicationURL, true) != noErr) {
+//        NSLog(@"LSRegisterURL Failed");
+//    }
+//    
+//    if (!SMLoginItemSetEnabled((__bridge CFStringRef)@"com.boundlessgeo.GeoServerHelper", [self.automaticallyStartMenuItem state] == NSOnState)) {
+//        NSLog(@"SMLoginItemSetEnabled Failed");
+//    }
 }
 
 - (IBAction)openWebappsDir:(id)sender {
