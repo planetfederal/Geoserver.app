@@ -31,11 +31,11 @@
 #import "NSFileManager+DirectoryLocations.h"
 #import "GeoserverSettings.h"
 
-static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
+static BOOL GeoserverIsHelperApplicationSetAsLoginItem(NSString * helper) {
     BOOL flag = NO;
     NSArray *jobs = (__bridge NSArray *)SMCopyAllJobDictionaries(kSMDomainUserLaunchd);
     for (NSDictionary *job in jobs) {
-        if ([[job valueForKey:@"Label"] isEqualToString:@"com.boundlessgeo.GeoServerHelper"]) {
+        if ([[job valueForKey:@"Label"] isEqualToString:helper]) {
             flag = YES;
         }
     }
@@ -82,8 +82,12 @@ static BOOL GeoserverIsHelperApplicationSetAsLoginItem() {
     // clear all previous Automatically start at login helpers
     NSArray *helpers = @[@"com.boundlessgeo.GeoServerHelper", @"com.boundlessgeo.GeoserverHelper"];
     for (NSString *helper in helpers) {
-        if (SMLoginItemSetEnabled((__bridge CFStringRef)helper, NO)) {
-            NSLog(@"SMLoginItemSetEnabled for %@ set to NO", helper);
+        if (GeoserverIsHelperApplicationSetAsLoginItem(helper)) {
+            if (SMLoginItemSetEnabled((__bridge CFStringRef)helper, NO)) {
+                NSLog(@"SMLoginItemSetEnabled for %@ set to NO", helper);
+            } else {
+                NSLog(@"SMLoginItemSetEnabled for %@ could NOT be set to NO", helper);
+            }
         }
     }
     
