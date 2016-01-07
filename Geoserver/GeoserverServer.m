@@ -101,7 +101,23 @@
     [self willChangeValueForKey:@"port"];
     _port = port;
     
-    [self executeCommandNamed:_javaCmd arguments:@[@"-jar", [NSString stringWithFormat:@"%@/start.jar", _dataPath], @"-Djava.awt.headless=true"] terminationHandler:^(NSUInteger status) {
+    NSString *gsWebAppLibPath = [NSString stringWithFormat:@"%@/webapps/geoserver/WEB-INF/lib", _dataPath];
+    NSArray *gsWebAppLibFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:gsWebAppLibPath error:nil];
+    NSArray *marlinFiles = [gsWebAppLibFiles filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self LIKE 'marlin*Unsafe.jar'"]];
+    
+    //NSLog(@"gsWebAppLibPath: %@", gsWebAppLibPath);
+    //NSLog(@"gsWebAppLibFiles: %@", gsWebAppLibFiles);
+    //NSLog(@"marlinFiles: %@", marlinFiles);
+    
+    //NSMutableArray *startArgs = [@"-jar", [NSString stringWithFormat:@"%@/start.jar", _dataPath], @"-Djava.awt.headless=true"];
+    NSMutableArray *startArgs = [NSMutableArray arrayWithObjects:@"-jar", [NSString stringWithFormat:@"%@/start.jar",_dataPath], @"-Djava.awt.headless=true", nil];
+    if ([marlinFiles count])
+    {
+        [startArgs addObject:[NSString stringWithFormat:@"-Xbootclasspath/a:'%@/%@'", gsWebAppLibPath, [marlinFiles objectAtIndex:0]]];
+    }
+    NSLog(@"startCmd: %@ %@", _javaCmd, startArgs);
+    
+    [self executeCommandNamed:_javaCmd arguments:[startArgs copy] terminationHandler:^(NSUInteger status) {
         if (completionBlock) {
             completionBlock(status);
         }
