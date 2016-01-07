@@ -33,6 +33,12 @@ popd # $ORIG_INSTALL_ROOT
 
 pushd "${RESOURCES_TARGET_DIR}"
 
+  # remove unused embedded libjpeg-turbo extension from GeoServer web app
+  pushd "jetty/webapps/geoserver/WEB-INF/lib"
+    rm -f gs-libjpeg-turbo*.jar
+    rm -f *turbojpeg*.jar
+  popd
+
   prefix="${ORIG_INSTALL_ROOT}"
   prefix_length=${#prefix}
   prefix_lib="${ORIG_INSTALL_ROOT}/lib"
