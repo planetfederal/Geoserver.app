@@ -109,11 +109,10 @@
     //NSLog(@"gsWebAppLibFiles: %@", gsWebAppLibFiles);
     //NSLog(@"marlinFiles: %@", marlinFiles);
     
-    //NSMutableArray *startArgs = [@"-jar", [NSString stringWithFormat:@"%@/start.jar", _dataPath], @"-Djava.awt.headless=true"];
     NSMutableArray *startArgs = [NSMutableArray arrayWithObjects:@"-jar", [NSString stringWithFormat:@"%@/start.jar",_dataPath], @"-Djava.awt.headless=true", nil];
     if ([marlinFiles count])
     {
-        [startArgs addObject:[NSString stringWithFormat:@"-Xbootclasspath/a:'%@/%@'", gsWebAppLibPath, [marlinFiles objectAtIndex:0]]];
+        [startArgs addObject:[NSString stringWithFormat:@"-Xbootclasspath/a:webapps/geoserver/WEB-INF/lib/%@", [marlinFiles objectAtIndex:0]]];
     }
     NSLog(@"startCmd: %@ %@", _javaCmd, startArgs);
     
